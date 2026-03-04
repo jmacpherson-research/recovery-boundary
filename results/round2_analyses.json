@@ -1,0 +1,338 @@
+{
+  "task1_assistant_only": {
+    "reasoning_deepseek_r1_mt_all_segments": {
+      "n_excursions": 59,
+      "n_recovered": 59,
+      "recovery_rate": 1.0,
+      "median_lag": 1.0,
+      "n_segments": 1200,
+      "n_sessions": 30,
+      "percentiles": {
+        "wc_p75": 848.0,
+        "wc_p95": 1015.2,
+        "wc_p99": 1092.01,
+        "pd_p75": 0.1667,
+        "pd_p95": 0.2183,
+        "pd_p99": 0.2423
+      }
+    },
+    "reasoning_deepseek_r1_mt_entity_only": {
+      "n_excursions": 27,
+      "n_recovered": 17,
+      "recovery_rate": 0.6296,
+      "median_lag": 2.0,
+      "n_segments": 600,
+      "n_sessions": 30,
+      "percentiles": {
+        "wc_p75": 947.0,
+        "wc_p95": 1053.05,
+        "wc_p99": 1114.11,
+        "pd_p75": 0.1879,
+        "pd_p95": 0.2289,
+        "pd_p99": 0.2517
+      }
+    },
+    "reasoning_o3mini_mt_all_segments": {
+      "n_excursions": 15,
+      "n_recovered": 13,
+      "recovery_rate": 0.8667,
+      "median_lag": 3.0,
+      "n_segments": 1200,
+      "n_sessions": 30,
+      "percentiles": {
+        "wc_p75": 524.0,
+        "wc_p95": 594.1,
+        "wc_p99": 638.02,
+        "pd_p75": 0.125,
+        "pd_p95": 0.1667,
+        "pd_p99": 0.1667
+      }
+    },
+    "reasoning_o3mini_mt_entity_only": {
+      "n_excursions": 19,
+      "n_recovered": 17,
+      "recovery_rate": 0.8947,
+      "median_lag": 2.0,
+      "n_segments": 600,
+      "n_sessions": 30,
+      "percentiles": {
+        "wc_p75": 561.0,
+        "wc_p95": 611.15,
+        "wc_p99": 681.22,
+        "pd_p75": 0.1162,
+        "pd_p95": 0.128,
+        "pd_p99": 0.1373
+      }
+    },
+    "multiturn_claude_reference": {
+      "n_excursions": 23,
+      "n_recovered": 0,
+      "recovery_rate": 0.0,
+      "note": "assistant-only by construction (no questioner segments in corpus)"
+    },
+    "multiturn_gpt4o_reference": {
+      "n_excursions": 13,
+      "n_recovered": 0,
+      "recovery_rate": 0.0,
+      "note": "assistant-only by construction (no questioner segments in corpus)"
+    }
+  },
+  "task2_permanova_52": {
+    "7dim_no_d3": {
+      "n_corpora": 42,
+      "corpora": [
+        "academic_arxiv",
+        "acim",
+        "annomi",
+        "bashar",
+        "carla_prose",
+        "cwg",
+        "dailydialog",
+        "edit_e3",
+        "fomc",
+        "law_of_one",
+        "ll_research",
+        "multiturn_claude",
+        "multiturn_gpt4o",
+        "news_reuters",
+        "reasoning_deepseek_r1",
+        "reasoning_o3mini",
+        "scotus",
+        "seth",
+        "synth_academic_g0",
+        "synth_claude_t02",
+        "synth_claude_t15",
+        "synth_dialogue_g0",
+        "synth_fiction_g0",
+        "synth_g0",
+        "synth_g1",
+        "synth_g2",
+        "synth_g3",
+        "synth_g4",
+        "synth_gemini_g0",
+        "synth_gpt4o_g0",
+        "synth_gpt4o_t02",
+        "synth_gpt4o_t15",
+        "synth_llama70b_g0",
+        "synth_news_g0",
+        "synth_twopass_claude",
+        "vatican",
+        "xdom_claude_fomc",
+        "xdom_claude_scotus",
+        "xdom_claude_therapy",
+        "xdom_gpt4o_fomc",
+        "xdom_gpt4o_scotus",
+        "xdom_gpt4o_therapy"
+      ],
+      "permanova_binary": {
+        "F": 3.177,
+        "R2": 0.0736,
+        "p": 0.0511
+      },
+      "permanova_domain": {
+        "F": 0.894,
+        "R2": 0.1554,
+        "p": 0.412
+      },
+      "permanova_fine": {
+        "F": 1.556,
+        "R2": 0.3916,
+        "p": 0.2475
+      },
+      "permdisp_binary": {
+        "F": 0.094,
+        "p": 0.7931
+      }
+    },
+    "4dim_safe": {
+      "n_corpora": 47,
+      "corpora": [
+        "academic_arxiv",
+        "acim",
+        "annomi",
+        "bashar",
+        "carla_prose",
+        "cwg",
+        "dailydialog",
+        "edit_e1",
+        "edit_e2",
+        "edit_e3",
+        "fomc",
+        "gutenberg_fiction",
+        "law_of_one",
+        "ll_research",
+        "multiturn_claude",
+        "multiturn_gpt4o",
+        "news_reuters",
+        "reasoning_deepseek_r1",
+        "reasoning_deepseek_r1_mt",
+        "reasoning_o3mini",
+        "reasoning_o3mini_mt",
+        "scotus",
+        "seth",
+        "synth_academic_g0",
+        "synth_claude_t02",
+        "synth_claude_t15",
+        "synth_dialogue_g0",
+        "synth_fiction_g0",
+        "synth_g0",
+        "synth_g1",
+        "synth_g2",
+        "synth_g3",
+        "synth_g4",
+        "synth_gemini_g0",
+        "synth_gpt4o_g0",
+        "synth_gpt4o_t02",
+        "synth_gpt4o_t15",
+        "synth_llama70b_g0",
+        "synth_news_g0",
+        "synth_twopass_claude",
+        "vatican",
+        "xdom_claude_fomc",
+        "xdom_claude_scotus",
+        "xdom_claude_therapy",
+        "xdom_gpt4o_fomc",
+        "xdom_gpt4o_scotus",
+        "xdom_gpt4o_therapy"
+      ],
+      "permanova_binary": {
+        "F": 1.252,
+        "R2": 0.0271,
+        "p": 0.2764
+      },
+      "permanova_domain": {
+        "F": 0.957,
+        "R2": 0.1466,
+        "p": 0.3798
+      },
+      "permanova_fine": {
+        "F": 1.377,
+        "R2": 0.376,
+        "p": 0.2691
+      },
+      "permdisp_binary": {
+        "F": 0.004,
+        "p": 0.9563
+      }
+    }
+  },
+  "task3_correlation": {
+    "per_corpus": [
+      {
+        "corpus_id": "law_of_one",
+        "segs_per_session": 47.6,
+        "avg_words_per_seg": 52.9,
+        "n_excursions": 91,
+        "recovery_rate": 0.9121
+      },
+      {
+        "corpus_id": "ll_research",
+        "segs_per_session": 12.7,
+        "avg_words_per_seg": 265.4,
+        "n_excursions": 746,
+        "recovery_rate": 0.5777
+      },
+      {
+        "corpus_id": "seth",
+        "segs_per_session": 39.8,
+        "avg_words_per_seg": 71.1,
+        "n_excursions": 722,
+        "recovery_rate": 0.7798
+      },
+      {
+        "corpus_id": "bashar",
+        "segs_per_session": 32.3,
+        "avg_words_per_seg": 44.1,
+        "n_excursions": 796,
+        "recovery_rate": 0.6972
+      },
+      {
+        "corpus_id": "acim",
+        "segs_per_session": 12.2,
+        "avg_words_per_seg": 107.1,
+        "n_excursions": 165,
+        "recovery_rate": 0.5758
+      },
+      {
+        "corpus_id": "cwg",
+        "segs_per_session": 83.3,
+        "avg_words_per_seg": 48.6,
+        "n_excursions": 129,
+        "recovery_rate": 0.8682
+      },
+      {
+        "corpus_id": "carla_prose",
+        "segs_per_session": 17.5,
+        "avg_words_per_seg": 58.9,
+        "n_excursions": 76,
+        "recovery_rate": 0.6974
+      },
+      {
+        "corpus_id": "fomc",
+        "segs_per_session": 57.3,
+        "avg_words_per_seg": 141.8,
+        "n_excursions": 118,
+        "recovery_rate": 0.9492
+      },
+      {
+        "corpus_id": "scotus",
+        "segs_per_session": 200.5,
+        "avg_words_per_seg": 46.1,
+        "n_excursions": 30223,
+        "recovery_rate": 0.8981
+      },
+      {
+        "corpus_id": "vatican",
+        "segs_per_session": 47.2,
+        "avg_words_per_seg": 159.3,
+        "n_excursions": 332,
+        "recovery_rate": 0.2741
+      },
+      {
+        "corpus_id": "annomi",
+        "segs_per_session": 72.9,
+        "avg_words_per_seg": 15.8,
+        "n_excursions": 116,
+        "recovery_rate": 0.9569
+      },
+      {
+        "corpus_id": "news_reuters",
+        "segs_per_session": 11.8,
+        "avg_words_per_seg": 38.2,
+        "n_excursions": 2111,
+        "recovery_rate": 0.7906
+      },
+      {
+        "corpus_id": "gutenberg_fiction",
+        "segs_per_session": 50.3,
+        "avg_words_per_seg": 2747.3,
+        "n_excursions": 39,
+        "recovery_rate": 0.3333
+      },
+      {
+        "corpus_id": "academic_arxiv",
+        "segs_per_session": 5.0,
+        "avg_words_per_seg": 183.4,
+        "n_excursions": 21,
+        "recovery_rate": 0.4286
+      },
+      {
+        "corpus_id": "dailydialog",
+        "segs_per_session": 8.0,
+        "avg_words_per_seg": 13.9,
+        "n_excursions": 101,
+        "recovery_rate": 0.4554
+      }
+    ],
+    "spearman_segs_vs_recovery": {
+      "rho": 0.5643,
+      "p": 0.0284
+    },
+    "spearman_words_vs_recovery": {
+      "rho": -0.4893,
+      "p": 0.0642
+    },
+    "corpus_averaged_recovery": 0.6796,
+    "corpus_averaged_no_scotus": 0.664
+  }
+}

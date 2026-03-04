@@ -1,0 +1,237 @@
+{
+  "permdisp_7dim": {
+    "description": "PERMDISP (Anderson 2006) on 7-dim z-scored vector, 30 corpora",
+    "binary_protocol": {
+      "F_stat": 1.7519,
+      "p_value": 0.1926,
+      "n_groups": 2,
+      "n_obs": 30,
+      "group_dispersions": {
+        "ai": {
+          "mean_dist": 1.8371,
+          "median_dist": 1.4591,
+          "n": 19
+        },
+        "natural": {
+          "mean_dist": 2.2603,
+          "median_dist": 2.4882,
+          "n": 11
+        }
+      },
+      "interpretation": "PASS (homogeneous)"
+    },
+    "domain": {
+      "F_stat": 2.1396,
+      "p_value": 0.1354,
+      "n_groups": 4,
+      "n_obs": 30,
+      "group_dispersions": {
+        "channeling": {
+          "mean_dist": 2.3151,
+          "median_dist": 2.2451,
+          "n": 19
+        },
+        "institutional": {
+          "mean_dist": 1.6793,
+          "median_dist": 1.2792,
+          "n": 7
+        },
+        "prose": {
+          "mean_dist": 0.0,
+          "median_dist": 0.0,
+          "n": 1
+        },
+        "therapy": {
+          "mean_dist": 2.0145,
+          "median_dist": 1.627,
+          "n": 3
+        }
+      },
+      "interpretation": "PASS (homogeneous)"
+    },
+    "fine_protocol": {
+      "F_stat": 4.827,
+      "p_value": 0.0015,
+      "n_groups": 10,
+      "n_obs": 30,
+      "group_dispersions": {
+        "ai_edited": {
+          "mean_dist": 0.9284,
+          "median_dist": 0.9109,
+          "n": 3
+        },
+        "ai_multiturn": {
+          "mean_dist": 0.5737,
+          "median_dist": 0.5737,
+          "n": 2
+        },
+        "ai_stateless": {
+          "mean_dist": 1.4825,
+          "median_dist": 1.2479,
+          "n": 14
+        },
+        "authored_prose": {
+          "mean_dist": 0.0,
+          "median_dist": 0.0,
+          "n": 1
+        },
+        "dialogue_channeling": {
+          "mean_dist": 1.3213,
+          "median_dist": 1.1976,
+          "n": 3
+        },
+        "dictation_channeling": {
+          "mean_dist": 2.0693,
+          "median_dist": 2.0693,
+          "n": 2
+        },
+        "institutional_document": {
+          "mean_dist": 0.0,
+          "median_dist": 0.0,
+          "n": 1
+        },
+        "institutional_transcript": {
+          "mean_dist": 0.7049,
+          "median_dist": 0.7049,
+          "n": 2
+        },
+        "monologue_channeling": {
+          "mean_dist": 0.0,
+          "median_dist": 0.0,
+          "n": 1
+        },
+        "therapy_dialogue": {
+          "mean_dist": 0.0,
+          "median_dist": 0.0,
+          "n": 1
+        }
+      },
+      "interpretation": "FAIL (heterogeneous dispersions)"
+    }
+  },
+  "safe_vector_4dim": {
+    "description": "PERMANOVA + PERMDISP on 4-dim z-scored vector (dims 1,2,4,5 only \u2014 no size-confounded dims)",
+    "n_corpora": 30,
+    "corpora": [
+      "acim",
+      "annomi",
+      "bashar",
+      "carla_prose",
+      "cwg",
+      "edit_e1",
+      "edit_e2",
+      "edit_e3",
+      "fomc",
+      "law_of_one",
+      "ll_research",
+      "multiturn_claude",
+      "multiturn_gpt4o",
+      "scotus",
+      "seth",
+      "synth_g0",
+      "synth_g1",
+      "synth_g2",
+      "synth_g3",
+      "synth_g4",
+      "synth_gemini_g0",
+      "synth_gpt4o_g0",
+      "synth_llama70b_g0",
+      "vatican",
+      "xdom_claude_fomc",
+      "xdom_claude_scotus",
+      "xdom_claude_therapy",
+      "xdom_gpt4o_fomc",
+      "xdom_gpt4o_scotus",
+      "xdom_gpt4o_therapy"
+    ],
+    "permanova_binary": {
+      "pseudo_F": 6.1556,
+      "R2": 0.1802,
+      "p_value": 0.0019,
+      "n_groups": 2,
+      "n_obs": 30,
+      "SS_between": 17.2932,
+      "SS_within": 78.6613,
+      "SS_total": 95.9545
+    },
+    "permanova_domain": {
+      "pseudo_F": 1.5997,
+      "R2": 0.1558,
+      "p_value": 0.1568,
+      "n_groups": 4,
+      "n_obs": 30,
+      "SS_between": 14.9512,
+      "SS_within": 81.0033,
+      "SS_total": 95.9545
+    },
+    "permanova_fine": {
+      "pseudo_F": 2.6343,
+      "R2": 0.5424,
+      "p_value": 0.019,
+      "n_groups": 10,
+      "n_obs": 30,
+      "SS_between": 52.0479,
+      "SS_within": 43.9066,
+      "SS_total": 95.9545
+    },
+    "permdisp_binary": {
+      "F_stat": 1.3126,
+      "p_value": 0.2722,
+      "n_groups": 2,
+      "n_obs": 30,
+      "group_dispersions": {
+        "ai": {
+          "mean_dist": 1.2737,
+          "median_dist": 1.0821,
+          "n": 19
+        },
+        "natural": {
+          "mean_dist": 1.6282,
+          "median_dist": 1.4823,
+          "n": 11
+        }
+      },
+      "interpretation": "PASS (homogeneous)"
+    }
+  },
+  "large_corpora_7dim": {
+    "description": "PERMANOVA on 7-dim z-scored vector, restricted to corpora >= 150K words",
+    "threshold": "150K words",
+    "n_corpora": 13,
+    "corpora": [
+      "acim",
+      "annomi",
+      "bashar",
+      "carla_prose",
+      "cwg",
+      "fomc",
+      "law_of_one",
+      "ll_research",
+      "multiturn_claude",
+      "multiturn_gpt4o",
+      "scotus",
+      "seth",
+      "vatican"
+    ],
+    "permanova_binary": {
+      "pseudo_F": 1.8086,
+      "R2": 0.1412,
+      "p_value": 0.1903,
+      "n_groups": 2,
+      "n_obs": 13,
+      "SS_between": 11.0364,
+      "SS_within": 67.1223,
+      "SS_total": 78.1588
+    },
+    "permanova_fine": {
+      "pseudo_F": 2.8463,
+      "R2": 0.7994,
+      "p_value": 0.0301,
+      "n_groups": 8,
+      "n_obs": 13,
+      "SS_between": 62.4792,
+      "SS_within": 15.6795,
+      "SS_total": 78.1588
+    }
+  }
+}

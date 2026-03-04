@@ -1,0 +1,1000 @@
+% Paper 3: Structural Cartography of Generative Text
+% Target venue: EMNLP / Computational Linguistics / TACL
+% ACL Rolling Review format
+%
+% To compile: use Overleaf ACL template or download acl.sty from
+% https://github.com/acl-org/acl-style-files
+
+\documentclass[11pt]{article}
+\usepackage{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{placeins}  % provides \FloatBarrier
+
+% Aggressive float placement to prevent figures/tables drifting to end
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{8}
+
+% Force float pages to top-align instead of vertical centering
+% \@fptop for single-column floats, \@dblfptop for table*/figure* in twocolumn
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\setlength{\@dblfptop}{0pt}
+\setlength{\@dblfpbot}{0pt plus 1fil}
+\makeatother
+
+% Load all data macros from single source of truth
+\input{paper3_macros}
+
+\title{Static Mimicry, Dynamic Failure: A Compression-Based Structural Vector\\ Reveals a Recovery Boundary in AI-Generated Text}
+
+\author{
+  James MacPherson \\
+  Independent Researcher \\
+  \texttt{jamesmacpherson130@gmail.com}
+}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+
+\begin{abstract}
+We report a structural recovery boundary separating human-authored text from single-pass autoregressive AI generation. Recovery events---transient shifts in chunk-level compressibility consistent with self-correction---occur in all \nNatural\ natural corpora tested (corpus-averaged \recNatCorpusAvg\%, N=\nNatural; median \recNatMedian\%, IQR \recNatIQRlo--\recNatIQRhi\%) but are absent from single-shot AI across all \nModels\ model families (0/98 excursions recovering). When multi-turn sessions introduce question--answer alternation, standard AI shows substantial recovery (\recClaudeMT--\recGPTMT\% for spiritual Q\&A, \recMTXdomMin--\recMTXdomMax\% for cross-domain), revealing that turn structure---not self-correction---can produce the excursion-then-return signature. A per-session coherence index shows no evidence that topic coherence moderates this effect ($r = \cohAIr$, $p = \cohAIp$, ns); the boundary is generation structure, not topic diversity. The boundary holds for single-pass generation across \nCorpora\ corpora spanning \nDomains\ content domains, temperature settings (0.2--1.5), and \nSensitivityCombos\ parameter combinations. Reasoning-augmented models (with chain-of-thought verification) show \recReasoningEntity\% recovery in multi-turn settings (entity-only), consistent with the interpretation that recovery indexes corrective-loop presence rather than authorship identity. This is primarily a structural finding about autoregressive generation, with implications for AI-text detection.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+
+\section{Introduction}
+
+The ability to generate fluent, context-appropriate text has been a longstanding challenge in natural language processing. Recent advances in large language models have largely solved it: systems like GPT-4, Claude, Gemini, and Llama produce text that is superficially indistinguishable from human writing \cite{tang2024survey,sadasivan2024aigenerated,mitchell2023detectgpt}.
+
+Yet despite this surface success, a structural asymmetry persists in how human-authored text unfolds over time. When humans write, they characteristically monitor their output and redirect: shifting register, recontextualizing, or correcting. We call these redirections \textit{recovery events}---measurable shifts in compressibility that indicate the writer has departed from their initial trajectory and moved toward a new coherence. Standard autoregressive language models generate forward-only, token-by-token, with no default mechanism to backtrack and correct.
+
+In this paper, we test whether this difference leaves a structural signature. We construct a compression-based feature vector from \nCorpora\ corpora spanning \nDomains\ content domains and \nModels\ model families. We compute eight structural dimensions capturing how text unfolds over time: compression statistics, recovery rates, stress (compression volatility), and novelty metrics. We find that the presence or absence of recovery events separates natural language from single-pass autoregressive AI. When multi-turn sessions introduce question--answer alternation, however, standard AI exhibits substantial recovery (\recClaudeMT--\recGPTMT\% for spiritual Q\&A, \recMTXdomMin--\recMTXdomMax\% for cross-domain), identifying turn structure as the mechanism rather than self-correction. This is primarily a structural finding about autoregressive generation, with implications for AI detection as an application.
+
+Our key findings:
+
+\begin{enumerate}
+\item \textbf{Recovery boundary:} Single-shot AI shows 0\% recovery (0/98 excursions across all model families), versus corpus-averaged \recNatCorpusAvg\% for naturals. Multi-turn AI shows substantial recovery: \recClaudeMT\% (Claude, $N_e = \excMTClaude$) and \recGPTMT\% (GPT-4o, $N_e = \excMTGPT$) for spiritual Q\&A, \recMTXdomMin--\recMTXdomMax\% for cross-domain (\nMTXdom\ corpora). A per-session topic-coherence index shows no evidence that coherence moderates this effect ($r = \cohAIr$, $p = \cohAIp$, ns); the boundary is single-pass vs.\ multi-turn generation structure (\S\ref{sec:limitations}).
+
+\item \textbf{Robustness:} For single-pass generation, the boundary is insensitive to temperature (0.2, 1.0, 1.5), decoding strategy (two-pass self-revision), compression algorithm, chunk size, text normalization, and parameter thresholds (sensitivity sweep over \nSensitivityCombos\ combinations). Leave-one-out cross-validation: 43/43 correct on all testable single-pass corpora (15/15 natural, 26/26 single-shot standard AI, 2/2 reasoning single-shot). Multi-turn corpora are false positives under the recovery-only classifier due to turn-structure-induced recovery (Limitation~\ref{sec:topicdiversity}, \S\ref{sec:limitations}).
+
+\item \textbf{Production protocol dominates content:} On the safe-vector (4 dimensions with no size confounds), PERMANOVA shows production protocol is significant ($R^2 = \safeProtRsq$, $p = \safeProtP$) while content domain is not ($R^2 = \safeDomRsq$, $p = \safeDomP$).
+
+\item \textbf{Reasoning-augmented models show recovery:} DeepSeek-R1 (entity-only) reaches \recReasoningDS\% recovery, o3-mini \recReasoningOiii\%, consistent with the interpretation that models with deliberative verification can breach the boundary. Standard single-shot AI remains at \recAISingleShot\%.
+
+\item \textbf{Natural language landscape:} The 52-corpus structural space reveals surprising variation. Institutional dialogue corpora (SCOTUS, FOMC) cluster at high recovery; channeling corpora (dictated esoteric monologues such as Law of One and Bashar) at moderate; institutional prose (Vatican) and continuous prose (fiction, news) at low. Compression uniformity (a hallmark of AI) correlates with lack of recovery but is not its cause.
+\end{enumerate}
+
+This work contributes to three areas: (1) forensic linguistics and AI detection methods, (2) understanding the structural dynamics of human language production, and (3) validation methodology for large-scale feature-based discrimination tasks. We argue that recovery-based detection reflects a systematic asymmetry in production architecture.
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+
+\section{Related Work}
+
+\subsection{AI Text Detection}
+
+Recent work on detecting AI-generated text has explored surface statistics \citep{solaiman2019release,gehrmann2019gltr,mitchell2023detectgpt}, perplexity-based methods \citep{jauhiainen2023comparing}, learned detectors trained on large corpora \citep{wang2023mfd,sadasivan2024aigenerated,zellers2019defending,bakhtin2019real}, intrinsic dimensionality \citep{tulchinskii2024intrinsic}, and authorship-attribution approaches \citep{uchendu2020authorship}. These methods achieve high accuracy on in-distribution benchmarks but often fail when the model or temperature changes \citep{jiang2024detecting,tan2024llm}. Our approach differs by grounding detection in a structural property---corrective-loop presence---rather than learned features or surface heuristics.
+
+\subsection{Language Production and Monitoring}
+
+The concept of a corrective loop in language production is rooted in psycholinguistic theory. \citeauthor{levelt1989speaking}'s model \citeyearpar{levelt1989speaking} describes speech production as a feedback-driven process where speakers monitor output against intention and correct mismatches. In written language, \citet{flower1981cognitive} model writing as a recursive process of planning, translating, and reviewing, where reviewing explicitly includes detecting and correcting mismatches between intention and text. \citet{bereiter1987psychology} extend this to distinguish ``knowledge-telling'' (forward-only generation) from ``knowledge-transforming'' (iterative revision guided by rhetorical goals). We operationalize these feedback mechanisms as recovery events in finalized text. Similar ideas appear in recent work on editing behavior \citep{schrijvers2016signature} and keystroke dynamics \citep{sap2020recollection}, but recovery-based methods applied to finalized text are less common.
+
+\subsection{Compression-Based Text Analysis}
+
+Compression has long been used as a universal text statistic \citep{teahan2003using,benedetto2002language}. More recently, it appears in adversarial robustness work \citep{holtzman2021surface} and as a baseline for language model evaluation \citep{ussishkin2023compression}. Our use of chunked compression to measure compressibility per segment is novel and allows fine-grained temporal tracking.
+
+\subsection{Multivariate Text Characterization}
+
+Multi-dimensional text analysis has been applied to authorship attribution \citep{stamatatos2009survey}, genre classification \citep{kessler1997automatic}, and computational stylistics \citep{hoover2013quantitative}. Our approach is similar in spirit but focuses on production protocol (how text unfolds over time) rather than authorial fingerprint.
+
+% ============================================================
+% 3. DATA
+% ============================================================
+
+\section{Data}
+
+Our corpus design follows two principles: (1)~\textit{content diversity}---naturals must span enough domains that any observed signal cannot be attributed to topic alone; and (2)~\textit{condition coverage}---AI corpora must vary model family, generation protocol, temperature, and prompting strategy to test whether the recovery boundary holds across generation regimes. We describe each group below, organized by the experimental role it plays.
+
+\subsection{Natural Corpora}
+
+We assembled \nNatural\ natural corpora spanning \nDomains\ content domains and multiple production contexts, selected to maximize variation in production mode (dialogue vs.\ monologue vs.\ continuous prose) while covering institutional, literary, journalistic, academic, and conversational registers. These include:
+
+\begin{itemize}
+\item \textbf{Dialogue:} DailyDialog (1,086 sessions, 8,656 segments, 120K words, HuggingFace). Free-form conversational production with real turn-taking dynamics.
+
+\item \textbf{Institutional:} SCOTUS oral arguments (8,259 sessions, 1.66M segments, 76.3M words, Oyez API). FOMC press conferences (89 sessions, 5,103 segments, 724K words, Federal Reserve Archive). Vatican encyclicals (215 sessions, 10,147 segments, 1.6M words). SCOTUS and FOMC represent formal dialogue with multiple speakers; Vatican represents institutional prose (papal encyclicals).
+
+\item \textbf{Channeling Corpora:} Law of One (106 sessions, 5,041 segments, 267K words), Seth Early Sessions (484 sessions, 19,243 segments, 1.4M words), Bashar (948 sessions, 30,615 segments, 1.3M words), A Course in Miracles (ACIM, 261 sessions, 3,174 segments, 340K words), Conversations with God (CWG, 58 sessions, 4,832 segments, 235K words). These represent a special production mode: one-way monologue framed as channeled dictation, with strong stylistic consistency and deliberate pace.
+
+\item \textbf{Dialogue-Adjacent:} Carla Prose (Carla Rueckert's hand-written journals, 190 sessions, 3,327 segments, 196K words).
+
+\item \textbf{Institutional Monologue:} L/L Research (session transcripts and protocol descriptions, 1,293 sessions, 16,381 segments, 4.3M words). AnnoMI (motivational interviewing transcripts, 133 sessions, 9,699 segments, 153K words).
+
+\item \textbf{Published Fiction:} Gutenberg Fiction (10 novels from Project Gutenberg, 10 sessions, 503 segments, 1.4M words). Continuous prose narrative.
+
+\item \textbf{News:} Reuters News (10,000 sessions, 117,812 segments, 4.5M words from AG News dataset). Journalistic production with tight editorial constraints.
+
+\item \textbf{Academic:} arXiv Abstracts and Papers (160 sessions, 800 segments, 147K words). Academic written production.
+
+\end{itemize}
+
+\subsection{Calibration Corpora}
+
+To establish baselines for compression metrics, we include three non-linguistic calibration targets:
+
+\begin{itemize}
+\item ECC/Hamming codes (74-bit random sequences). SAT 3-SAT clause satisfiability matrices. DNA sequences (GenCode splice sites). These have zero semantic content and serve as lower-bound references.
+\end{itemize}
+
+Total: 3 calibration corpora.
+
+\subsection{AI-Generated Corpora}
+
+We generated \nAI\ AI-generated corpora using six LLM families under various conditions.
+
+\subsubsection{Single-Shot AI (Standard Prompt)}
+
+Claude Sonnet 4.5 gradient (G0--G4): 100 sessions each, 100 segments each (1 per session), 44--53K words. Prompted to answer questions across spiritual, legal, and economic domains. G0 is unconstrained; G1--G4 add successive style, novelty, and anchor constraints. These corpora establish baseline AI behavior.
+
+\subsubsection{Multi-Model AI (G0 Prompt, Varied Model)}
+
+GPT-4o (50 sessions, 50 segments, 28K words), Gemini 2.5 Flash (50 sessions, 50 segments, 27K words), Llama 3.1 70B (50 sessions, 50 segments, 27K words). Same prompt distribution and temperature as Claude G0, different architecture. Tests generalization across model families.
+
+\subsubsection{Multi-Turn AI}
+
+Claude Sonnet 4.5 (90 sessions, 1,792 segments, \nMultiturnClaudeWords\ words). GPT-4o (90 sessions, 1,792 segments, \nMultiturnGPTWords\ words). Multi-turn structured as Q\&A exchange with $\sim$20 assistant-generated segments per session, using shuffled questions from the Law of One corpus. Questions cycle through diverse spiritual topics across sessions, creating within-session topic diversity that varies with question ordering. This is the most temporally resolved AI test case for recovery dynamics.
+
+\subsubsection{Reasoning Models}
+
+DeepSeek-R1 (single-shot, 50 sessions, 50 segments, 32K words; multi-turn, 30 sessions, 1,200 segments, 510K words). o3-mini (single-shot, 50 sessions, 50 segments, 26K words; multi-turn, 30 sessions, 1,200 segments, 307K words). Both use default chain-of-thought settings. Tests whether reasoning/verification loops produce recovery signals.
+
+Multi-turn reasoning sessions contain alternating human questions and model responses. Because human question segments are short ($\sim$9 words) and trivially non-recoverable, we report both all-segments and \textbf{entity-only} recovery rates, where entity-only retains only the model's response segments. This prevents role alternation from inflating recovery counts (DeepSeek-R1 all-segments: 100\%, entity-only: \recReasoningDSMTEntity\%; o3-mini all-segments: \recReasoningOiiiMTAll\%, entity-only: \recReasoningOiiiEntity\%).
+
+\subsubsection{Temperature Sweep}
+
+Claude Sonnet 4.5 and GPT-4o at temperatures 0.2, 1.0, 1.5 (50 sessions each, 50 segments each, 27--29K words). Tests whether lower temperature (more deterministic) or higher temperature (more exploratory) affects recovery.
+
+\subsubsection{Matched-Domain AI}
+
+To test whether domain alone explains differences, we generated AI corpora matched to the domain and style of natural texts: fiction, news, academic writing, dialogue. Claude Sonnet 4.5, 50 sessions each, 50 segments, 24--27K words per domain.
+
+\subsubsection{Cross-Domain AI}
+
+Claude Sonnet 4.5 and GPT-4o responding to prompts in economic (FOMC-style), legal (SCOTUS-style), and therapeutic (counseling transcript) domains, 50 sessions each, 50 segments each, 26--32K words. Tests content-independence of detection.
+
+As supplementary evidence, we also generated 6 cross-domain \textit{multi-turn} corpora (2 models $\times$ 3 domains, 30 sessions each, $\sim$20 assistant-generated segments per session) using the same economic, legal, and therapeutic prompts in a Q\&A format. These are not included in the 52-corpus structural space but are reported separately (Table~\ref{tbl:recovery-rates}, $\ddagger$) to test whether the multi-turn recovery effect generalizes beyond the spiritual Q\&A domain.
+
+\subsubsection{Edited AI}
+
+Three conditions (13 sessions, 18 segments each, 4--8K words) of Claude-generated text subjected to light, medium, and heavy editing (paraphrase, reordering, noise injection). Demonstrates whether post-hoc revision affects structural signatures.
+
+\subsubsection{Adversarial AI}
+
+Two conditions: (1) Explicit style-mimicry prompt (1 session, 250 segments, 52K words), (2) Explicit constraint-mimicry prompt (1 session, 500 segments, 103K words). Tests whether adversarial prompting can induce recovery.
+
+\subsubsection{Two-Pass Pipeline}
+
+Claude Sonnet 4.5: draft then self-revise. 50 sessions, 100 segments, 59K words. Tests whether programmatic two-step generation produces recovery. Note: the two-pass pipeline produces extreme compression SD (d5 = 0.754), far above all other corpora, because each session contains a draft segment followed by a structurally different revision segment, creating genuine within-session compressibility alternation. This is expected and does not indicate a data error.
+
+Total: \nAI\ AI-generated corpora, \nAISessions\ sessions, \nAISegments\ segments, \nAIWords\ total words.
+
+\subsection{Corpus Diversity and Justification}
+
+The \nCorpora\ corpora span \nDomains\ content domains (spiritual, legal, economic, therapeutic, fiction, news, academic, dialogue), \nModels\ model families (Claude, GPT-4o, Gemini, Llama, DeepSeek-R1, o3-mini), and multiple generation conditions (single-shot, multi-turn, temperature variation, reasoning, cross-domain, edited, adversarial). This breadth allows us to distinguish content effects from protocol effects and generalize across architectures.
+
+% ============================================================
+% 4. METHODS
+% ============================================================
+
+\section{Methods}
+
+\subsection{Units of Analysis}
+
+We define three hierarchical units. A \textbf{session} is a complete text document: one press conference, one channeling transcript, one novel, or one AI generation call. A \textbf{segment} is a natural unit within a session: a speaker turn in dialogue, a paragraph in prose, or a single model response in AI Q\&A. A \textbf{chunk} is a fixed-width \chunkTokens\-token window used for compression analysis; chunks are cut from the concatenated text of a session, independent of segment boundaries. Typical counts: natural corpora average 10--200 segments/session; multi-turn AI $\sim$20 segments/session; single-shot AI 1 segment/session (recovery undefined). Chunks per session depend on total word count; a 50K-word session yields $\sim$40 chunks.
+
+\subsection{Chunked Compression}
+
+We compress each chunk independently with gzip, computing compressibility as $c_i = \frac{\text{compressed length}}{\text{uncompressed length}}$ (higher values indicate less compressible text). A single session contains $n_i$ chunks. Raw compression features are:
+
+\begin{itemize}
+\item Compression mean: $\bar{c}_i = \frac{1}{n_i} \sum_{j=1}^{n_i} c_i^{(j)}$
+\item Compression SD: $\sigma_i = \sqrt{\frac{1}{n_i} \sum_{j=1}^{n_i} (c_i^{(j)} - \bar{c}_i)^2}$
+\end{itemize}
+
+These are computed per session from raw chunk values. The aggregation pipeline is: (1)~chunk-level: raw compression ratios $c_i^{(j)}$; (2)~session-level: mean $\bar{c}_i$ and SD $\sigma_i$ computed from chunks within each session; (3)~corpus-level: dimensions 1--8 are computed from session-level aggregates (e.g., d4 = corpus mean of $\bar{c}_i$). Tables report raw corpus-level values. For multivariate analyses (PCA, Euclidean distance, PERMANOVA), all eight dimensions are z-scored to mean~0, SD~1 \textit{across corpora}.
+
+\textbf{Implementation details.} ``Token'' refers to whitespace-delimited words (not model-specific subword tokens); chunks are \chunkTokens\ whitespace tokens, non-overlapping, cut sequentially from the concatenated session text. Remainder chunks shorter than \chunkTokens\ tokens are discarded. Compression uses Python's \texttt{zlib.compress} (gzip-equivalent, level 6). All text is UTF-8 encoded before compression.
+
+\subsection{The 8-Dimensional Structural Vector}
+\label{sec:recovery-def}
+
+We define eight dimensions capturing production dynamics:
+
+\begin{enumerate}
+\item \textbf{Excursion rate (d1):} Mean excursions per session (i.e., ratio of total excursion count to session count; values $>$1 indicate multiple excursions per session on average). An excursion is a chunk where $c_i^{(j)} > \bar{c}_i + 0.5 \sigma_i$.
+
+\item \textbf{Stress (d2):} Mean compression volatility: $\text{mean}(\sigma_i)$ across sessions within each corpus.
+
+\item \textbf{Recovery (d3):} We distinguish two levels: \textit{excursion-level recovery rate} = fraction of excursions followed by compressibility drop to near-baseline within $k$ chunks (parameter: typically $k \in [5, 15]$, final: $k=7$); and \textit{session-level recovery incidence} = binary indicator (1 if $\geq$1 excursion in the session recovers, else 0). Table~\ref{tbl:recovery-rates} reports excursion-level rates. The corpus-level d3 value is the excursion-level recovery rate aggregated across the corpus. Standard AI shows 0\%; naturals show mean \recNatCorpusAvg\%.
+
+\item \textbf{Compression mean (d4):} Mean of session-level $\bar{c}_i$ aggregated to corpus level.
+
+\item \textbf{Compression SD (d5):} $\sigma_i$ aggregated to corpus level. Captures within-session compression variability. AI single-shot corpora cluster at d5 $\approx$ 0.008--0.027; multi-turn standard AI at 0.006--0.044; naturals range from 0.011 (FOMC) to 0.145 (CWG). Overlap exists at the boundary---institutional and prose naturals (FOMC, Gutenberg, arXiv, Reuters) fall in or near the AI range---so d5 alone is not a clean binary separator. It is most discriminative for dialogue and channeling naturals (d5 $\geq$ 0.044).
+
+\item \textbf{Novelty CV (d6):} Coefficient of variation in 1-gram reuse per session, computed via fixed-budget subsampling (25K--50K words, 50 iterations, median). d6 = CV of $\frac{\text{\#repeated 1-grams}}{\text{\#total 1-grams}}$. Naturals show 0.11--0.92; AI 0.03--0.25 (AI more uniform, less exploration).
+
+\item \textbf{Novelty Gini (d7):} Gini coefficient of vocabulary rank frequencies, same budget. Lower Gini = more uniform vocabulary distribution (AI signature). Naturals 0.06--0.46; AI 0.02--0.12.
+
+\item \textbf{TF-IDF Reuse (d8):} Fraction of unique terms in bottom 25\% TF-IDF ranking. Captures whether rare terms stay rare or proliferate. Claude-specific marker (0.40--0.50); multi-model AI 0.60--0.68; naturals 0.60--0.83. Reported with size-dependence caveat. We retain d8 in the full 8D model to capture vocabulary proliferation patterns, but rely on the 4D safe-vector (\S\ref{sec:recovery-def}) to isolate size-independent effects.
+\end{enumerate}
+
+Dimensions 6 and 7 are computed via fixed-budget subsampling (25K words default, adaptively doubled for large-session corpora; 50 iterations, median) to eliminate corpus-size confounds. Dimensions 1--5 are robust to chunk size, compressor choice, and text normalization.
+
+\textbf{Missing-value handling.} Some corpora lack valid d6/d7 values (insufficient text for stable subsampling) or lack d8 (too few chunks for TF-IDF analysis). These are marked ``---'' in tables. For PCA and Euclidean distance calculations, missing dimensions are imputed with the population mean (i.e., z-score = 0) so that they contribute zero displacement on those axes. For PERMANOVA, the safe-vector analysis (dims 1, 2, 4, 5 only) avoids missing-value issues entirely and serves as the primary inferential test. The full 8D PERMANOVA uses the same mean-imputation. Sensitivity checks confirm that excluding corpora with missing values rather than imputing produces equivalent results (rank correlation $\rho > 0.97$ on pairwise distances).
+
+Figure~\ref{fig:trace} illustrates the core mechanism schematically: in natural text (a), a compressibility excursion is followed by a return to baseline within the recovery window; in standard AI (b), the excursion persists to session end with no recovery.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_trace.pdf}
+\caption{Schematic illustration of the recovery mechanism using realistic parameters. (a)~Natural text: a transient compressibility excursion (red shading) is followed by recovery to baseline (blue shading) within the recovery window. (b)~Standard AI: an excursion onset (chunk~11) elevates compressibility above the threshold, but no return to baseline occurs---the excursion persists to session end. Recovery events, as defined in \S\ref{sec:recovery-def}, count the fraction of excursions that show pattern~(a) vs.~(b). Dashed line: excursion threshold ($\mu + 0.5\sigma$); solid line: session baseline ($\mu$).}
+\label{fig:trace}
+\end{figure*}
+
+\subsection{Distance and Dimensionality Reduction}
+
+Pairwise Euclidean distance in the 8D space: $d(\mathbf{x}_i, \mathbf{x}_j) = \sqrt{\sum_{k=1}^{8} (x_{i,k} - x_{j,k})^2}$.
+
+Principal Component Analysis (PCA) on the corpus-level vectors (N=\nCorpora\ corpora) using singular value decomposition. PC1 and PC2 capture primary and secondary modes of variation.
+
+\subsection{Statistical Inference}
+
+\subsubsection{PERMANOVA}
+
+Permutational multivariate analysis of variance \citep{anderson2001permanova} on the 8D vector using 9,999 permutations. Tests whether production protocol (natural vs.\ AI) and content domain explain significant variance. Two primary models:
+
+1. \textbf{30-corpus set (primary):} \nCorporaPrimary\ corpora excluding near-duplicates. Binary protocol factor (natural vs.\ AI). $R^2 = \permProtocolR$, $F = \permProtocolF$, $p = \permProtocolP$.
+
+2. \textbf{42-corpus set (supplementary):} Extended to include some AI variants. Reduced effect size ($R^2 = \permProtocolRLarg$ due to within-AI variation inflation) but directionally consistent ($p = \permProtocolPLarg$).
+
+3. \textbf{Safe-vector (supplementary):} Excluding d8 (TF-IDF, size-dependent) and using only dims 1, 2, 4, 5. $R^2 = 0.180$, $p = 0.002$.
+
+\subsubsection{Session-Level ANOVA}
+
+One-way ANOVA with corpus membership as grouping factor, applied to session-level raw dimension values (N $\approx$ 12,700 sessions across 24 corpora). Tests whether protocol or domain explains session-level variation. Results: production protocol \textgreater content domain on all 8 dimensions (e.g., stress: protocol $\eta^2 = 0.226$, domain $\eta^2 = 0.059$).
+
+\subsubsection{Bootstrap and Subsampling}
+
+1000 bootstrap iterations (resample with replacement) for 95\% confidence intervals on recovery rates and dimension means. Matched-size subsampling (N=58 sessions, 200 iterations) to test whether corpora with unequal session counts show stable rankings.
+
+\subsubsection{Sensitivity Sweep}
+
+Grid search over recovery window definitions: excursion threshold (p50, p60, p70, p80, p90 of compression), recovery window (5, 7, 10, 15, 20 chunks), recovery target (compression below baseline, below baseline-1SD, below baseline-2SD). Total: $5 \times 5 \times 3 = 75$ parameter combinations. Recovery rates computed for all \nCorpora\ corpora at each combination. Standard AI shows zero recovery at all 75 combinations; naturals range 20--95\%.
+
+\subsubsection{Multiple Testing}
+
+Session-level ANOVA is reported across 8 dimensions (Table~\ref{tbl:session-anova}). With Bonferroni correction ($\alpha / 8 = 0.00625$), all protocol effects remain significant ($p < 0.001$ for all 8 dims). The sensitivity sweep over 75 parameter combinations is a robustness check, not a hypothesis-testing battery: we report that \textit{no} combination produces AI recovery, rather than selecting significant combinations from a search. PERMANOVA is run once per factor specification (binary, domain, fine-grained) and is not subject to multiplicity correction.
+
+% ============================================================
+% 5. RESULTS
+% ============================================================
+
+\section{Results}
+
+\subsection{The Recovery Boundary}
+
+\subsubsection{Multi-Turn Evidence (Primary)}
+
+The most informative test for recovery dynamics is multi-turn AI, which provides two key advantages over single-shot: (1) adequate temporal resolution (\nMultiturnSegments\ segments per session, enabling reliable lag analysis), and (2) naturalistic turn-taking structure (Q\&A dialogue).
+
+All multi-turn AI corpora show substantial recovery, regardless of topic coherence:
+\begin{itemize}
+\item Claude multi-turn (90 sessions, spiritual Q\&A): \excMTClaude\ excursions, \recClaudeMT\% recovered
+\item GPT-4o multi-turn (90 sessions, spiritual Q\&A): \excMTGPT\ excursions, \recGPTMT\% recovered
+\item Cross-domain multi-turn (legal/economic/therapy, 6 corpora): 30--75\% recovery
+\end{itemize}
+
+By contrast, single-shot AI shows 0\% recovery across all model families:
+\begin{itemize}
+\item Single-pass standard, cross-domain, temperature-sweep, two-pass, matched-domain, edited, and reasoning single-shot: 0/98 excursions recovered (31 Claude G0--G4, 16 cross-domain, 14 temperature-sweep, 10 matched-domain, 8 multi-model, 7 two-pass, 7 reasoning single-shot, 5 edited)
+\end{itemize}
+
+The difference between Claude (34.1\%) and GPT-4o (78.9\%) multi-turn recovery likely reflects architectural or decoding differences in how the models handle question--answer alternation; both show substantial recovery relative to single-pass 0\%, and both are uncorrelated with topic coherence.
+
+The critical distinction is generation structure: multi-turn corpora cycle through question--answer exchanges that create within-session compression variation, producing transients that satisfy the excursion-then-return signature. Single-shot corpora, which generate a single response per prompt, show no such pattern. A per-session topic-coherence index shows no evidence that coherence moderates the effect: AI recovery is uncorrelated with coherence ($r = \cohAIr$, $p = \cohAIp$; see \S\ref{sec:limitations} and Figure~\ref{fig:coherence}).
+
+Natural corpora show:
+\begin{itemize}
+\item Corpus-averaged: \recNatCorpusAvg\% (equal weight per corpus, N=\nNatural; median \recNatMedian\%, IQR \recNatIQRlo--\recNatIQRhi\%). By the binomial rule of three for zero events, 0/98 single-pass AI excursions yields a 95\% upper confidence bound of $\sim$3.1\% on the true single-pass AI recovery rate---well below the lowest natural corpus (Vatican, 27.4\%).\footnote{Fisher's exact test on pooled excursion-level counts yields $p < 10^{-15}$, but this treats excursions as independent observations. Excursions within the same session and corpus are correlated, so the session-level ANOVA (\S5.3.2), PERMANOVA (\S5.3.1), and mixed-effects model (\S5.3.4) provide more appropriate inference.}
+\item Range: \recVatican\% (Vatican) to \recAnnoMI\% (AnnoMI)
+\item Institutional: \recSCOTUS\% (SCOTUS), \recFOMC\% (FOMC), \recVatican\% (Vatican)
+\item Channeling: \recLawOfOne\% (Law of One), \recBashar\% (Bashar)
+\item Fiction and news: \recFiction\% (Gutenberg), \recNews\% (Reuters)
+\end{itemize}
+
+Among recovered natural excursions, 57.9\% recover at lag~1 (the very next chunk), 74.5\% by lag~2, and 90.4\% by lag~3. The recovery window parameter $k=7$ is therefore conservative: most recovery is immediate. All 98 single-pass AI excursions persist to session end at every lag. See Appendix~\ref{app:lag} for the full distribution.
+
+\subsubsection{Single-Shot Baseline (Structural Note)}
+\label{sec:singleshot}
+
+Single-shot AI corpora (standard prompt, one response per session) typically produce short sessions ($\sim$500 words, yielding $\leq$2 chunks at our 1,200-token window). With so few chunks, excursions rarely occur and recovery measurement is low-power to undefined. Therefore, single-shot 0\% recovery is not independently diagnostic---it reflects insufficient temporal resolution rather than a confirmed absence. The primary evidence comes from multi-turn standard AI, which provides $\sim$20 segments per session and adequate chunk counts for reliable lag analysis.
+
+\subsubsection{Temperature and Decoding Strategies}
+
+We tested whether temperature variation affects recovery. Temperature-sweep corpora are single-shot (1 segment/session), so recovery is typically undefined (Table~\ref{tbl:recovery-rates}). Where sessions yielded sufficient chunks for excursion detection, all excursions persisted without recovery (14 excursions across 4 temperature-sweep corpora, 0 recovered). The two-pass pipeline (draft then self-revise, 50 sessions, 7 excursions) also shows 0\% recovery despite producing extreme compression SD (d5 = 0.754). Importantly, recovery requires a \textit{transient} excursion followed by reversion toward the session's local baseline within the recovery window. The two-pass structure produces a sustained regime shift (draft mode $\to$ revision mode) that inflates session-level variance but does not generate the localized excursion-then-return signature: each session contains two structurally distinct blocks rather than a fluctuation around a stable baseline. These results are consistent with the multi-turn finding but carry the single-shot caveat (\S\ref{sec:singleshot}).
+
+\subsubsection{Robustness: Sensitivity Sweep}
+
+A grid search over \nSensitivityCombos\ parameter combinations (excursion threshold $\times$ recovery window $\times$ recovery target) confirms that no parameter definition produces recovery in single-shot AI. All single-shot AI corpora show 0\% recovery at all \nSensitivityCombos{} combinations. Natural recovery ranges from 20\% to 95\% across the sweep, meaning the operating margin (gap between the highest single-shot AI rate and the lowest natural rate) remains $\geq$20 percentage points at all parameter settings. Multi-turn AI sensitivity was not swept separately, as the multi-turn recovery reported in \S5.1.1 reflects generation structure rather than parameter sensitivity.
+
+\subsubsection{Robustness: Right-Censoring}
+
+Single-shot AI excursions are not right-censored by session end. An excursion is counted as unrecovered only if the session ends in elevated compression. Among multi-turn excursions, \censorClaudePct\% of Claude excursions (\censorClaudeN/\censorClaudeOf) and \censorGPTPct\% of GPT-4o excursions (\censorGPTN/\censorGPTOf) had $\geq$\censorMinTurns\ remaining turns of runway, confirming that unrecovered excursions reflect persistent structural absence rather than truncation.
+
+\subsubsection{Robustness: Role-Mixture}
+
+Monologue corpora (Vatican 27.4\%, ACIM 57.6\%, carla\_prose 69.7\%) have no Q\&A turn-taking, yet recover. Recovery is not an artifact of alternating speakers.
+
+\subsubsection{Robustness: Temporal Shuffle Null}
+
+A temporal shuffle null model tests the regression-to-mean hypothesis: that recovery events are simply statistical reversion (extreme chunks followed by average chunks, regardless of temporal order). For each session with $\geq$3 chunks (18 corpora, N=200 permutations per session), we shuffled chunk order within sessions---destroying temporal structure while preserving the per-session compression distribution---and recomputed recovery. If regression-to-mean were the sole mechanism, shuffled and observed rates would be equal.
+
+This null test uses a simplified compression metric (raw ratios on fixed 1,200-token chunks, without z-scoring or segment-level thresholds) to compute a \textit{na\"ive recovery rate} that differs from the d3 values reported elsewhere. This na\"ive metric is used only for the directional comparison; its absolute values are not comparable to the recovery rates in Table~\ref{tbl:recovery-rates}.
+
+The result is the opposite of regression-to-mean: shuffled recovery \textit{exceeds} observed recovery for all but two testable corpora (median difference, observed $-$ shuffled: $-$13.2 percentage points). Temporal autocorrelation in real text makes excursions \textit{sticky}---when a chunk is unusual, the next chunk tends to remain unusual. This means observed recovery rates are \textit{conservative} estimates: temporal structure suppresses rather than inflates recovery. The two exceptions (reasoning\_deepseek\_r1\_mt: $+$1.9pp; adv\_style: $+$3.9pp) are corpora with known genuine corrective dynamics, where observed recovery marginally exceeds the shuffle baseline as expected.
+
+What matters for the null hypothesis is the \textit{direction}: shuffling increases recovery across corpora, ruling out regression-to-mean as an explanation for the natural--AI gap.
+
+\subsubsection{Robustness: Channeling Ablation}
+
+The five channeling corpora (Law of One, Seth, Bashar, ACIM, CWG) show moderate recovery (\recChannelingMean\% pooled). Removing these from natural averages: the ten non-channeling naturals show \recNaturalNonChanneling\% recovery; single-shot AI remains \recAISingleShot\%. The separation widens.
+
+\subsubsection{Robustness: Adversarial AI}
+
+Two adversarial AI corpora---generated with explicit self-correction prompting---show recovery rates of \recAdvConstraint\% (constraint mimic, $N_e = \excAdvConstraint$) and \recAdvStyle\% (style mimic, $N_e = \excAdvStyle$). This is a positive control: recovery \textit{can} be induced with explicit prompt engineering, but does not emerge spontaneously from standard generation. The boundary detects architectural absence, not inherent impossibility.
+
+\subsubsection{Prospective Classification}
+
+Three held-out corpora (news\_reuters, synth\_news\_g0, reasoning\_deepseek\_r1), withheld from all PCA and distance calculations, were classified using the recovery boundary: news\_reuters recovers \recNewsReuters\% (correctly identified as natural), synth\_news\_g0 recovers 0\% (correctly identified as AI). reasoning\_deepseek\_r1 recovers 0\% (single-shot AI); however, as noted in \S\ref{sec:singleshot}, single-shot 0\% recovery reflects insufficient temporal resolution rather than a confirmed absence, so this result is directional only.
+
+\subsubsection{Classification Performance}
+
+At the corpus level, using recovery $> 0\%$ as the decision rule (``natural'' if any excursion recovers): among single-pass AI corpora with measurable recovery (15 natural, 12 single-shot AI), sensitivity = 100\% (15/15 naturals correctly identified), specificity = 100\% (12/12 single-shot AI correctly identified), accuracy = 100\%. When multi-turn, adversarial, and reasoning-MT corpora are included, specificity drops because AI corpora with multi-turn structure or explicit self-correction exhibit recovery by design. This confirms that the boundary detects compression-dynamics presence (whether from self-correction, topic-switching, or other mechanisms), not authorship identity \textit{per se}. At the excursion level, 0/98 single-pass AI excursions recover versus 31,085/35,786 (86.9\%) natural excursions.
+
+\subsubsection{Qualitative Examples of Recovery Events}
+\label{sec:qualitative}
+
+To ground the computational definition, we present illustrative excerpts from detected recovery events. These are drawn from a set of 55 hand-inspected examples across corpus types (selected for illustration, not systematic annotation).
+
+\textbf{Natural recovery (AnnoMI, therapy dialogue):} A therapist delivers an information-heavy segment about risks of drinking, producing a compressibility spike (high-specificity content). The client responds ``That's a lot to change. I don't know,'' and the therapist redirects: ``Yeah, I know that making changes isn't always easy. But when you drink more than what's recommended, it creates problems. You know, you said you hurt your ankle\ldots'' The therapist self-corrects from an informational frame to a motivational one, producing a measurable compressibility drop.
+
+\textbf{AI non-recovery (single-shot AI):} Given a coherent prompt, the model generates an excursion segment with elevated compressibility due to specialized vocabulary. The response continues with the same register throughout---fluent and on-topic but structurally independent. No backtracking, no recontextualization, no compression shift. The excursion persists because single-pass generation has no mechanism to revisit earlier output.
+
+\textbf{Reasoning model recovery (DeepSeek-R1 multi-turn):} The model generates a high-compressibility excursion about ``The Cosmic Joke'' (dense, novel vocabulary). When asked for practical implications, it shifts register: ``Recognizing consciousness as the silent witness\ldots these insights ripple into daily life.'' The reasoning model's chain-of-thought process produces a genuine recontextualization---integrating prior abstract content into concrete terms---yielding a compressibility drop that mirrors natural recovery dynamics.
+
+These examples illustrate that recovery events, while operationalized computationally, correspond to recognizable textual phenomena: topic reframing, register shifts, and self-correction. We note that not all recovery events involve explicit repair markers (``I mean\ldots''); many involve subtler recontextualization. Future human annotation work would quantify the correspondence more precisely.
+
+\FloatBarrier
+
+\begin{table*}[htbp]
+\centering
+\footnotesize
+\caption{Recovery rates by corpus type and generation condition. Recovery rate is the excursion-level fraction (excursions followed by compressibility reduction within recovery window). $N_e$ = number of excursions. ``---'' = recovery structurally undefined (session too short for reliable excursion detection, typically $\leq$2 chunks); this is distinct from 0.0\%, which indicates measurable excursions that never recovered. $^\ddagger$6 supplementary cross-domain multi-turn corpora (not included in the 52-corpus structural space); recovery range across corpora shown in lieu of pooled rate.}
+\label{tbl:recovery-rates}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Corpus} & \textbf{Condition} & \textbf{$N_e$} & \textbf{Recovery \%} \\
+\midrule
+\multicolumn{4}{l}{\textit{Natural Corpora}} \\
+SCOTUS & Institutional dialogue & \excSCOTUS & \recSCOTUS\% \\
+FOMC & Institutional dialogue & \excFOMC & \recFOMC\% \\
+Vatican & Institutional prose & \excVatican & \recVatican\% \\
+Law of One & Channeling & \excLawOfOne & \recLawOfOne\% \\
+Bashar & Channeling & \excBashar & \recBashar\% \\
+Seth & Channeling & \excSeth & \recSeth\% \\
+ACIM & Channeling/monologue & \excACIM & \recACIM\% \\
+CWG & Channeling/monologue & \excCWG & \recCWG\% \\
+LL Research & Institutional/dialogue & \excLLResearch & \recLLResearch\% \\
+AnnoMI & Therapy dialogue & \excAnnoMI & \recAnnoMI\% \\
+Daily Dialog & Free dialogue & \excDailyDialog & \recDailyDialog\% \\
+Carla Prose & Personal writing & \excCarlaProse & \recCarlaProse\% \\
+Gutenberg Fiction & Published narrative & \excGutenberg & \recFiction\% \\
+Reuters News & Journalistic & \excReuters & \recNews\% \\
+arXiv Academic & Academic writing & \excAcademic & \recAcademic\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Calibration Corpora}} \\
+ECC Hamming74 & Random codes & --- & --- \\
+SAT 3-SAT & Logic formulas & --- & --- \\
+GenCode Splice & DNA sequences & --- & --- \\
+\midrule
+\multicolumn{4}{l}{\textit{AI-Generated Corpora}} \\
+\multicolumn{4}{l}{\textit{Single-Shot Standard AI}} \\
+Claude G0--G4 & Base to fine-tuned & --- & --- \\
+GPT-4o G0 & Single-shot & --- & --- \\
+Gemini G0 & Single-shot & --- & --- \\
+Llama 70B G0 & Single-shot & --- & --- \\
+\midrule
+\multicolumn{4}{l}{\textit{Multi-Turn Standard AI}} \\
+Claude multi-turn & 20 segments/session & \excMTClaude & \recClaudeMT\% \\
+GPT-4o multi-turn & 20 segments/session & \excMTGPT & \recGPTMT\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Reasoning Models}} \\
+DeepSeek-R1 single-shot & Chain-of-thought & --- & --- \\
+o3-mini single-shot & Chain-of-thought & --- & --- \\
+DeepSeek-R1 multi-turn & Entity-only filter & \excReasoningDSMTEntity & \recReasoningDSEntity\% \\
+o3-mini multi-turn & Entity-only filter & \excReasoningOiiiMTEntity & \recReasoningOiiiEntity\% \\
+\midrule
+\multicolumn{4}{l}{\textit{Temperature Sweep}} \\
+Claude T=0.2, 1.0, 1.5 & Varied decoding & --- & --- \\
+GPT-4o T=0.2, 1.0, 1.5 & Varied decoding & --- & --- \\
+\midrule
+\multicolumn{4}{l}{\textit{Special Conditions}} \\
+Matched-domain AI & Fiction/news/academic & --- & --- \\
+Cross-domain AI (single-pass) & Legal/economic/therapy & \excXdomTotal & \recCrossDomainAI\% \\
+Cross-domain AI (multi-turn)$^\ddagger$ & Legal/economic/therapy & --- & 30.0--75.0\% \\
+Edited AI (E1--E3) & Light to heavy revision & 5 & 0.0\% \\
+Two-pass pipeline & Draft \& revise & 7 & 0.0\% \\
+Adversarial (constraint) & Explicit self-correction & \excAdvConstraint & \recAdvConstraint\% \\
+Adversarial (style) & Style mimicry & \excAdvStyle & \recAdvStyle\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\FloatBarrier
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_recovery.pdf}
+\caption{Recovery rates across representative corpora (15 natural, AI conditions). Natural corpora (left) show recovery rates from 27.4\% (Vatican) to 95.7\% (AnnoMI). Where recovery is measurable, single-pass standard AI shows 0\% (0/98 excursions recovered). Multi-turn AI shows recovery driven by turn alternation: \recClaudeMT\% (Claude, 90 sessions) and \recGPTMT\% (GPT-4o, 90 sessions). Adversarial AI and reasoning multi-turn models also breach the boundary. The dashed horizontal line at 0\% marks the recovery boundary for single-pass generation. Error bars: 95\% bootstrap CIs (1,000 iterations).}
+\label{fig:recovery}
+\end{figure*}
+
+\FloatBarrier
+
+\subsection{Static Mimicry, Dynamic Failure}
+
+The recovery boundary defines a sharp classification under single-pass generation (Figure~\ref{fig:recovery}), but the full 8D structural space reveals a richer landscape. Figure~\ref{fig:pca} shows the \nCorpora\ corpora in PC1-PC2 space, with corpus-level 8D vectors. Naturals cluster at high PC1 (positive values, ranging up to \pcNaturalMax), driven primarily by novelty variation (d6, d7) and stress (d2). AI corpora cluster at low PC1 (centered near 0--\pcAICenterMin), reflecting the compression uniformity signature.
+
+Key observation: multiturn\_claude is \distMTClaudeToLoO\ zL2 (z-scored Euclidean distance) from law\_of\_one. With 90 sessions of spiritual Q\&A, it shows \recClaudeMT\% recovery---driven by multi-turn question--answer alternation rather than self-correction (see \S\ref{sec:limitations}). This illustrates the structural nature of the boundary: the same generation architecture produces recovery when multi-turn prompting creates within-session compression variation. Law of One sets the reference for high-incentive, low-stress production: it scores \dIncentiveLOO\ on excursion rate (d1) but still shows only \recLawOfOne\% excursion-level recovery, because channeling corpora involve slower, more deliberate pacing that masks recovery events.
+
+Reasoning models (reasoning\_deepseek\_r1\_mt, reasoning\_o3mini\_mt) lie partway into the natural cluster, separated from standard AI by their recovery rates. This positioning is consistent with corrective-loop dynamics: internal verification produces both the recovery signal and the partial elevation in stress (d2) and novelty dimensions (d6, d7).
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_pca.pdf}
+\caption{Principal component analysis of 52 natural, calibration, and AI corpora in the 8-dimensional structural space. PC1 (horizontal, explaining \pcVarOne\% of variance) separates high-novelty naturals and reasoning models (rightward) from low-novelty AI and calibration (leftward). PC2 (vertical, \pcVarTwo\%) captures secondary structure: dialogue corpora (high stress, frequent turn alternation) scatter upward; continuous prose and calibration cluster around the axis. Note: recovery (d3) is one of the 8 input dimensions, so PCA here is a descriptive visualization of the full vector space, not independent confirmation of the recovery boundary; the recovery boundary is established separately (\S5.1). Reasoning MT (green circles) separate from standard AI (red X) primarily via d3. Error bars on select clusters represent session-level ICC ranges (session variance within corpus SD). PCA sign convention is arbitrary (eigenvector sign-flip); we orient so that naturals load positively on PC1. Calibration corpora (gray, bottom-left) establish compression baselines.}
+\label{fig:pca}
+\end{figure*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_coherence.pdf}
+\caption{Recovery rate vs.\ topic-coherence index (mean cosine similarity between consecutive segment embeddings, all-MiniLM-L6-v2; 90 sessions for spiritual Q\&A corpora, 30 sessions for cross-domain MT). Neither AI ($r = \cohAIr$, $p = \cohAIp$, ns) nor natural ($r = \cohNatr$, $p = \cohNatp$, ns) recovery is predicted by topic coherence. Multi-turn AI recovers at \recClaudeMT--\recGPTMT\% regardless of coherence level; cross-domain AI recovers at \recMTXdomMin--\recMTXdomMax\%. Single-shot AI (not shown) remains at 0\%. The boundary is single-pass vs.\ multi-turn generation structure, not topic coherence.}
+\label{fig:coherence}
+\end{figure}
+
+\subsection{Production Protocol Over Content Domain}
+
+\subsubsection{PERMANOVA: Protocol Factor Dominates}
+
+Permutational MANOVA on the 8D vector with 9,999 permutations, using the 30-corpus primary set (which excludes near-duplicate AI variants). We note that the 30:8 observation-to-dimension ratio is modest (3.75:1), so we treat the safe-vector analysis (4 dimensions, 7.5:1 ratio) as the primary power-robust test:
+
+\textbf{Safe-vector (dims 1, 2, 4, 5 only---excluding size-sensitive d6--d8):}
+\begin{itemize}
+\item Binary protocol: $R^2 = 0.180$, $p = 0.002$
+\item Domain: $R^2 = 0.156$, $p = 0.157$ (NOT significant)
+\end{itemize}
+
+The safe-vector excludes recovery (d3) and size-sensitive dimensions (d6--d8). It tests whether protocol explains variance on the remaining dimensions alone, providing converging evidence independent of the recovery boundary. On these dimensions (with no size confounds and adequate observation-to-dimension ratio), protocol reaches significance and domain does not.
+
+\textbf{Full 8D vector (supplementary):}
+\begin{itemize}
+\item \textbf{Binary protocol (natural vs.\ AI):} $R^2 = \permProtocolR$, $F = \permProtocolF$, $p = \permProtocolP$.
+\item \textbf{Content domain (4 levels):} $R^2 = \permDomainR$, $F = \permDomainF$, $p = \permDomainP$.
+\item \textbf{Fine-grained protocol (10 levels):} $R^2 = \permProtocolFineR$, $p = \permProtocolFineP$. Distinguishing channeling, dialogue, institutional, and other subtypes yields even stronger separation.
+\end{itemize}
+
+Both protocol and domain reach significance on the full vector ($R^2$ values are similar: \permProtocolPercent\% vs.\ \permDomainPercent\%), but these are separate one-factor models with different group structures (2-level vs.\ 4-level) and cannot be directly compared as $R^2$ magnitudes. The safe-vector result, where protocol is significant and domain is not, provides cleaner evidence for protocol dominance.
+
+PERMDISP homogeneity test \citep{anderson2006distance}: $F = \permDispF$, $p = \permDispP$. Dispersions are homogeneous; the $R^2$ is driven by centroid separation, not dispersion artifacts.
+
+\subsubsection{Session-Level ANOVA}
+
+One-way ANOVA with corpus membership on session-level dimension values (N $\approx$ 12,700 sessions):
+
+\begin{itemize}
+\item Stress (d2): Protocol $\eta^2 = 0.226$, Domain $\eta^2 = 0.059$ (\anovaStressRatio$\times$ protocol advantage)
+\item Novelty CV (d6): Protocol $\eta^2 = 0.259$, Domain $\eta^2 = 0.113$ (\anovaNoveltyCVRatio$\times$)
+\item Novelty Gini (d7): Protocol $\eta^2 = 0.494$, Domain $\eta^2 = 0.162$ (\anovaNoveltyGiniRatio$\times$)
+\item Recovery (d3): Protocol explains all variance; domain $\eta^2 \approx 0.000$ (p=0.972)
+\item Compression mean/SD: Protocol $\eta^2 \approx$ domain $\eta^2$ (parity, both low)
+\end{itemize}
+
+\subsubsection{Segment-Count Correlation}
+
+Within natural corpora, we compute Spearman rank correlation between segments-per-session and corpus-level recovery:
+
+\[\rho = 0.567, \quad p = 0.028 \quad \text{(excluding SCOTUS: } \rho = 0.536, \; p = 0.048\text{)}\]
+
+More segments per session correlate with higher recovery opportunity, and this correlation is not driven by SCOTUS alone. However, protocol dominates: vatican (47.2 segs/session, 27.4\% recovery) and gutenberg\_fiction (50.3 segs, 33.3\%) have ample segments but low recovery due to continuous-prose production without embedded correction. This confirms production protocol, not segment count, drives recovery.
+
+\subsubsection{Mixed-Effects Regression}
+
+As a complementary check, we fit a logistic mixed-effects model (R \texttt{lme4::glmer}, Laplace approximation) with session-level binary recovery as outcome. The model includes corpus membership as a random intercept (N=24 corpora, $\approx$12,700 sessions) and dimensions 1, 2, 4, 5, 6, 7, 8 as fixed effects. Protocol random intercept SD = 1.48; adding a second random intercept for content domain contributes $\sigma < 0.10$ (minimal additional variance beyond protocol). Marginal $R^2_m = 0.58$--0.84 depending on dimension subset. We note this model is limited by the small number of groups (24 corpora) and massive imbalance in sessions per corpus (1--10,000), which inflates boundary random effects. The PERMANOVA and session-level ANOVA above provide more robust inference; this model serves only to confirm the direction of the protocol-over-domain effect.
+
+\subsection{The Natural Landscape}
+
+The \nNatural\ natural corpora scatter across the structural space, revealing domains of coherent production style.
+
+\subsubsection{Institutional Dialogue}
+
+SCOTUS and FOMC cluster at high recovery (\recSCOTUS\%, \recFOMC\%) and high stress (d2 $>$ 1.0 z-score). The Q\&A turn-taking structure and the cognitive load of on-the-spot responding may promote repair behavior. Vatican, an institutional prose corpus without turn-taking, shows markedly lower recovery (\recVatican\%), consistent with continuous monologue production. SCOTUS dominates the excursion count (84.5\% of all natural excursions), but its inclusion or exclusion does not materially change the overall recovery average: SCOTUS-inclusive \recNatCorpusAvg\%, SCOTUS-exclusive 66.4\%.
+
+\subsubsection{Channeling Corpora}
+
+Law of One, Seth, Bashar, ACIM, CWG show moderate recovery (\recChannelingMean\% pooled) and moderate-to-high stress. These are one-way dictation, so the turn-taking is absent; yet recovery still appears at roughly half the rate of dialogue. This may reflect the deliberate pacing and pausing inherent in channeling production.
+
+\subsubsection{Other Institutional and Personal}
+
+LL Research (1,293 sessions, mostly protocol discussion, \recLLResearch\%), AnnoMI (therapy dialogue, \recAnnoMI\%), Carla Prose (personal journals, \recCarlaProse\%), Daily Dialog (free conversation, \recDailyDialog\%). These show substantial recovery, consistent with the protocol-dominance finding: human production, regardless of domain content, tends toward correction.
+
+\subsubsection{Continuous Prose}
+
+Gutenberg Fiction (\recFiction\%), Reuters News (\recNews\%), and arXiv Academic (\recAcademic\%) show lower recovery. Continuous narrative prose is typically composed as a single intentional passage with fewer embedded backtrackings. Professional editing may suppress visible corrections.
+
+\subsubsection{Compression and Novelty Landscape}
+
+Compression mean (d4) is relatively flat across naturals (0.38--0.53) but distinct from AI (0.45--0.70). Compression SD (d5) is discriminative but not a clean binary separator: dialogue and channeling naturals (0.044--0.145) are well above the AI range, but institutional and prose naturals overlap with AI (FOMC 0.011, Gutenberg 0.012, arXiv 0.016, Reuters 0.026, SCOTUS 0.028; cf.\ AI single-shot 0.008--0.027). Novelty CV (d6) ranges widely in naturals (0.11--0.92) but tightly in AI (0.03--0.25). Novelty Gini (d7) shows parallel tightness in AI.
+
+These dimensions capture the intuition that AI text is more ``uniform'': less exploration of vocabulary, more predictable pacing, more consistent compression. But none of these metrics alone predicts recovery; recovery is orthogonal.
+
+\subsubsection{Calibration Corpora}
+
+The three calibration corpora (ECC Hamming codes, SAT 3-SAT formulas, DNA splice sequences) anchor the ``zero semantic content'' baseline. All show d1 = d2 = d3 = 0, d5 = 0, and cluster at the extreme left of the PCA space (Figure~\ref{fig:pca}, gray markers). Note: Hamming codes consist of 74-bit strings, each far shorter than the \chunkTokens\-token chunk window, so no valid chunks are formed and compression dimensions are undefined (reported as 0). SAT and GenCode produce valid chunks (compression ratios 0.268 and 0.300 respectively). Their presence confirms that the compression pipeline behaves sensibly: non-linguistic input produces uniformly low compressibility with no structural dynamics. Importantly, they are structurally distinct from both natural and AI text, occupying a separate region of feature space that does not distort the PCA axes (PCA recomputed without calibration: Spearman $\rho = 0.976$ with original).
+
+% ============================================================
+% 6. DISCUSSION
+% ============================================================
+
+\section{Discussion}
+
+\subsection{Why Recovery?}
+
+Human language production is typically modeled as feedback-driven. \citeauthor{levelt1989speaking}'s \citeyearpar{levelt1989speaking} perceptual loop theory describes speakers monitoring output against intention and correcting mismatches. In written production, the reviewing component of \citeauthor{flower1981cognitive}'s \citeyearpar{flower1981cognitive} cognitive process model and \citeauthor{bereiter1987psychology}'s \citeyearpar{bereiter1987psychology} distinction between forward-only ``knowledge-telling'' and iterative ``knowledge-transforming'' provide direct parallels: skilled writers monitor their output and redirect when it diverges from intention. Recovery events, as we define them, are \textit{consistent with} such microadjustments: a writer may backtrack and redirect---not by erasing but by recontextualizing (``I mean, \ldots'' or shifting register). These redirections can produce transient elevation in compressibility followed by a return to baseline.
+
+Standard autoregressive language models generate left-to-right, committing each token by sampling without backtracking. In the default generation protocols tested here, this forward-only process produces zero recovery under all parameterizations (temperature, prompt, domain, model family).
+
+Reasoning-augmented models (which include chain-of-thought or deliberative verification steps) may approximate corrective dynamics by generating multiple candidate approaches or explicit revision steps. Our findings are consistent with this: reasoning-augmented models achieve 63--89\% recovery (entity-only filtered) in multi-turn settings, intermediate between standard AI (0\%) and naturals (68\%). This suggests that recovery indexes something about production architecture---specifically, whether a corrective or monitoring process operates during generation---rather than authorship identity \textit{per se}.
+
+We acknowledge that recovery events, as operationalized here, may capture phenomena beyond self-repair in the strict psycholinguistic sense. Topic transitions, paragraph breaks, shifts from abstract to concrete register, and natural ``burstiness'' in human writing may all produce the compression signature we detect. We do not claim that every detected recovery corresponds to a deliberate self-correction. Rather, we claim that \textit{whatever} produces these compressibility dynamics is systematically absent from single-pass autoregressive generation and present across all natural text domains tested. When multi-turn question--answer alternation is introduced, standard AI exhibits recovery (\S\ref{sec:limitations}), consistent with turn structure---not topic coherence---driving the compression dynamics detected by this method (see \S\ref{sec:limitations} for the coherence analysis). The single-pass AI/natural separation holds regardless of the underlying mechanism.
+
+We emphasize that this is an operational interpretation, not a validated claim about cognitive mechanisms. Future work with keystroke dynamics, eye-tracking, editing history, or human annotation of detected events would clarify the correspondence between computational recovery and linguistic self-repair.
+
+\subsection{Implications for AI Detection}
+
+Our results suggest a systematic asymmetry: in default single-pass generation protocols, standard autoregressive models exhibit zero recovery under all parameterizations tested. This holds across temperature settings (0.2, 1.0, 1.5), prompt engineering, multi-model architectures (GPT-4o, Gemini, Llama), and even programmatic two-pass revision (where the revision is not visible in the output stream). However, the boundary is not inherent to autoregressive architecture \textit{per se}: it can be breached by adding explicit verification steps (reasoning-augmented models, adversarial self-correction prompting) or by using multi-turn question--answer protocols that create within-session compression variation (\S\ref{sec:limitations}). The absence of recovery under single-pass generation is a property of default generation protocols; multi-turn structure produces recovery independent of topic coherence (see \S\ref{sec:limitations}).
+
+For forensic linguistics and AI detection, this opens a new avenue: recovery-based detection is not a surface heuristic but a deep structural property. Under single-pass generation, it generalizes across domains, model architectures, and generation conditions. Its primary limitation is sensitivity to multi-turn generation structure: question--answer alternation within sessions can induce recovery in standard AI (\S\ref{sec:limitations}). It also requires a temporal series (multi-turn or long single-turn text with many segments), so it cannot detect single-sentence or short-form AI generation. For document-length analysis under typical generation conditions, it offers high confidence; the full 8-dimensional vector provides additional discrimination even when recovery alone is ambiguous. We note that direct comparison with learned detectors (e.g., DetectGPT, watermarking methods) is outside the scope of this work: our method operates at document-level temporal resolution on production dynamics rather than passage-level classification, making head-to-head benchmarking on standard test sets methodologically inappropriate.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\begin{enumerate}
+
+\item \textbf{Single-shot structural limit:} Single-shot AI corpora contain 1 segment per session, making recovery mathematically undefined. The informative evidence for the clean boundary comes from single-shot corpora with sufficient chunks (0/98 excursions recovered). Multi-turn AI provides richer temporal data but introduces turn-alternation structure as a confound (Limitation~\ref{sec:topicdiversity} below).
+
+\item \textbf{Multi-turn generation produces recovery:} \label{sec:topicdiversity} Single-pass AI shows 0/98 recovery. However, all multi-turn AI corpora show substantial recovery: spiritual Q\&A (\recClaudeMT\% Claude, \recGPTMT\% GPT-4o, 90 sessions each), and cross-domain corpora with $\sim$20 assistant-generated segments per session (\recMTXdomMin--\recMTXdomMax\%, \nMTXdom\ corpora across legal, economics, and therapy domains). The mechanism is that question--answer alternation within sessions creates compression variation that the detector reads as excursion-and-recovery.
+
+\label{sec:coherence-limitation} To test whether topic coherence moderates this effect, we compute a \textit{topic-coherence index} per session: the mean cosine similarity between consecutive segment embeddings (all-MiniLM-L6-v2; 90 sessions for spiritual Q\&A, 30 sessions for cross-domain MT). Figure~\ref{fig:coherence} shows the relationship between corpus-level coherence and recovery rate. For AI corpora, recovery is \textit{not} coherence-dependent: Pearson $r = \cohAIr$, $p = \cohAIp{}$ (not significant; $N = \cohAIN$ AI corpora). With $N = \cohAIN$, this analysis is powered to detect only large effects ($|r| > 0.70$); a moderate coherence effect cannot be ruled out, but neither can it explain the observed single-pass/multi-turn contrast. For natural corpora, recovery is likewise coherence-independent: $r = \cohNatr$, $p = \cohNatp$ (not significant). The boundary is therefore generation structure (single-pass vs.\ multi-turn), not topic coherence: multi-turn AI recovers at \recClaudeMT--\recGPTMT\% regardless of coherence level, while naturals recover at \recNatMin--\recNatMax\% across the full coherence range (\cohNatMin--\cohNatMax). At matched coherence levels, most naturals (SCOTUS 90\%, CWG 87\%, AnnoMI 96\%) exceed multi-turn AI, though Vatican (27.4\%) falls below multi-turn Claude (34.1\%), suggesting that the mechanisms differ: turn alternation induces \textit{apparent} recovery in AI, while natural recovery reflects production-monitoring dynamics whose strength varies by genre.
+
+This identifies multi-turn generation structure as a boundary condition for the recovery-based classifier. However, multi-turn AI corpora remain distinguishable on other dimensions: d5 (compression SD) ranges 0.006--0.044, consistent with standard AI ranges and below the dialogue/channeling natural range ($\geq$0.044), though overlapping institutional/prose naturals (FOMC 0.011, Gutenberg 0.012). d8 (TF-IDF reuse) ranges 0.67--0.96, meaning the full 8-dimensional vector still provides additional discrimination.
+
+\item \textbf{SCOTUS dominance:} SCOTUS excursions comprise 84.5\% of natural excursions. Corpus-averaged natural recovery is \recNatCorpusAvg\%; removing SCOTUS yields 66.4\%. Both strongly exceed single-shot AI (\recAISingleShot\%), so this imbalance does not reverse the finding, but larger and more balanced natural collections would be preferable.
+
+\item \textbf{Held-out validation:} Leave-one-out cross-validation on single-pass corpora yields 43/43 correct classification (15/15 natural, 26/26 single-shot standard AI, 2/2 reasoning single-shot; multi-turn, adversarial, reasoning multi-turn, cross-domain multi-turn, and calibration excluded by design). All multi-turn AI corpora (both spiritual Q\&A and cross-domain) are false positives under the recovery-only classifier due to turn-structure-induced recovery (Limitation~\ref{sec:topicdiversity}); the full 8D vector provides additional discrimination.
+
+\item \textbf{Dim8 size-dependence caveat:} TF-IDF reuse (d8) shows rank instability with matched-length subsampling ($\rho = 0.573$ at 150K words). Report with caution; recommend treating as supplementary or Claude-specific marker.
+
+\item \textbf{Dim1 weakness:} Excursion rate (d1) shows low ICC among naturals and does not strongly separate AI from naturals. Demote to auxiliary status; recovery (d3) is the primary marker.
+
+\item \textbf{No human annotation:} Recovery events are detected computationally. We hand-inspected 55 examples (\S\ref{sec:qualitative}) and found correspondence with recognizable textual phenomena (topic shifts, register changes, self-correction), but a systematic annotation study with inter-annotator agreement on a larger sample is needed to validate the operational definition and is planned as immediate follow-up work.
+
+\item \textbf{Prompt anchoring:} All AI generation used fixed prompt sets. Variation in prompt structure, framing, or domain can alter results: multi-turn question--answer protocols induce recovery in standard AI (Limitation~\ref{sec:topicdiversity}). The recovery boundary is best understood as characterizing single-pass generation protocols.
+
+\item \textbf{Corpus size and word-count confounds (resolved):} Earlier analyses identified potential size confounds. Dimensions 6 and 7 now use fixed-budget subsampling (25K--50K words, 50 iterations). Dimension 5 (compression SD) is robust to size (matched-length subsampling $\rho > 0.88$). Dimension 8 retains a size-dependence caveat.
+
+\end{enumerate}
+
+\subsection{Generalization and Future Work}
+
+\subsubsection{Beyond Dialogue}
+
+Recovery-based detection works on document-length text but not on single sentences or very short snippets (single segment per session is structurally undefined). Extending the method to shorter windows (e.g., within-paragraph recovery) could expand applicability.
+
+\subsubsection{Adversarial Robustness and Threat Model}
+
+Adversarial prompting (``think through'', ``revise'') induced \recAdversarial\% recovery in our tests, showing the mechanism is not invulnerable. This is by design: recovery detects corrective-loop \textit{presence}, not authorship identity. An actor wrapping every LLM call in explicit self-revision prompts could potentially evade recovery-based detection. However, adversarial AI corpora remain distinguishable on other dimensions: both show d5 (compression SD) = 0.000, far below the lowest observed natural value (FOMC, 0.011), meaning the full 8D vector still separates them from natural text. Recovery-based detection is therefore best understood as targeting \textit{default generation protocols}---the regime in which the vast majority of AI text is produced---rather than as a universal authorship classifier. Scaling adversarial tests to models fine-tuned for explicit self-correction is an important open question.
+
+\subsubsection{Content Modulation}
+
+Single-shot cross-domain tests (0/16 excursions recovering across 6 corpora in legal, economics, and therapy domains) confirm that recovery absence is content-independent under single-pass generation. Multi-turn tests reveal that question--answer alternation within sessions can induce recovery in standard AI (\S\ref{sec:limitations}), but this effect is not moderated by topic coherence (see \S\ref{sec:limitations}). The relevant variable is generation structure (single-pass vs.\ multi-turn), not content domain or topic diversity. Extreme domains (e.g., code, poetry, highly technical writing) may have different baselines.
+
+\subsubsection{Temporal Dynamics}
+
+We aggregate recovery as a binary feature per session. Session-level temporal modeling (e.g., Markov chains on compression state, latent state inference) could extract richer dynamics.
+
+% ============================================================
+% 7. CONCLUSION
+% ============================================================
+
+\section{Conclusion}
+
+We present a compression-based structural vector that reveals a consistent asymmetry between human-authored text and single-pass autoregressive AI generation. The central finding is a recovery boundary: humans exhibit recovery events (sudden compression shifts consistent with self-correction) while single-pass AI does not (0/98 excursions recovering across all model families). Natural corpora recover at corpus-averaged \recNatCorpusAvg\% (median \recNatMedian\%, IQR \recNatIQRlo--\recNatIQRhi\%). Critically, multi-turn AI shows substantial recovery (\recClaudeMT--\recGPTMT\% for spiritual Q\&A, \recMTXdomMin--\recMTXdomMax\% for cross-domain), revealing that question--answer alternation---not self-correction---can produce the excursion-then-return signature. Topic coherence does not moderate this effect (\S\ref{sec:limitations}); the boundary is generation structure (single-pass vs.\ multi-turn), not topic diversity. Reasoning-augmented models show \recReasoningEntity\% entity-only recovery, consistent with the interpretation that recovery indexes corrective-loop presence rather than content or genre.
+
+On the safe-vector (4 dimensions with no size confounds), production protocol reaches significance ($p = \safeProtP$) while content domain does not ($p = \safeDomP$). This prioritization is consistent across all statistical tests (PERMANOVA, session-level ANOVA, mixed-effects regression). Recovery is orthogonal to compression uniformity (the other primary AI--natural discriminator, dimension 5), suggesting that both reflect properties of forward-only autoregressive generation but arise from different mechanisms.
+
+For forensic linguistics, these results open a new avenue: recovery-based analysis targets deep structural dynamics rather than surface heuristics, though like all detection methods it should be deployed with human oversight. For language science, they offer a computational operationalization of classic notions of monitoring and self-repair in production \citep{levelt1983monitoring}, connecting information-theoretic patterns to psycholinguistic theory. For AI development, they quantify a gap between surface fluency and corrective-loop presence---a gap that is not inherent to autoregressive architecture (reasoning-augmented models and adversarial prompting can close it) but characterizes current default generation practice.
+
+% ============================================================
+% ETHICAL CONSIDERATIONS & DATA AVAILABILITY
+% ============================================================
+
+\section*{Ethical Considerations}
+
+Recovery-based detection is designed for document-length analysis of text production dynamics and should be deployed with human oversight. It may produce false positives on heavily self-edited human text, reasoning-enhanced AI, or AI generated with topically diverse question streams (all of which genuinely breach the recovery boundary), and false negatives on adversarially prompted AI. We recommend against using any single metric, including recovery rate, as the sole basis for authorship determination. Misclassification carries real consequences---particularly in educational and professional contexts---and detection tools must be paired with careful interpretation.
+
+\section*{Code and Data Availability}
+
+Generation prompts, corpus construction scripts, compression and feature extraction code, and pre-computed feature vectors are available at \url{https://github.com/jmacpherson-research/recovery-boundary}. Natural corpora are referenced by source (Oyez API, HuggingFace, Project Gutenberg, Federal Reserve Archive) with exact retrieval parameters documented. AI-generated corpora are released directly. All analyses are reproducible from the released code and feature tables.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+
+\bibliography{paper3_refs}
+
+\FloatBarrier
+
+% ============================================================
+% APPENDIX A: OPERATIONAL DEFINITION
+% ============================================================
+
+\appendix
+
+\section{Operational Definition: Recovery and Excursions}
+
+\subsection{Definitions}
+
+\textbf{Chunk:} Non-overlapping \chunkTokens\-token span of text.
+
+\textbf{Compressibility:} $c = \frac{\text{gzip compressed size}}{\text{original size}}$. Computed per chunk.
+
+\textbf{Session baseline:} $\mu = \frac{1}{n} \sum_{i=1}^{n} c_i$ for a session with $n$ chunks.
+
+\textbf{Excursion:} A chunk where $c_i > \mu + 0.5 \sigma$, where $\sigma$ is the session SD of compressibility. Excursion threshold is a parameter; we test p50, p60, p70, p80, p90 percentiles.
+
+\textbf{Recovery lag:} The number of chunks after an excursion before compressibility returns below $\mu$ (or below $\mu - \text{SD}$, or $\mu - 2\text{SD}$; all are parameters).
+
+\textbf{Recovery window:} Maximum lag at which recovery is registered. We test windows of 5, 7, 10, 15, 20 chunks after excursion.
+
+\textbf{Session recovery:} Binary: 1 if at least one excursion in the session is followed by recovery within the recovery window, else 0.
+
+\textbf{Excursion-level recovery rate:} Fraction of excursions (per corpus) followed by compressibility returning below $\mu$ within the recovery window. This is the primary metric reported in Table~\ref{tbl:recovery-rates} and used for d3.
+
+\textbf{Session-level recovery incidence:} Fraction of sessions (per corpus) where at least one excursion recovers (binary per session). Used in session-level ANOVA and mixed-effects models as a binary outcome.
+
+\subsection{Censoring Analysis}
+
+Censoring occurs when an excursion is followed by session end before recovery could be observed. We test three censoring rules:
+
+1. \textbf{Strict:} Exclude all excursions within the recovery window of session end.
+2. \textbf{Optimistic:} Count session-end excursions as non-recovered (conservative for recovery count).
+3. \textbf{Pessimistic:} Exclude session-end excursions entirely.
+
+Results are robust across all three: standard AI shows 0\% recovery under all censoring rules.
+
+\subsection{Role-Mixture Control}
+
+To control for alternating speaker roles (questioner vs.\ answerer) as a confound, we filter sessions to include only one speaker role (e.g., assistant-only in Q\&A, or largest-speaker-only in multi-speaker sessions). Recovery patterns persist: naturals retain high recovery, AI retains zero.
+
+\FloatBarrier
+
+\section{Appendix B: Robustness Battery Results}
+
+\subsection{Compressor Invariance}
+
+Recovery rates are computed separately with gzip, bzip2, and lzma compression. Spearman $\rho$ across compressor pairs: gzip vs.\ bzip2 $\rho = 0.954$, gzip vs.\ lzma $\rho = 0.924$, bzip2 vs.\ lzma $\rho = 0.979$. All $\rho > 0.92$, indicating recovery is compressor-independent.
+
+\subsection{Chunk Size Invariance}
+
+Chunk sizes 200, 400, 800, 1200, 2400 tokens. Pairwise Spearman: 1200 vs.\ 800 $\rho = 0.924$, 1200 vs.\ 2400 $\rho = 0.891$. At 200 tokens, $\rho = 0.816$ (slight degradation). Final choice: 1200 tokens balances sensitivity and robustness.
+
+\subsection{Text Normalization}
+
+Seven text variants: raw, lowercase, no\_punctuation, no\_digits, no\_named\_entities, no\_brackets, kitchen\_sink (all removals combined). Spearman rank stability for dims 4, 5, 8 (the most normalization-sensitive): all $\rho \geq 0.832$. Dimensions 4 and 5 are normalization-robust ($\rho \geq 0.977$); dim8 is modestly sensitive ($\rho = 0.832$ with punctuation removed, due to TF-IDF tokenization). Report dim8 with caveat.
+
+\subsection{Bootstrap Confidence Intervals}
+
+Recovery rates (natural and AI corpora), recovery lag, and compression means computed via 1000 bootstrap iterations with replacement. 95\% CIs are reported in the main text and supplementary tables. AI recovery CI: $[0, 0]$. Natural recovery CIs: negligible overlap with AI (smallest natural CI floor = 20\%, largest AI CI ceiling = 0\%).
+
+\subsection{Matched-Size Subsampling}
+
+Select subsets of 58 sessions per corpus, 200 iterations. Corpus rankings on dims 1--8 are stable: Spearman $\rho > 0.85$ for all dims (dims 4, 5, 7, 8 near-perfect $\rho > 0.95$). Smaller subsamples (N=20) show degradation; N=58 is adequate.
+
+\FloatBarrier
+
+\section{Appendix C: PERMANOVA and Multivariate Inference}
+
+\subsection{PERMANOVA: Methodology}
+
+We use the vegan package (R) implementation of PERMANOVA \citep{anderson2001permanova}, which tests whether group centroids differ significantly in multivariate space via permutation. Procedure:
+
+1. Compute pairwise Euclidean distances among all \nCorpora\ corpora in the 8D space.
+2. Compute pseudo-F statistic: $F = \frac{\text{between-group SS} / (g-1)}{\text{within-group SS} / (N - g)}$, where $g$ is the number of groups and $N$ is the number of observations.
+3. Permute group labels 9,999 times and recompute $F$ for each permutation.
+4. p-value = $\frac{\text{\# permutations with } F \geq F_{\text{observed}}}{9999}$.
+
+\subsection{30-Corpus Primary Result}
+
+Groups: Natural (N=15) vs.\ AI (N=15). Excludes near-duplicate variants (synth\_g1--g4 kept, synth\_gpt4o, synth\_gemini, synth\_llama dropped; multiturn kept; reasoning models kept; cross-domain drops to 1 per model/domain; edited/adversarial kept as single combined group; calibration included).
+
+Result: $R^2 = \permProtocolR$, $F = \permProtocolF$, $p = \permProtocolP$.
+
+\subsection{42-Corpus Supplementary Result}
+
+Includes all AI variants (minimal pruning). $R^2 = \permProtocolRLarg$, $p = \permProtocolPLarg$. Effect size reduced due to within-AI variance (near-duplicate variants cluster tightly), but directional consistency maintained.
+
+\subsection{Safe-Vector (Dims 1, 2, 4, 5)}
+
+Excluding d8 (TF-IDF, size-dependent). Binary protocol: $R^2 = 0.180$, $p = 0.002$. Domain: $R^2 = 0.156$, $p = 0.157$ (not significant).
+
+\subsection{PERMDISP Homogeneity}
+
+Anderson's PERMDISP test on all three protocol models. $F = \permDispF$, $p = \permDispP$ (binary protocol). Dispersions homogeneous; $R^2$ reflects centroid separation, not dispersion artifacts.
+
+\clearpage
+
+\section{Appendix D: Extended Corpus Summary}
+
+\begin{table}[h!]
+\centering
+\tiny
+\caption{Summary of all \nCorpora\ corpora: sessions, segments, words, and key structural dimensions. AI corpora grouped by generation condition. Single-shot AI have 1 segment/session (recovery structurally undefined, marked ---). Multi-turn standard AI have $\sim$20 segments/session; reasoning MT have $\sim$40 segments/session.}
+\label{tbl:corpus-summary}
+\begin{tabular}{lrrrrrr}
+\toprule
+\textbf{Corpus} & \textbf{Sessions} & \textbf{Segments} & \textbf{Words (K)} & \textbf{d3 Recovery} & \textbf{d4 Comp} & \textbf{d5 Comp SD} \\
+\midrule
+\multicolumn{7}{l}{\textit{Natural Corpora}} \\
+law\_of\_one & 106 & 5,041 & 267 & 91.2\% & 0.414 & 0.057 \\
+seth & 484 & 19,243 & 1.4M & 78.0\% & 0.435 & 0.046 \\
+bashar & 948 & 30,615 & 1.3M & 69.7\% & 0.468 & 0.123 \\
+acim & 261 & 3,174 & 340 & 57.6\% & 0.456 & 0.061 \\
+cwg & 58 & 4,832 & 235 & 86.8\% & 0.453 & 0.145 \\
+scotus & 8,259 & 1.66M & 76.3M & 89.8\% & 0.382 & 0.028 \\
+fomc & 89 & 5,103 & 724 & 94.9\% & 0.401 & 0.011 \\
+vatican & 215 & 10,147 & 1.6M & 27.4\% & 0.446 & 0.062 \\
+carla\_prose & 190 & 3,327 & 196 & 69.7\% & 0.481 & 0.057 \\
+ll\_research & 1,293 & 16,381 & 4.3M & 57.8\% & 0.414 & 0.044 \\
+annomi & 133 & 9,699 & 153 & 95.7\% & 0.439 & 0.049 \\
+dailydialog & 1,086 & 8,656 & 120 & 45.5\% & 0.676 & 0.129 \\
+gutenberg\_fiction & 10 & 503 & 1.4M & 33.3\% & 0.438 & 0.012 \\
+news\_reuters & 10,000 & 117,812 & 4.5M & 79.1\% & 0.528 & 0.026 \\
+academic\_arxiv & 160 & 800 & 147 & 42.9\% & 0.445 & 0.016 \\
+\midrule
+\multicolumn{7}{l}{\textit{Calibration}} \\
+ecc\_hamming74 & 1 & 128 & $<$1 & --- & 0.000 & 0.000 \\
+sat\_3sat & 1 & 500 & 172 & --- & 0.268 & 0.000 \\
+gencode\_splice & 1 & 1,000 & 100 & --- & 0.300 & 0.000 \\
+\midrule
+\multicolumn{7}{l}{\textit{AI Single-Shot}} \\
+synth\_g0 & 100 & 100 & 53 & --- & 0.485 & 0.010 \\
+synth\_g1 & 100 & 100 & 52 & --- & 0.463 & 0.011 \\
+synth\_g2 & 100 & 100 & 49 & --- & 0.434 & 0.017 \\
+synth\_g3 & 100 & 100 & 49 & --- & 0.447 & 0.014 \\
+synth\_g4 & 100 & 100 & 44 & --- & 0.460 & 0.010 \\
+synth\_gpt4o\_g0 & 50 & 50 & 28 & --- & 0.466 & 0.009 \\
+synth\_gemini\_g0 & 50 & 50 & 27 & --- & 0.482 & 0.009 \\
+synth\_llama70b\_g0 & 50 & 50 & 27 & --- & 0.437 & 0.027 \\
+synth\_fiction\_g0 & 50 & 50 & 26 & --- & 0.507 & 0.010 \\
+synth\_news\_g0 & 50 & 50 & 26 & --- & 0.497 & 0.022 \\
+synth\_academic\_g0 & 50 & 50 & 24 & --- & 0.458 & 0.024 \\
+synth\_dialogue\_g0 & 50 & 50 & 27 & --- & 0.502 & 0.022 \\
+\midrule
+\multicolumn{7}{l}{\textit{AI Multi-Turn}} \\
+multiturn\_claude & 90 & 1,792 & 559 & \recClaudeMT\% & 0.400 & 0.044 \\
+multiturn\_gpt4o & 90 & 1,792 & 586 & \recGPTMT\% & 0.390 & 0.016 \\
+\midrule
+\multicolumn{7}{l}{\textit{AI Reasoning}} \\
+reasoning\_deepseek\_r1 & 50 & 50 & 32 & --- & 0.493 & 0.012 \\
+reasoning\_o3mini & 50 & 50 & 26 & --- & 0.476 & 0.008 \\
+reasoning\_deepseek\_r1\_mt$^*$ & 30 & 1,200 & 510 & 63.0\% & 0.429 & 0.008 \\
+reasoning\_o3mini\_mt$^*$ & 30 & 1,200 & 307 & 89.5\% & 0.402 & 0.006 \\
+\midrule
+\multicolumn{7}{l}{\textit{AI Temperature Sweep}} \\
+synth\_claude\_t02 & 50 & 50 & 27 & --- & 0.482 & 0.009 \\
+synth\_claude\_t15 & 50 & 50 & 27 & --- & 0.484 & 0.009 \\
+synth\_gpt4o\_t02 & 50 & 50 & 27 & --- & 0.447 & 0.012 \\
+synth\_gpt4o\_t15 & 50 & 50 & 29 & --- & 0.697 & 0.025 \\
+\midrule
+\multicolumn{7}{l}{\textit{AI Matched-Domain}} \\
+\multicolumn{7}{l}{(Fiction, News, Academic, Dialogue G0: 50 sessions each, same prompt structure)} \\
+synth\_*\_g0 & \multicolumn{6}{l}{\textit{(see single-shot rows above)}} \\
+\midrule
+\multicolumn{7}{l}{\textit{AI Cross-Domain}} \\
+xdom\_claude\_fomc & 50 & 50 & 26 & 0.0\% & 0.480 & 0.010 \\
+xdom\_claude\_scotus & 50 & 50 & 27 & 0.0\% & 0.465 & 0.012 \\
+xdom\_claude\_therapy & 50 & 50 & 28 & 0.0\% & 0.463 & 0.009 \\
+xdom\_gpt4o\_fomc & 50 & 50 & 30 & 0.0\% & 0.445 & 0.009 \\
+xdom\_gpt4o\_scotus & 50 & 50 & 32 & 0.0\% & 0.425 & 0.014 \\
+xdom\_gpt4o\_therapy & 50 & 50 & 31 & 0.0\% & 0.449 & 0.011 \\
+\midrule
+\multicolumn{7}{l}{\textit{AI Special Conditions}} \\
+edit\_e1 & 13 & 18 & 4 & 0.0\% & 0.522 & 0.022 \\
+edit\_e2 & 13 & 18 & 4 & 0.0\% & 0.523 & 0.025 \\
+edit\_e3 & 13 & 18 & 8 & 0.0\% & 0.462 & 0.022 \\
+adv\_style & 1 & 250 & 52 & 83.3\% & 0.420 & 0.000$^\dagger$ \\
+adv\_constraint & 1 & 500 & 103 & 100.0\% & 0.428 & 0.000$^\dagger$ \\
+synth\_twopass\_claude & 50 & 100 & 59 & 0.0\% & 0.599 & 0.754 \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize $^\dagger$ Rounded to 3 decimals; these corpora have 1 session each, so within-session SD is computed} \\
+\multicolumn{7}{l}{\footnotesize \phantom{$^\dagger$} over chunks within that single session. Actual values are $<$0.001.} \\
+\multicolumn{7}{l}{\footnotesize $^*$ 1,200 = all segments (alternating human + model). Recovery rates are entity-only ($\sim$600 model segments).} \\
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\section{Appendix E: Session-Level ANOVA}
+
+Table~\ref{tbl:session-anova} reports session-level one-way ANOVA results comparing production protocol (9 levels) and content domain (7 levels) as predictors of each compact vector dimension across \anovaSessions\ sessions from \anovaCorpora\ corpora. Because sessions cluster within corpora, design effects are large and effective $N$ values are much smaller than the raw session count; effect sizes ($\eta^2$) rather than $p$-values are the appropriate basis for comparison.
+
+\begin{table}[h!]
+\centering
+\small
+\caption{Session-level ANOVA: protocol vs.\ domain. ``Ratio'' is protocol $\eta^2$ / domain $\eta^2$. Dim 3 has domain $\eta^2 = 0.000$ ($p = 0.97$), so the ratio is undefined. Effective $N$ accounts for design effects from session clustering within corpora. All protocol $p < 0.001$; all domain $p < 0.001$ except dim 3 ($p = 0.97$).}
+\label{tbl:session-anova}
+\begin{tabular}{l rrrr rrrr r}
+\toprule
+& \multicolumn{4}{c}{\textbf{Protocol}} & \multicolumn{4}{c}{\textbf{Domain}} & \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9}
+\textbf{Dim} & $F$ & $\eta^2$ & df & eff.\ $N$ & $F$ & $\eta^2$ & df & eff.\ $N$ & \textbf{Ratio} \\
+\midrule
+1 (excursion rate)   & 158.6 & .091 & 8 & 117 & 196.2 & .085 & 6 & 117 & $1.1\times$ \\
+2 (stress)      & 463.3 & .226 & 8 &  60 & 133.4 & .059 & 6 &  60 & $3.8\times$ \\
+3 (recovery)    &  19.6 & .011 & 6 & 190 &   0.1 & .000 & 3 & 190 & --- \\
+4 (compress.\ $\mu$) & 598.5 & .274 & 8 & 48 & 712.1 & .252 & 6 & 48 & $1.1\times$ \\
+5 (compress.\ SD)    & 552.6 & .258 & 8 & 50 & 642.5 & .233 & 6 & 50 & $1.1\times$ \\
+6 (novelty CV)  & 582.6 & .259 & 7 &  31 & 372.0 & .113 & 4 &  31 & $2.3\times$ \\
+7 (novelty Gini) & 1653.0 & .494 & 7 & 20 & 571.8 & .162 & 4 & 20 & $3.1\times$ \\
+8 (TF-IDF)      & 3179.9 & .653 & 7 &  18 & 4435.0 & .600 & 4 & 18 & $1.1\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Recovery (d3) shows domain $\eta^2 = 0.000$ ($p = 0.97$)---content has no detectable predictive power for recovery. Dynamic dimensions (stress, novelty) show 2--4$\times$ protocol advantage. Static dimensions (compression, vocabulary) show near-parity ($\sim$1.1$\times$), consistent with AI's ability to match distributional statistics. Mixed effects regression with random intercept on corpus yields protocol random intercept SD $\approx 1.48$ and domain SD $\approx 0.05$, confirming the dominance.
+
+\clearpage
+
+\section{Appendix F: 52-Corpus Structural Vector Table}
+
+Complete 8-dimensional feature vectors and PCA coordinates for all \nCorpora\ corpora.
+
+\begin{table*}[h!]
+\centering
+\small
+\caption{Structural feature vectors (8 dimensions, raw corpus-level values) and PCA coordinates (PC1, PC2, dimensionless) for all 52 corpora. PCA is computed on z-scored values (mean 0, SD 1 across corpora); table reports raw values for interpretability. Single-shot AI marked with --- for d3 (recovery undefined: $\leq$2 chunks per session); this is distinct from 0.0\%, which indicates measured zero recovery. Missing d6/d7 for corpora with insufficient text for stable novelty estimation marked with ---. PCA sign convention is arbitrary (eigenvector sign-flip); we orient so that naturals load positively on PC1.}
+\label{tbl:compact-vector}
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+\textbf{Corpus} & \textbf{d1} & \textbf{d2} & \textbf{d3} & \textbf{d4} & \textbf{d5} & \textbf{d6} & \textbf{d7} & \textbf{d8} & \textbf{PC1} & \textbf{PC2} \\
+\midrule
+\multicolumn{11}{l}{\textit{Natural}} \\
+law\_of\_one & 0.153 & 0.824 & 91.2\% & 0.414 & 0.057 & 0.276 & 0.146 & 0.756 & +0.22 & $-$0.34 \\
+seth & 0.618 & 1.471 & 78.0\% & 0.435 & 0.046 & 0.386 & 0.206 & 0.734 & +1.31 & $-$0.40 \\
+bashar & 1.093 & 0.877 & 69.7\% & 0.468 & 0.123 & 0.862 & 0.434 & 0.738 & +3.71 & $-$1.49 \\
+acim & 1.716 & 4.490 & 57.6\% & 0.456 & 0.061 & 0.501 & 0.282 & 0.729 & +4.41 & +0.56 \\
+cwg & 1.019 & 1.487 & 86.8\% & 0.453 & 0.145 & 0.567 & 0.312 & 0.782 & +2.79 & $-$0.42 \\
+scotus & 0.176 & 0.829 & 89.8\% & 0.382 & 0.028 & 0.254 & 0.139 & 0.836 & +0.19 & $-$0.57 \\
+fomc & 0.025 & 0.269 & 94.9\% & 0.401 & 0.011 & 0.125 & 0.068 & 0.661 & $-$1.09 & $-$0.42 \\
+vatican & 0.557 & 0.955 & 27.4\% & 0.446 & 0.062 & 0.915 & 0.460 & 0.803 & +3.28 & $-$2.04 \\
+carla\_prose & 0.203 & 0.948 & 69.7\% & 0.481 & 0.057 & 0.712 & 0.378 & 0.826 & +2.38 & $-$1.24 \\
+ll\_research & 0.866 & 1.120 & 57.8\% & 0.414 & 0.044 & 0.443 & 0.245 & 0.787 & +1.65 & $-$0.86 \\
+annomi & 0.073 & 0.183 & 95.7\% & 0.439 & 0.049 & 0.840 & 0.408 & 0.599 & +1.73 & $-$2.27 \\
+dailydialog & 0.699 & 0.166 & 45.5\% & 0.676 & 0.129 & 0.446 & 0.243 & 0.742 & +1.69 & +0.83 \\
+gutenberg\_fiction & 0.773 & 0.732 & 33.3\% & 0.438 & 0.012 & --- & --- & 0.961 & +0.89 & $-$0.05 \\
+news\_reuters & 0.103 & 0.225 & 79.1\% & 0.528 & 0.026 & 0.106 & 0.058 & 0.664 & $-$0.85 & +0.52 \\
+academic\_arxiv & 0.046 & 0.500 & 42.9\% & 0.445 & 0.016 & 0.121 & 0.067 & 0.662 & $-$0.88 & $-$0.01 \\
+\midrule
+\multicolumn{11}{l}{\textit{Calibration}} \\
+ecc\_hamming74 & 0.000 & 0.000 & --- & 0.000 & 0.000 & --- & --- & --- & $-$1.59 & $-$3.40 \\
+sat\_3sat & 0.000 & 0.000 & --- & 0.268 & 0.000 & --- & --- & --- & $-$1.09 & $-$1.66 \\
+gencode\_splice & 0.000 & 0.000 & --- & 0.300 & 0.000 & --- & --- & --- & $-$1.03 & $-$1.46 \\
+\midrule
+\multicolumn{11}{l}{\textit{AI Single-Shot}} \\
+synth\_g0 & 0.106 & 2.063 & --- & 0.485 & 0.010 & 0.028 & 0.016 & 0.501 & $-$0.67 & +1.03 \\
+synth\_g1 & 1.529 & 0.936 & --- & 0.463 & 0.011 & 0.046 & 0.026 & 0.450 & $-$0.23 & +0.35 \\
+synth\_g2 & 1.273 & 1.219 & --- & 0.434 & 0.017 & 0.048 & 0.027 & 0.399 & $-$0.41 & +0.26 \\
+synth\_g3 & 1.998 & 1.157 & --- & 0.447 & 0.014 & 0.053 & 0.030 & 0.401 & +0.14 & +0.28 \\
+synth\_g4 & 0.738 & 1.033 & --- & 0.460 & 0.010 & 0.079 & 0.044 & 0.425 & $-$0.69 & +0.25 \\
+synth\_gpt4o\_g0 & 0.000 & 0.180 & --- & 0.466 & 0.009 & 0.034 & 0.019 & 0.609 & $-$1.47 & +0.24 \\
+synth\_gemini\_g0 & 0.000 & 0.149 & --- & 0.482 & 0.009 & 0.060 & 0.034 & 0.681 & $-$1.19 & +0.29 \\
+synth\_llama70b\_g0 & 0.106 & 0.000 & --- & 0.437 & 0.027 & 0.099 & 0.053 & 0.596 & $-$1.24 & $-$0.16 \\
+synth\_fiction\_g0 & 0.164 & 0.604 & --- & 0.507 & 0.010 & 0.034 & 0.020 & 0.882 & $-$0.51 & +0.83 \\
+synth\_news\_g0 & 0.000 & 2.114 & --- & 0.497 & 0.022 & 0.088 & 0.049 & 0.792 & +0.17 & +1.16 \\
+synth\_academic\_g0 & 0.000 & 0.424 & --- & 0.458 & 0.024 & 0.138 & 0.078 & 0.574 & $-$0.95 & $-$0.02 \\
+synth\_dialogue\_g0 & 0.214 & 0.270 & --- & 0.502 & 0.022 & 0.047 & 0.025 & 0.664 & $-$1.00 & +0.55 \\
+\midrule
+\multicolumn{11}{l}{\textit{AI Multi-Turn}} \\
+multiturn\_claude & 0.157 & 0.797 & \recClaudeMT\% & 0.400 & 0.044 & 0.246 & 0.123 & 0.687 & +0.07 & $-$0.38 \\
+multiturn\_gpt4o & 0.010 & 0.085 & \recGPTMT\% & 0.390 & 0.016 & 0.046 & 0.025 & 0.669 & $-$1.52 & $-$0.27 \\
+\midrule
+\multicolumn{11}{l}{\textit{AI Reasoning}} \\
+reasoning\_deepseek\_r1 & 0.090 & 0.693 & --- & 0.493 & 0.012 & 0.087 & 0.048 & 0.704 & $-$0.68 & +0.50 \\
+reasoning\_o3mini & 0.112 & 0.117 & --- & 0.476 & 0.008 & 0.032 & 0.018 & 0.531 & $-$1.56 & +0.23 \\
+reasoning\_ds\_r1\_mt & 0.087 & 0.697 & 63.0\% & 0.429 & 0.008 & 0.043 & 0.023 & 0.853 & $-$0.76 & +0.30 \\
+reasoning\_o3mini\_mt & 0.028 & 0.215 & 89.5\% & 0.402 & 0.006 & 0.038 & 0.021 & 0.711 & $-$1.39 & $-$0.14 \\
+\midrule
+\multicolumn{11}{l}{\textit{AI Temperature Sweep}} \\
+synth\_claude\_t02 & 0.052 & 1.949 & --- & 0.482 & 0.009 & 0.077 & 0.043 & 0.617 & $-$0.34 & +0.87 \\
+synth\_claude\_t15 & 0.158 & 2.141 & --- & 0.484 & 0.009 & 0.032 & 0.018 & 0.656 & $-$0.27 & +1.13 \\
+synth\_gpt4o\_t02 & 0.000 & 0.035 & --- & 0.447 & 0.012 & 0.094 & 0.053 & 0.467 & $-$1.59 & $-$0.22 \\
+synth\_gpt4o\_t15 & 0.000 & 0.074 & --- & 0.697 & 0.025 & 0.098 & 0.055 & 0.993 & $-$0.01 & +1.78 \\
+\midrule
+\multicolumn{11}{l}{\textit{AI Cross-Domain}} \\
+xdom\_claude\_fomc & 0.000 & 0.276 & 0.0\% & 0.480 & 0.010 & 0.103 & 0.056 & 0.475 & $-$1.37 & +0.06 \\
+xdom\_claude\_scotus & 0.000 & 1.255 & 0.0\% & 0.465 & 0.012 & 0.058 & 0.033 & 0.720 & $-$0.61 & +0.64 \\
+xdom\_claude\_therapy & 0.050 & 0.000 & 0.0\% & 0.463 & 0.009 & 0.049 & 0.027 & 0.469 & $-$1.74 & +0.01 \\
+xdom\_gpt4o\_fomc & 0.000 & 0.135 & 0.0\% & 0.445 & 0.009 & 0.063 & 0.035 & 0.499 & $-$1.62 & $-$0.08 \\
+xdom\_gpt4o\_scotus & 0.044 & 0.756 & 0.0\% & 0.425 & 0.014 & 0.088 & 0.049 & 0.745 & $-$0.72 & +0.11 \\
+xdom\_gpt4o\_therapy & 0.000 & 0.000 & 0.0\% & 0.449 & 0.011 & 0.083 & 0.046 & 0.490 & $-$1.61 & $-$0.17 \\
+\midrule
+\multicolumn{11}{l}{\textit{AI Edited / Adversarial}} \\
+edit\_e1 & 1.012 & 1.505 & 0.0\% & 0.522 & 0.022 & --- & --- & 0.896 & +1.36 & +0.76 \\
+edit\_e2 & 0.000 & 2.006 & 0.0\% & 0.523 & 0.025 & --- & --- & 0.946 & +0.96 & +1.02 \\
+edit\_e3 & 0.179 & 1.203 & 0.0\% & 0.462 & 0.022 & 0.550 & 0.267 & 0.921 & +1.83 & $-$0.75 \\
+adv\_style & 0.300 & 0.076 & 83.3\% & 0.420 & 0.000 & --- & --- & --- & $-$0.49 & $-$0.65 \\
+adv\_constraint & 0.438 & 0.814 & 100.0\% & 0.428 & 0.000 & --- & --- & --- & +0.09 & $-$0.30 \\
+synth\_twopass\_claude & 0.073 & 1.935 & 0.0\% & 0.599 & 0.754 & 0.058 & 0.032 & 0.869 & +2.29 & +5.20 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\clearpage
+
+\section{Appendix G: Recovery Lag Distribution}
+\label{app:lag}
+
+Figure~\ref{fig:lag} shows the distribution of recovery lags (in chunks) for recovered excursions. Among 31,085 recovered natural excursions, 57.9\% recover at lag~1, 16.7\% at lag~2, 15.9\% at lag~3, 5.3\% at lag~4, and 4.3\% at lag~5. The median recovery lag is 1 chunk. Reasoning MT models show an even stronger lag-1 concentration (83.3\%, N=72), consistent with chain-of-thought producing immediate recontextualization. Single-pass AI contributes zero recovered excursions (all 98 measurable single-pass AI excursions have lag=$-$1, meaning no return to baseline before session end). The $k=7$ recovery window parameter is conservative: 90.4\% of natural recovery occurs within 3 chunks.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{fig_lag.pdf}
+\caption{Recovery lag distribution for recovered excursions. Natural text (blue, N=31,085) shows a strong lag-1 peak (57.9\%), with 90.4\% recovering by lag~3. Reasoning MT (red, N=72) shows even stronger immediate recovery (83.3\% at lag~1). Single-pass AI contributes no recovered excursions and is not shown. The recovery window $k=7$ is conservative.}
+\label{fig:lag}
+\end{figure}
+
+\FloatBarrier
+
+\end{document}

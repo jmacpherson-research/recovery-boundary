@@ -1,0 +1,105 @@
+{
+  "phase": "3E",
+  "description": "Held-out validation",
+  "timestamp": "2026-02-27T08:54:40.507753",
+  "elapsed_seconds": 0.008553,
+  "held_out_corpora": [
+    "news_reuters",
+    "synth_news_g0",
+    "reasoning_deepseek_r1"
+  ],
+  "n_training": 49,
+  "training_boundary": {
+    "min_natural_recovery": 0.274096,
+    "max_ai_recovery": 1.0
+  },
+  "pca_variance_explained": [
+    0.31730888457792406,
+    0.2087706275716598,
+    0.18586931942909343
+  ],
+  "heldout_results": [
+    {
+      "corpus_id": "news_reuters",
+      "protocol": "natural",
+      "n_excursions": 2111,
+      "recovery_rate": 0.790621,
+      "boundary_correct": true,
+      "pca_pc1": 0.9241210213354807,
+      "pca_pc2": 0.43928930944091527,
+      "distance_to_law_of_one": 1.7893,
+      "z_vector": [
+        -0.4889,
+        -0.6865,
+        -0.6,
+        0.849,
+        -0.1456,
+        -0.5006,
+        -0.5095,
+        -0.1342
+      ]
+    },
+    {
+      "corpus_id": "reasoning_deepseek_r1",
+      "protocol": "ai",
+      "n_excursions": 5,
+      "recovery_rate": 0.0,
+      "boundary_correct": true,
+      "pca_pc1": 0.7257073586338508,
+      "pca_pc2": 0.4731206383500981,
+      "distance_to_law_of_one": 1.5284,
+      "z_vector": [
+        -0.5154,
+        -0.1194,
+        0.0,
+        0.4728,
+        -0.275,
+        -0.5718,
+        -0.5659,
+        0.114
+      ]
+    },
+    {
+      "corpus_id": "synth_news_g0",
+      "protocol": "ai",
+      "n_excursions": 2,
+      "recovery_rate": 0.0,
+      "boundary_correct": true,
+      "pca_pc1": -0.18106311568728872,
+      "pca_pc2": 1.0481183973355308,
+      "distance_to_law_of_one": 2.1869,
+      "z_vector": [
+        -0.6963,
+        1.6023,
+        0.0,
+        0.5194,
+        -0.1839,
+        -0.5695,
+        -0.5614,
+        0.6599
+      ]
+    }
+  ],
+  "training_pca_sample": {
+    "academic_arxiv": {
+      "pc1": 0.9487057015201369,
+      "pc2": -0.024128304882042026
+    },
+    "acim": {
+      "pc1": -4.3756809451750165,
+      "pc2": 1.4552990362348535
+    },
+    "adv_constraint": {
+      "pc1": -0.06659010316732246,
+      "pc2": -0.029082586458943377
+    },
+    "adv_style": {
+      "pc1": 0.5319365144431483,
+      "pc2": -0.5788556838825063
+    },
+    "annomi": {
+      "pc1": -1.239460147803624,
+      "pc2": -2.220330170680474
+    }
+  }
+}

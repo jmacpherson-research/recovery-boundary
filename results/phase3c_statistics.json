@@ -1,0 +1,1489 @@
+{
+  "phase": "3C",
+  "description": "Statistical extras",
+  "timestamp": "2026-02-27T08:54:40.415502",
+  "elapsed_seconds": 5.437744,
+  "results": {
+    "binomial_cis": [
+      {
+        "corpus_id": "academic_arxiv",
+        "protocol": "natural",
+        "n_excursions": 21,
+        "n_recovered": 9,
+        "recovery_rate": 0.428571,
+        "ci_lower_95": 0.244697,
+        "ci_upper_95": 0.634538,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "acim",
+        "protocol": "natural",
+        "n_excursions": 165,
+        "n_recovered": 95,
+        "recovery_rate": 0.575758,
+        "ci_lower_95": 0.499465,
+        "ci_upper_95": 0.648603,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "adv_constraint",
+        "protocol": "ai",
+        "n_excursions": 10,
+        "n_recovered": 10,
+        "recovery_rate": 1.0,
+        "ci_lower_95": 0.72246,
+        "ci_upper_95": 1.0,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "adv_style",
+        "protocol": "ai",
+        "n_excursions": 6,
+        "n_recovered": 5,
+        "recovery_rate": 0.833333,
+        "ci_lower_95": 0.436491,
+        "ci_upper_95": 0.969947,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "annomi",
+        "protocol": "natural",
+        "n_excursions": 116,
+        "n_recovered": 111,
+        "recovery_rate": 0.956897,
+        "ci_lower_95": 0.90305,
+        "ci_upper_95": 0.981451,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "bashar",
+        "protocol": "natural",
+        "n_excursions": 796,
+        "n_recovered": 555,
+        "recovery_rate": 0.697236,
+        "ci_lower_95": 0.664433,
+        "ci_upper_95": 0.728145,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "carla_prose",
+        "protocol": "natural",
+        "n_excursions": 76,
+        "n_recovered": 53,
+        "recovery_rate": 0.697368,
+        "ci_lower_95": 0.586656,
+        "ci_upper_95": 0.789088,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "cwg",
+        "protocol": "natural",
+        "n_excursions": 129,
+        "n_recovered": 112,
+        "recovery_rate": 0.868217,
+        "ci_lower_95": 0.79907,
+        "ci_upper_95": 0.916068,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "dailydialog",
+        "protocol": "natural",
+        "n_excursions": 101,
+        "n_recovered": 46,
+        "recovery_rate": 0.455446,
+        "ci_lower_95": 0.361734,
+        "ci_upper_95": 0.552422,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "edit_e1",
+        "protocol": "ai",
+        "n_excursions": 1,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 3.0,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "edit_e2",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "edit_e3",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "fomc",
+        "protocol": "natural",
+        "n_excursions": 118,
+        "n_recovered": 112,
+        "recovery_rate": 0.949153,
+        "ci_lower_95": 0.893491,
+        "ci_upper_95": 0.976491,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "gutenberg_fiction",
+        "protocol": "natural",
+        "n_excursions": 39,
+        "n_recovered": 13,
+        "recovery_rate": 0.333333,
+        "ci_lower_95": 0.206328,
+        "ci_upper_95": 0.490229,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "law_of_one",
+        "protocol": "natural",
+        "n_excursions": 91,
+        "n_recovered": 83,
+        "recovery_rate": 0.912088,
+        "ci_lower_95": 0.836012,
+        "ci_upper_95": 0.95478,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "ll_research",
+        "protocol": "natural",
+        "n_excursions": 746,
+        "n_recovered": 431,
+        "recovery_rate": 0.577748,
+        "ci_lower_95": 0.541994,
+        "ci_upper_95": 0.612705,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "multiturn_claude",
+        "protocol": "ai",
+        "n_excursions": 23,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.130435,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "multiturn_gpt4o",
+        "protocol": "ai",
+        "n_excursions": 13,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.230769,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "news_reuters",
+        "protocol": "natural",
+        "n_excursions": 2111,
+        "n_recovered": 1669,
+        "recovery_rate": 0.790621,
+        "ci_lower_95": 0.772744,
+        "ci_upper_95": 0.807441,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "reasoning_deepseek_r1",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.6,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "reasoning_deepseek_r1_mt",
+        "protocol": "ai",
+        "n_excursions": 59,
+        "n_recovered": 59,
+        "recovery_rate": 1.0,
+        "ci_lower_95": 0.938869,
+        "ci_upper_95": 1.0,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "reasoning_o3mini",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "reasoning_o3mini_mt",
+        "protocol": "ai",
+        "n_excursions": 15,
+        "n_recovered": 13,
+        "recovery_rate": 0.866667,
+        "ci_lower_95": 0.621175,
+        "ci_upper_95": 0.96264,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "scotus",
+        "protocol": "natural",
+        "n_excursions": 30223,
+        "n_recovered": 27142,
+        "recovery_rate": 0.898058,
+        "ci_lower_95": 0.894596,
+        "ci_upper_95": 0.901419,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "seth",
+        "protocol": "natural",
+        "n_excursions": 722,
+        "n_recovered": 563,
+        "recovery_rate": 0.779778,
+        "ci_lower_95": 0.748114,
+        "ci_upper_95": 0.808481,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "synth_academic_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_claude_t02",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.6,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_claude_t15",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.6,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_dialogue_g0",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.0,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_fiction_g0",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.0,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_g0",
+        "protocol": "ai",
+        "n_excursions": 10,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.3,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_g1",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.6,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_g2",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.6,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_g3",
+        "protocol": "ai",
+        "n_excursions": 6,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_g4",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.6,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_gemini_g0",
+        "protocol": "ai",
+        "n_excursions": 4,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.75,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_gpt4o_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_gpt4o_t02",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_gpt4o_t15",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_llama70b_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_news_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "synth_twopass_claude",
+        "protocol": "ai",
+        "n_excursions": 7,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.428571,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "vatican",
+        "protocol": "natural",
+        "n_excursions": 332,
+        "n_recovered": 91,
+        "recovery_rate": 0.274096,
+        "ci_lower_95": 0.228904,
+        "ci_upper_95": 0.324457,
+        "ci_method": "wilson"
+      },
+      {
+        "corpus_id": "xdom_claude_fomc",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.0,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "xdom_claude_scotus",
+        "protocol": "ai",
+        "n_excursions": 4,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 0.75,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "xdom_claude_therapy",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "xdom_gpt4o_fomc",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "xdom_gpt4o_scotus",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.0,
+        "ci_method": "rule_of_three"
+      },
+      {
+        "corpus_id": "xdom_gpt4o_therapy",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_recovered": 0,
+        "recovery_rate": 0.0,
+        "ci_lower_95": 0.0,
+        "ci_upper_95": 1.5,
+        "ci_method": "rule_of_three"
+      }
+    ],
+    "pooled_ai": {
+      "n_excursions": 208,
+      "n_recovered": 72,
+      "recovery_rate": 0.34615384615384615,
+      "upper_95_ci": null,
+      "rule_of_three": "72/208"
+    },
+    "excursion_rates": [
+      {
+        "corpus_id": "academic_arxiv",
+        "protocol": "natural",
+        "n_excursions": 21,
+        "n_segments": 800,
+        "total_words": 153939,
+        "exc_per_1k_segs": 26.25,
+        "exc_per_100k_words": 13.6418
+      },
+      {
+        "corpus_id": "acim",
+        "protocol": "natural",
+        "n_excursions": 165,
+        "n_segments": 3174,
+        "total_words": 338011,
+        "exc_per_1k_segs": 51.9849,
+        "exc_per_100k_words": 48.815
+      },
+      {
+        "corpus_id": "adv_constraint",
+        "protocol": "ai",
+        "n_excursions": 10,
+        "n_segments": 500,
+        "total_words": 104468,
+        "exc_per_1k_segs": 20.0,
+        "exc_per_100k_words": 9.5723
+      },
+      {
+        "corpus_id": "adv_style",
+        "protocol": "ai",
+        "n_excursions": 6,
+        "n_segments": 250,
+        "total_words": 52296,
+        "exc_per_1k_segs": 24.0,
+        "exc_per_100k_words": 11.4732
+      },
+      {
+        "corpus_id": "annomi",
+        "protocol": "natural",
+        "n_excursions": 116,
+        "n_segments": 9699,
+        "total_words": 155804,
+        "exc_per_1k_segs": 11.96,
+        "exc_per_100k_words": 74.4525
+      },
+      {
+        "corpus_id": "bashar",
+        "protocol": "natural",
+        "n_excursions": 796,
+        "n_segments": 30615,
+        "total_words": 1333250,
+        "exc_per_1k_segs": 26.0003,
+        "exc_per_100k_words": 59.7037
+      },
+      {
+        "corpus_id": "carla_prose",
+        "protocol": "natural",
+        "n_excursions": 76,
+        "n_segments": 3327,
+        "total_words": 196801,
+        "exc_per_1k_segs": 22.8434,
+        "exc_per_100k_words": 38.6177
+      },
+      {
+        "corpus_id": "cwg",
+        "protocol": "natural",
+        "n_excursions": 129,
+        "n_segments": 4832,
+        "total_words": 236926,
+        "exc_per_1k_segs": 26.697,
+        "exc_per_100k_words": 54.4474
+      },
+      {
+        "corpus_id": "dailydialog",
+        "protocol": "natural",
+        "n_excursions": 101,
+        "n_segments": 8656,
+        "total_words": 100150,
+        "exc_per_1k_segs": 11.6682,
+        "exc_per_100k_words": 100.8487
+      },
+      {
+        "corpus_id": "edit_e1",
+        "protocol": "ai",
+        "n_excursions": 1,
+        "n_segments": 18,
+        "total_words": 4233,
+        "exc_per_1k_segs": 55.5556,
+        "exc_per_100k_words": 23.6239
+      },
+      {
+        "corpus_id": "edit_e2",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 18,
+        "total_words": 4212,
+        "exc_per_1k_segs": 111.1111,
+        "exc_per_100k_words": 47.4834
+      },
+      {
+        "corpus_id": "edit_e3",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 18,
+        "total_words": 7985,
+        "exc_per_1k_segs": 111.1111,
+        "exc_per_100k_words": 25.047
+      },
+      {
+        "corpus_id": "fomc",
+        "protocol": "natural",
+        "n_excursions": 118,
+        "n_segments": 5103,
+        "total_words": 731555,
+        "exc_per_1k_segs": 23.1237,
+        "exc_per_100k_words": 16.13
+      },
+      {
+        "corpus_id": "gutenberg_fiction",
+        "protocol": "natural",
+        "n_excursions": 39,
+        "n_segments": 503,
+        "total_words": 1414521,
+        "exc_per_1k_segs": 77.5348,
+        "exc_per_100k_words": 2.7571
+      },
+      {
+        "corpus_id": "law_of_one",
+        "protocol": "natural",
+        "n_excursions": 91,
+        "n_segments": 5041,
+        "total_words": 270915,
+        "exc_per_1k_segs": 18.052,
+        "exc_per_100k_words": 33.5899
+      },
+      {
+        "corpus_id": "ll_research",
+        "protocol": "natural",
+        "n_excursions": 746,
+        "n_segments": 16381,
+        "total_words": 4360988,
+        "exc_per_1k_segs": 45.5406,
+        "exc_per_100k_words": 17.1062
+      },
+      {
+        "corpus_id": "multiturn_claude",
+        "protocol": "ai",
+        "n_excursions": 23,
+        "n_segments": 593,
+        "total_words": 164855,
+        "exc_per_1k_segs": 38.7858,
+        "exc_per_100k_words": 13.9517
+      },
+      {
+        "corpus_id": "multiturn_gpt4o",
+        "protocol": "ai",
+        "n_excursions": 13,
+        "n_segments": 593,
+        "total_words": 193517,
+        "exc_per_1k_segs": 21.9224,
+        "exc_per_100k_words": 6.7178
+      },
+      {
+        "corpus_id": "news_reuters",
+        "protocol": "natural",
+        "n_excursions": 2111,
+        "n_segments": 117812,
+        "total_words": 4537004,
+        "exc_per_1k_segs": 17.9184,
+        "exc_per_100k_words": 46.5285
+      },
+      {
+        "corpus_id": "reasoning_deepseek_r1",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_segments": 50,
+        "total_words": 31899,
+        "exc_per_1k_segs": 100.0,
+        "exc_per_100k_words": 15.6745
+      },
+      {
+        "corpus_id": "reasoning_deepseek_r1_mt",
+        "protocol": "ai",
+        "n_excursions": 59,
+        "n_segments": 1200,
+        "total_words": 509828,
+        "exc_per_1k_segs": 49.1667,
+        "exc_per_100k_words": 11.5725
+      },
+      {
+        "corpus_id": "reasoning_o3mini",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 25620,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 7.8064
+      },
+      {
+        "corpus_id": "reasoning_o3mini_mt",
+        "protocol": "ai",
+        "n_excursions": 15,
+        "n_segments": 1200,
+        "total_words": 307357,
+        "exc_per_1k_segs": 12.5,
+        "exc_per_100k_words": 4.8803
+      },
+      {
+        "corpus_id": "scotus",
+        "protocol": "natural",
+        "n_excursions": 30223,
+        "n_segments": 1655719,
+        "total_words": 75124051,
+        "exc_per_1k_segs": 18.2537,
+        "exc_per_100k_words": 40.2308
+      },
+      {
+        "corpus_id": "seth",
+        "protocol": "natural",
+        "n_excursions": 722,
+        "n_segments": 19243,
+        "total_words": 1361727,
+        "exc_per_1k_segs": 37.5201,
+        "exc_per_100k_words": 53.0209
+      },
+      {
+        "corpus_id": "synth_academic_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 24108,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 8.296
+      },
+      {
+        "corpus_id": "synth_claude_t02",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_segments": 50,
+        "total_words": 27288,
+        "exc_per_1k_segs": 100.0,
+        "exc_per_100k_words": 18.3231
+      },
+      {
+        "corpus_id": "synth_claude_t15",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_segments": 50,
+        "total_words": 27154,
+        "exc_per_1k_segs": 100.0,
+        "exc_per_100k_words": 18.4135
+      },
+      {
+        "corpus_id": "synth_dialogue_g0",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_segments": 50,
+        "total_words": 26661,
+        "exc_per_1k_segs": 60.0,
+        "exc_per_100k_words": 11.2524
+      },
+      {
+        "corpus_id": "synth_fiction_g0",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_segments": 50,
+        "total_words": 26182,
+        "exc_per_1k_segs": 60.0,
+        "exc_per_100k_words": 11.4583
+      },
+      {
+        "corpus_id": "synth_g0",
+        "protocol": "ai",
+        "n_excursions": 10,
+        "n_segments": 100,
+        "total_words": 53944,
+        "exc_per_1k_segs": 100.0,
+        "exc_per_100k_words": 18.5377
+      },
+      {
+        "corpus_id": "synth_g1",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_segments": 100,
+        "total_words": 52326,
+        "exc_per_1k_segs": 50.0,
+        "exc_per_100k_words": 9.5555
+      },
+      {
+        "corpus_id": "synth_g2",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_segments": 100,
+        "total_words": 49362,
+        "exc_per_1k_segs": 50.0,
+        "exc_per_100k_words": 10.1292
+      },
+      {
+        "corpus_id": "synth_g3",
+        "protocol": "ai",
+        "n_excursions": 6,
+        "n_segments": 100,
+        "total_words": 48621,
+        "exc_per_1k_segs": 60.0,
+        "exc_per_100k_words": 12.3403
+      },
+      {
+        "corpus_id": "synth_g4",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_segments": 100,
+        "total_words": 44539,
+        "exc_per_1k_segs": 50.0,
+        "exc_per_100k_words": 11.2261
+      },
+      {
+        "corpus_id": "synth_gemini_g0",
+        "protocol": "ai",
+        "n_excursions": 4,
+        "n_segments": 50,
+        "total_words": 27164,
+        "exc_per_1k_segs": 80.0,
+        "exc_per_100k_words": 14.7254
+      },
+      {
+        "corpus_id": "synth_gpt4o_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 27572,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 7.2537
+      },
+      {
+        "corpus_id": "synth_gpt4o_t02",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 27404,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 7.2982
+      },
+      {
+        "corpus_id": "synth_gpt4o_t15",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 29338,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 6.8171
+      },
+      {
+        "corpus_id": "synth_llama70b_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 27031,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 7.3989
+      },
+      {
+        "corpus_id": "synth_news_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 25814,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 7.7477
+      },
+      {
+        "corpus_id": "synth_twopass_claude",
+        "protocol": "ai",
+        "n_excursions": 7,
+        "n_segments": 100,
+        "total_words": 58971,
+        "exc_per_1k_segs": 70.0,
+        "exc_per_100k_words": 11.8702
+      },
+      {
+        "corpus_id": "vatican",
+        "protocol": "natural",
+        "n_excursions": 332,
+        "n_segments": 10147,
+        "total_words": 1589065,
+        "exc_per_1k_segs": 32.719,
+        "exc_per_100k_words": 20.8928
+      },
+      {
+        "corpus_id": "xdom_claude_fomc",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_segments": 50,
+        "total_words": 25503,
+        "exc_per_1k_segs": 60.0,
+        "exc_per_100k_words": 11.7633
+      },
+      {
+        "corpus_id": "xdom_claude_scotus",
+        "protocol": "ai",
+        "n_excursions": 4,
+        "n_segments": 50,
+        "total_words": 27084,
+        "exc_per_1k_segs": 80.0,
+        "exc_per_100k_words": 14.7689
+      },
+      {
+        "corpus_id": "xdom_claude_therapy",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 28552,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 7.0048
+      },
+      {
+        "corpus_id": "xdom_gpt4o_fomc",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 30431,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 6.5722
+      },
+      {
+        "corpus_id": "xdom_gpt4o_scotus",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_segments": 50,
+        "total_words": 32302,
+        "exc_per_1k_segs": 60.0,
+        "exc_per_100k_words": 9.2874
+      },
+      {
+        "corpus_id": "xdom_gpt4o_therapy",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_segments": 50,
+        "total_words": 32116,
+        "exc_per_1k_segs": 40.0,
+        "exc_per_100k_words": 6.2274
+      }
+    ],
+    "independence": [
+      {
+        "corpus_id": "academic_arxiv",
+        "protocol": "natural",
+        "n_excursions": 21,
+        "n_sessions_with_exc": 21,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 4.8,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "acim",
+        "protocol": "natural",
+        "n_excursions": 165,
+        "n_sessions_with_exc": 94,
+        "max_from_one_session": 26,
+        "pct_from_max_session": 15.8,
+        "mean_per_session": 1.76
+      },
+      {
+        "corpus_id": "adv_constraint",
+        "protocol": "ai",
+        "n_excursions": 10,
+        "n_sessions_with_exc": 1,
+        "max_from_one_session": 10,
+        "pct_from_max_session": 100.0,
+        "mean_per_session": 10.0
+      },
+      {
+        "corpus_id": "adv_style",
+        "protocol": "ai",
+        "n_excursions": 6,
+        "n_sessions_with_exc": 1,
+        "max_from_one_session": 6,
+        "pct_from_max_session": 100.0,
+        "mean_per_session": 6.0
+      },
+      {
+        "corpus_id": "annomi",
+        "protocol": "natural",
+        "n_excursions": 116,
+        "n_sessions_with_exc": 57,
+        "max_from_one_session": 11,
+        "pct_from_max_session": 9.5,
+        "mean_per_session": 2.04
+      },
+      {
+        "corpus_id": "bashar",
+        "protocol": "natural",
+        "n_excursions": 796,
+        "n_sessions_with_exc": 480,
+        "max_from_one_session": 11,
+        "pct_from_max_session": 1.4,
+        "mean_per_session": 1.66
+      },
+      {
+        "corpus_id": "carla_prose",
+        "protocol": "natural",
+        "n_excursions": 76,
+        "n_sessions_with_exc": 48,
+        "max_from_one_session": 6,
+        "pct_from_max_session": 7.9,
+        "mean_per_session": 1.58
+      },
+      {
+        "corpus_id": "cwg",
+        "protocol": "natural",
+        "n_excursions": 129,
+        "n_sessions_with_exc": 45,
+        "max_from_one_session": 16,
+        "pct_from_max_session": 12.4,
+        "mean_per_session": 2.87
+      },
+      {
+        "corpus_id": "dailydialog",
+        "protocol": "natural",
+        "n_excursions": 101,
+        "n_sessions_with_exc": 83,
+        "max_from_one_session": 3,
+        "pct_from_max_session": 3.0,
+        "mean_per_session": 1.22
+      },
+      {
+        "corpus_id": "edit_e1",
+        "protocol": "ai",
+        "n_excursions": 1,
+        "n_sessions_with_exc": 1,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 100.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "edit_e2",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "edit_e3",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "fomc",
+        "protocol": "natural",
+        "n_excursions": 118,
+        "n_sessions_with_exc": 72,
+        "max_from_one_session": 6,
+        "pct_from_max_session": 5.1,
+        "mean_per_session": 1.64
+      },
+      {
+        "corpus_id": "gutenberg_fiction",
+        "protocol": "natural",
+        "n_excursions": 39,
+        "n_sessions_with_exc": 8,
+        "max_from_one_session": 11,
+        "pct_from_max_session": 28.2,
+        "mean_per_session": 4.88
+      },
+      {
+        "corpus_id": "law_of_one",
+        "protocol": "natural",
+        "n_excursions": 91,
+        "n_sessions_with_exc": 62,
+        "max_from_one_session": 3,
+        "pct_from_max_session": 3.3,
+        "mean_per_session": 1.47
+      },
+      {
+        "corpus_id": "ll_research",
+        "protocol": "natural",
+        "n_excursions": 746,
+        "n_sessions_with_exc": 673,
+        "max_from_one_session": 3,
+        "pct_from_max_session": 0.4,
+        "mean_per_session": 1.11
+      },
+      {
+        "corpus_id": "multiturn_claude",
+        "protocol": "ai",
+        "n_excursions": 23,
+        "n_sessions_with_exc": 12,
+        "max_from_one_session": 6,
+        "pct_from_max_session": 26.1,
+        "mean_per_session": 1.92
+      },
+      {
+        "corpus_id": "multiturn_gpt4o",
+        "protocol": "ai",
+        "n_excursions": 13,
+        "n_sessions_with_exc": 6,
+        "max_from_one_session": 4,
+        "pct_from_max_session": 30.8,
+        "mean_per_session": 2.17
+      },
+      {
+        "corpus_id": "news_reuters",
+        "protocol": "natural",
+        "n_excursions": 2111,
+        "n_sessions_with_exc": 1758,
+        "max_from_one_session": 9,
+        "pct_from_max_session": 0.4,
+        "mean_per_session": 1.2
+      },
+      {
+        "corpus_id": "reasoning_deepseek_r1",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_sessions_with_exc": 5,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 20.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "reasoning_deepseek_r1_mt",
+        "protocol": "ai",
+        "n_excursions": 59,
+        "n_sessions_with_exc": 25,
+        "max_from_one_session": 5,
+        "pct_from_max_session": 8.5,
+        "mean_per_session": 2.36
+      },
+      {
+        "corpus_id": "reasoning_o3mini",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "reasoning_o3mini_mt",
+        "protocol": "ai",
+        "n_excursions": 15,
+        "n_sessions_with_exc": 13,
+        "max_from_one_session": 2,
+        "pct_from_max_session": 13.3,
+        "mean_per_session": 1.15
+      },
+      {
+        "corpus_id": "scotus",
+        "protocol": "natural",
+        "n_excursions": 30223,
+        "n_sessions_with_exc": 7689,
+        "max_from_one_session": 34,
+        "pct_from_max_session": 0.1,
+        "mean_per_session": 3.93
+      },
+      {
+        "corpus_id": "seth",
+        "protocol": "natural",
+        "n_excursions": 722,
+        "n_sessions_with_exc": 368,
+        "max_from_one_session": 8,
+        "pct_from_max_session": 1.1,
+        "mean_per_session": 1.96
+      },
+      {
+        "corpus_id": "synth_academic_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_claude_t02",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_sessions_with_exc": 5,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 20.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_claude_t15",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_sessions_with_exc": 5,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 20.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_dialogue_g0",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_sessions_with_exc": 3,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 33.3,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_fiction_g0",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_sessions_with_exc": 3,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 33.3,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_g0",
+        "protocol": "ai",
+        "n_excursions": 10,
+        "n_sessions_with_exc": 10,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 10.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_g1",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_sessions_with_exc": 5,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 20.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_g2",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_sessions_with_exc": 5,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 20.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_g3",
+        "protocol": "ai",
+        "n_excursions": 6,
+        "n_sessions_with_exc": 6,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 16.7,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_g4",
+        "protocol": "ai",
+        "n_excursions": 5,
+        "n_sessions_with_exc": 5,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 20.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_gemini_g0",
+        "protocol": "ai",
+        "n_excursions": 4,
+        "n_sessions_with_exc": 4,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 25.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_gpt4o_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_gpt4o_t02",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_gpt4o_t15",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_llama70b_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_news_g0",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "synth_twopass_claude",
+        "protocol": "ai",
+        "n_excursions": 7,
+        "n_sessions_with_exc": 7,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 14.3,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "vatican",
+        "protocol": "natural",
+        "n_excursions": 332,
+        "n_sessions_with_exc": 73,
+        "max_from_one_session": 34,
+        "pct_from_max_session": 10.2,
+        "mean_per_session": 4.55
+      },
+      {
+        "corpus_id": "xdom_claude_fomc",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_sessions_with_exc": 3,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 33.3,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "xdom_claude_scotus",
+        "protocol": "ai",
+        "n_excursions": 4,
+        "n_sessions_with_exc": 4,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 25.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "xdom_claude_therapy",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "xdom_gpt4o_fomc",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "xdom_gpt4o_scotus",
+        "protocol": "ai",
+        "n_excursions": 3,
+        "n_sessions_with_exc": 3,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 33.3,
+        "mean_per_session": 1.0
+      },
+      {
+        "corpus_id": "xdom_gpt4o_therapy",
+        "protocol": "ai",
+        "n_excursions": 2,
+        "n_sessions_with_exc": 2,
+        "max_from_one_session": 1,
+        "pct_from_max_session": 50.0,
+        "mean_per_session": 1.0
+      }
+    ],
+    "within_natural_domains": [
+      {
+        "domain": "academic",
+        "n_excursions": 21,
+        "n_recovered": 9,
+        "recovery_rate": 0.428571
+      },
+      {
+        "domain": "channeling",
+        "n_excursions": 2725,
+        "n_recovered": 1892,
+        "recovery_rate": 0.694312
+      },
+      {
+        "domain": "dialogue",
+        "n_excursions": 217,
+        "n_recovered": 157,
+        "recovery_rate": 0.723502
+      },
+      {
+        "domain": "fiction",
+        "n_excursions": 39,
+        "n_recovered": 13,
+        "recovery_rate": 0.333333
+      },
+      {
+        "domain": "institutional",
+        "n_excursions": 30673,
+        "n_recovered": 27345,
+        "recovery_rate": 0.891501
+      },
+      {
+        "domain": "news",
+        "n_excursions": 2111,
+        "n_recovered": 1669,
+        "recovery_rate": 0.790621
+      }
+    ],
+    "within_ai_conditions": [
+      {
+        "condition": "standard_singleshot",
+        "n_corpora": 12,
+        "n_excursions": 49,
+        "n_recovered": 0,
+        "recovery_rate": 0.0
+      },
+      {
+        "condition": "multiturn",
+        "n_corpora": 4,
+        "n_excursions": 110,
+        "n_recovered": 72,
+        "recovery_rate": 0.654545
+      },
+      {
+        "condition": "reasoning_singleshot",
+        "n_corpora": 2,
+        "n_excursions": 7,
+        "n_recovered": 0,
+        "recovery_rate": 0.0
+      },
+      {
+        "condition": "temp_sweep",
+        "n_corpora": 4,
+        "n_excursions": 14,
+        "n_recovered": 0,
+        "recovery_rate": 0.0
+      },
+      {
+        "condition": "twopass",
+        "n_corpora": 1,
+        "n_excursions": 7,
+        "n_recovered": 0,
+        "recovery_rate": 0.0
+      },
+      {
+        "condition": "adversarial",
+        "n_corpora": 2,
+        "n_excursions": 16,
+        "n_recovered": 15,
+        "recovery_rate": 0.9375
+      },
+      {
+        "condition": "crossdomain",
+        "n_corpora": 6,
+        "n_excursions": 16,
+        "n_recovered": 0,
+        "recovery_rate": 0.0
+      },
+      {
+        "condition": "edited",
+        "n_corpora": 3,
+        "n_excursions": 5,
+        "n_recovered": 0,
+        "recovery_rate": 0.0
+      }
+    ]
+  }
+}

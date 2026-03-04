@@ -1,0 +1,362 @@
+% ============================================================
+% Paper 3 Data Macros — Single source of truth for all reported values
+% Generated from corpus.db verification pass, Session 97 (52-corpus revision)
+% Update these if any analysis is rerun; all in-text values derive from here.
+% ============================================================
+
+% --- Structure counts ---
+\newcommand{\nCorpora}{52}
+\newcommand{\nNatural}{15}
+\newcommand{\nCalibration}{3}
+\newcommand{\nAI}{34}
+\newcommand{\nStandardAI}{30}
+\newcommand{\nReasoningMT}{2}
+\newcommand{\nAdversarial}{2}
+\newcommand{\nModelFamilies}{6}
+\newcommand{\nContentDomains}{8}
+\newcommand{\nDims}{8}
+\newcommand{\nPermutations}{9{,}999}
+\newcommand{\nAIConditions}{8}
+
+% --- Chunk / threshold parameters ---
+\newcommand{\chunkTokens}{1{,}200}
+\newcommand{\stressPercentile}{5th}
+\newcommand{\recoveryLookahead}{3}
+\newcommand{\minSegWords}{200}
+
+% --- Recovery: excursion counts (natural) ---
+\newcommand{\excAnnoMI}{116}
+\newcommand{\excFOMC}{118}
+\newcommand{\excLawOfOne}{91}
+\newcommand{\excSCOTUS}{30{,}223}
+\newcommand{\excCWG}{129}
+\newcommand{\excSeth}{722}
+\newcommand{\excBashar}{796}
+\newcommand{\excCarlaProse}{76}
+\newcommand{\excLLResearch}{746}
+\newcommand{\excACIM}{165}
+\newcommand{\excVatican}{332}
+\newcommand{\excGutenberg}{39}
+\newcommand{\excReuters}{2{,}111}
+\newcommand{\excAcademic}{21}
+\newcommand{\excDailyDialog}{101}
+
+% --- Recovery: excursion counts (AI) ---
+\newcommand{\excAITotal}{98}
+\newcommand{\excMTClaude}{82}
+\newcommand{\excMTGPT}{38}
+\newcommand{\excXdomTotal}{16}
+\newcommand{\excAdvConstraint}{10}
+\newcommand{\excAdvStyle}{6}
+\newcommand{\excReasoningDSMTAll}{59}
+\newcommand{\excReasoningDSMTEntity}{27}
+\newcommand{\excReasoningOiiiMTAll}{15}
+\newcommand{\excReasoningOiiiMTEntity}{19}
+
+% --- Recovery: rates (%) ---
+\newcommand{\recAnnoMI}{95.7}
+\newcommand{\recFOMC}{94.9}
+\newcommand{\recLawOfOne}{91.2}
+\newcommand{\recSCOTUS}{89.8}
+\newcommand{\recCWG}{86.8}
+\newcommand{\recReuters}{79.1}
+\newcommand{\recSeth}{78.0}
+\newcommand{\recCarlaProse}{69.7}
+\newcommand{\recBashar}{69.7}
+\newcommand{\recLLResearch}{57.8}
+\newcommand{\recACIM}{57.6}
+\newcommand{\recDailyDialog}{45.5}
+\newcommand{\recAcademic}{42.9}
+\newcommand{\recGutenberg}{33.3}
+\newcommand{\recVatican}{27.4}
+\newcommand{\recAI}{0.0}
+\newcommand{\recAdvConstraint}{100.0}
+\newcommand{\recAdvStyle}{83.3}
+\newcommand{\recReasoningDSMTAll}{100.0}
+\newcommand{\recReasoningDSMTEntity}{63.0}
+\newcommand{\recReasoningOiiiMTAll}{86.7}
+\newcommand{\recReasoningOiiiMTEntity}{89.5}
+\newcommand{\recReasoningDSMTEntityFrac}{17/27}
+\newcommand{\recReasoningOiiiMTEntityFrac}{17/19}
+% Pooled and corpus-averaged
+\newcommand{\recNatPooled}{86.9}
+\newcommand{\recNatCorpusAvg}{68.0}
+\newcommand{\recNatCorpusAvgNoSCOTUS}{66.4}
+\newcommand{\recNonChanneling}{87.6}
+\newcommand{\recFullNatural}{86.9}
+% Within-natural domains
+\newcommand{\recDomInstitutional}{89.2}
+\newcommand{\recDomNews}{79.1}
+\newcommand{\recDomDialogue}{72.4}
+\newcommand{\recDomChanneling}{74.0}
+\newcommand{\recDomAcademicDom}{42.9}
+\newcommand{\recDomFiction}{33.3}
+% Range endpoints for abstract/conclusion
+\newcommand{\recNatMin}{27}
+\newcommand{\recNatMax}{96}
+% Median and IQR
+\newcommand{\recNatMedian}{69.7}
+\newcommand{\recNatIQRlo}{45.5}
+\newcommand{\recNatIQRhi}{89.8}
+
+% --- Segment-count correlation ---
+\newcommand{\segCountRho}{0.567}
+\newcommand{\segCountP}{0.028}
+
+% --- Right-censoring ---
+\newcommand{\censorClaudePct}{65}
+\newcommand{\censorClaudeN}{53}
+\newcommand{\censorClaudeOf}{82}
+\newcommand{\censorGPTPct}{71}
+\newcommand{\censorGPTN}{27}
+\newcommand{\censorGPTOf}{38}
+\newcommand{\censorMinTurns}{5}
+\newcommand{\censorMaxRunway}{15}
+
+% --- Distances (zL2, 52-corpus z-space) ---
+\newcommand{\distReasoningDSMTToLoO}{1.59}
+\newcommand{\distMTClaudeToLoO}{2.41}
+\newcommand{\distReasoningOiiiMTToLoO}{1.69}
+\newcommand{\distSethToLoO}{1.43}
+\newcommand{\distGPTToGemini}{0.52}
+
+% --- Compression values (dim4) ---
+\newcommand{\compMTClaude}{0.400}
+\newcommand{\compLawOfOne}{0.414}
+
+% --- Word-count CV ---
+\newcommand{\wcCVAILow}{0.10}
+\newcommand{\wcCVAIHigh}{0.14}
+\newcommand{\wcCVNatFloor}{1.1}
+
+% --- PCA coordinates (52-corpus, signs may differ from 35-corpus) ---
+\newcommand{\pcaACIM}{+4.41}
+\newcommand{\pcaBashar}{+3.71}
+\newcommand{\pcaCWG}{+2.79}
+\newcommand{\pcaVatican}{+3.28}
+\newcommand{\pcaSynthTwopass}{+2.29}
+\newcommand{\pcaSynthTwopassPCtwo}{+5.20}
+\newcommand{\pcaMTClaude}{+0.07}
+\newcommand{\pcaMTGPT}{-1.52}
+\newcommand{\pcaNatPConeLo}{-1.09}
+\newcommand{\pcaNatPConeHi}{+4.41}
+\newcommand{\pcaAIPConeLo}{-1.74}
+\newcommand{\pcaAIPConeHi}{+2.29}
+\newcommand{\pcaXdomLo}{-1.74}
+\newcommand{\pcaXdomHi}{-0.61}
+\newcommand{\pcaReasoningDSMT}{-0.76}
+\newcommand{\pcaReasoningOiiiMT}{-1.39}
+
+% --- ICC values ---
+\newcommand{\iccDimEight}{0.80}
+\newcommand{\iccDimSeven}{0.70}
+\newcommand{\iccDimThree}{0.06}
+\newcommand{\iccDimOne}{0.19}
+
+% --- Session-level ANOVA ---
+\newcommand{\anovaSessions}{12{,}727}
+\newcommand{\anovaCorpora}{24}
+\newcommand{\anovaStressRatio}{3.8}
+\newcommand{\anovaNoveltyGiniRatio}{3.1}
+\newcommand{\anovaNoveltyCVRatio}{2.3}
+\newcommand{\anovaStaticRatio}{1.1}
+\newcommand{\anovaRecDomainEta}{0.000}
+\newcommand{\anovaRecDomainP}{0.97}
+
+% --- PERMANOVA: 30-corpus 7-dim (PRIMARY) ---
+\newcommand{\fullProtRsq}{0.233}
+\newcommand{\fullProtP}{0.0002}
+\newcommand{\fullProtF}{8.52}
+\newcommand{\fullDomRsq}{0.210}
+\newcommand{\fullDomP}{0.024}
+\newcommand{\fullDomF}{2.30}
+\newcommand{\fullDispBinF}{1.75}
+\newcommand{\fullDispBinP}{0.192}
+\newcommand{\fullDispDomF}{2.14}
+\newcommand{\fullDispDomP}{0.135}
+
+% --- PERMANOVA: 42-corpus 7-dim (SUPPLEMENTARY) ---
+\newcommand{\largProtRsq}{0.074}
+\newcommand{\largProtP}{0.051}
+\newcommand{\largProtF}{3.18}
+\newcommand{\largDispBinF}{0.09}
+\newcommand{\largDispBinP}{0.793}
+
+% --- PERMANOVA: Safe-vector (dims 1,2,4,5, 30-corpus) ---
+\newcommand{\safeProtRsq}{0.180}
+\newcommand{\safeProtP}{0.002}
+\newcommand{\safeProtF}{6.16}
+\newcommand{\safeDomRsq}{0.156}
+\newcommand{\safeDomP}{0.157}
+\newcommand{\safeDomF}{1.60}
+\newcommand{\safeDispF}{1.31}
+\newcommand{\safeDispP}{0.272}
+
+% --- PERMANOVA: Fine-grained ---
+\newcommand{\fineProtRsq}{0.716}
+\newcommand{\fineProtP}{0.0001}
+\newcommand{\fineProtF}{5.59}
+\newcommand{\fineDispF}{4.83}
+\newcommand{\fineDispP}{0.0015}
+\newcommand{\fineNLevels}{10}
+
+% --- Mixed-effects models ---
+\newcommand{\lmmRsqLo}{0.58}
+\newcommand{\lmmRsqHi}{0.84}
+\newcommand{\lmmDomainPFloor}{0.5}
+\newcommand{\sessionCountMin}{1}
+\newcommand{\sessionCountMax}{10{,}000}
+
+% --- Robustness: compressor sweep ---
+\newcommand{\compressorRhoFloor}{0.92}
+
+% --- Robustness: chunk-size sweep ---
+\newcommand{\chunkRhoFloor}{0.89}
+\newcommand{\chunkMinStable}{800}
+\newcommand{\chunkRhoAtTwoHundred}{0.82}
+
+% --- Robustness: normalization ablations ---
+\newcommand{\normPassCount}{16}
+\newcommand{\normTotalCount}{18}
+\newcommand{\normRhoThreshold}{0.85}
+\newcommand{\normDimFourRho}{0.998}
+\newcommand{\normDimFiveRho}{0.977}
+\newcommand{\normDimEightPunctRho}{0.83}
+
+% --- Robustness: matched-length subsampling ---
+\newcommand{\subsampDimFourFiveRho}{0.88}
+\newcommand{\subsampNoveltyLoRho}{0.40}
+\newcommand{\subsampNoveltyHiRho}{0.87}
+\newcommand{\subsampMinWords}{150{,}000}
+\newcommand{\subsampDimEightLoRho}{0.83}
+\newcommand{\subsampDimEightHiRho}{0.57}
+\newcommand{\subsampIterations}{200}
+
+% --- Dim 8: applicability ---
+\newcommand{\dimEightSizeRho}{0.57}
+\newcommand{\dimEightPunctRho}{0.83}
+\newcommand{\dimEightClaudeLo}{0.40}
+\newcommand{\dimEightClaudeHi}{0.50}
+\newcommand{\dimEightMultiLo}{0.60}
+\newcommand{\dimEightMultiHi}{0.68}
+
+% --- Bootstrap ---
+\newcommand{\bootstrapIter}{1{,}000}
+
+% --- Sensitivity sweep ---
+\newcommand{\sensitivityCombos}{75}
+\newcommand{\sensitivityThresholds}{5}
+\newcommand{\sensitivityWindows}{5}
+\newcommand{\sensitivityTargets}{3}
+
+% --- Held-out validation ---
+\newcommand{\heldoutN}{3}
+\newcommand{\heldoutCorrect}{3}
+\newcommand{\heldoutTraining}{49}
+\newcommand{\heldoutPCAOne}{32.3}
+\newcommand{\heldoutPCATwo}{19.9}
+
+% --- Budgeted novelty ---
+\newcommand{\budgetWords}{25{,}000--50{,}000}
+\newcommand{\budgetIter}{50}
+
+% --- Topic-diverse multi-turn cross-domain (6 corpora, Session 111) ---
+\newcommand{\nMTXdom}{6}
+\newcommand{\nMTXdomExc}{143}
+\newcommand{\nMTXdomRec}{74}
+\newcommand{\recMTXdomPooled}{51.7}
+\newcommand{\recMTXdomMin}{30.0}
+\newcommand{\recMTXdomMax}{75.0}
+\newcommand{\recMTXdomMean}{51.2}
+\newcommand{\recMTXdomClaudeLegal}{51.1}
+\newcommand{\recMTXdomClaudeEcon}{75.0}
+\newcommand{\recMTXdomClaudeTherapy}{30.0}
+\newcommand{\recMTXdomGPTLegal}{57.1}
+\newcommand{\recMTXdomGPTEcon}{43.8}
+\newcommand{\recMTXdomGPTTherapy}{50.0}
+
+% --- Topic-coherence index (Session 111, updated for 90-session MT) ---
+\newcommand{\cohAIMTMean}{0.37}
+\newcommand{\cohNatMin}{0.13}
+\newcommand{\cohNatMax}{0.50}
+\newcommand{\cohAIr}{0.10}
+\newcommand{\cohAIp}{0.811}
+\newcommand{\cohAIN}{8}
+\newcommand{\cohNatr}{$-$0.35}
+\newcommand{\cohNatp}{0.207}
+
+% --- Aggregate recovery rates by AI condition ---
+\newcommand{\recEditedAI}{0.0}
+\newcommand{\recTwoPass}{0.0}
+\newcommand{\recMatchedAI}{0.0}
+\newcommand{\recTempSweep}{0.0}
+\newcommand{\recReasoningSS}{0.0}
+\newcommand{\recXdom}{0.0}
+\newcommand{\recMTAI}{48.3}
+\newcommand{\recAdversarial}{93.8}
+
+% --- Undefined macro catch-alls for data section ---
+\newcommand{\nNaturalSessions}{24{,}956}
+\newcommand{\nNaturalSegments}{1{,}898{,}620}
+\newcommand{\nNaturalWords}{93M}
+
+% --- Aliases used in paper3_scrp.tex prose ---
+% Structure aliases
+\newcommand{\nDomains}{8}
+\newcommand{\nModels}{6}
+\newcommand{\nCorporaPrimary}{30}
+\newcommand{\nAISingleShot}{19}
+\newcommand{\nMultiturnSegments}{20}
+\newcommand{\nMultiturnClaudeWords}{559K}
+\newcommand{\nMultiturnGPTWords}{586K}
+\newcommand{\nReasoningDSMTWords}{510K}
+\newcommand{\nReasoningOiiiMTWords}{307K}
+\newcommand{\nAISessions}{1{,}961}
+\newcommand{\nAISegments}{11{,}938}
+\newcommand{\nAIWords}{4.5M}
+\newcommand{\nSensitivityCombos}{\sensitivityCombos}
+
+% Recovery aliases (prose-friendly names)
+\newcommand{\recMultiturnStandardAI}{48.3}
+\newcommand{\recClaudeMT}{34.1}
+\newcommand{\recGPTMT}{78.9}
+\newcommand{\recReasoningDSSingleShot}{0.0}
+\newcommand{\recReasoningOiiiSingleShot}{0.0}
+\newcommand{\recReasoningDSEntity}{\recReasoningDSMTEntity}
+\newcommand{\recReasoningOiiiEntity}{\recReasoningOiiiMTEntity}
+\newcommand{\recReasoningDS}{\recReasoningDSMTEntity}
+\newcommand{\recReasoningOiii}{\recReasoningOiiiMTEntity}
+\newcommand{\recReasoningEntity}{63--89}
+\newcommand{\recAISingleShot}{0.0}
+\newcommand{\recMatchedDomainAI}{0.0}
+\newcommand{\recCrossDomainAI}{0.0}
+\newcommand{\recFiction}{\recGutenberg}
+\newcommand{\recNews}{\recReuters}
+\newcommand{\recNewsReuters}{\recReuters}
+\newcommand{\recChannelingMean}{\recDomChanneling}
+\newcommand{\recNaturalNonChanneling}{\recNonChanneling}
+
+% PERMANOVA aliases (prose-friendly names)
+\providecommand{\permProtocolR}{\fullProtRsq}
+\providecommand{\permProtocolF}{\fullProtF}
+\providecommand{\permProtocolP}{\fullProtP}
+\newcommand{\permProtocolRLarg}{\largProtRsq}
+\newcommand{\permProtocolPLarg}{\largProtP}
+\newcommand{\permDomainR}{\fullDomRsq}
+\newcommand{\permDomainF}{\fullDomF}
+\newcommand{\permDomainP}{\fullDomP}
+\newcommand{\permProtocolFineR}{\fineProtRsq}
+\newcommand{\permProtocolFineP}{\fineProtP}
+\newcommand{\permProtocolPercent}{23.3}
+\newcommand{\permDomainPercent}{21.0}
+\newcommand{\permDispF}{\fullDispBinF}
+\newcommand{\permDispP}{\fullDispBinP}
+
+% PCA aliases
+\newcommand{\pcNaturalMax}{+4.41}
+\newcommand{\pcAICenterMin}{-1.74}
+\newcommand{\pcVarOne}{32.3}
+\newcommand{\pcVarTwo}{19.9}
+
+% Excursion rate alias (d1)
+\newcommand{\dIncentiveLOO}{0.153}

@@ -1,0 +1,2786 @@
+{
+  "metadata": {
+    "date": "2026-02-23T22:00:19.331510",
+    "db_path": "C:\\NDE_Research_Project\\pipeline\\..\\corpus.db",
+    "total_sessions": 12725,
+    "total_corpora": 22,
+    "version": 2,
+    "note": "ML for AIC comparison, REML for parameter estimates. Fallback optimizers."
+  },
+  "naturals_only": {
+    "dim1": {
+      "dim": "dim1",
+      "dim_name": "incentive",
+      "analysis": "naturals_only",
+      "n_sessions": 12036,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1094.1818181818182,
+        "std": 2409.086416805417,
+        "min": 58.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 716.0,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.4405103324404056,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.004543127058135904,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.4405103324404047,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.1724217844727658,
+            "se": 1734054.224628642,
+            "z": -9.943275246175819e-08,
+            "p": 0.999999920664142
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.12612548817646907,
+            "se": 2051421.3540383782,
+            "z": 6.148200023763109e-08,
+            "p": 0.9999999509444613
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": 0.41763251244211386,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": 0.16090794422530585,
+            "se": 1735762.7689062527,
+            "z": 9.270157599168805e-08,
+            "p": 0.9999999260348438
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.4405103324404058,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.09251761485569207,
+            "se": 6950529130334.134,
+            "z": -1.3310873621393549e-14,
+            "p": 0.9999999999999893
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.08103323360893341,
+            "se": 6950529130334.134,
+            "z": 1.1658570461244566e-14,
+            "p": 0.9999999999999907
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.1876679844287469,
+            "se": 6950529130334.469,
+            "z": -2.7000532032834755e-14,
+            "p": 0.9999999999999785
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 0.014117135964115799,
+            "se": 6950529130334.222,
+            "z": 2.0310879501971048e-15,
+            "p": 0.9999999999999983
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 0.015770382988723113,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.4409892255030512,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.1724217844727658,
+            "se": 1734342.4410728128,
+            "z": -9.941622853103381e-08,
+            "p": 0.9999999206773261
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.12612548817646907,
+            "se": 2051762.319943472,
+            "z": 6.147178303768827e-08,
+            "p": 0.9999999509526134
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": 0.41763251244211386,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": 0.16090794422530585,
+            "se": 1736051.2693268743,
+            "z": 9.26861706611322e-08,
+            "p": 0.9999999260471354
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim1 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.0,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim2": {
+      "dim": "dim2",
+      "dim_name": "stress",
+      "analysis": "naturals_only",
+      "n_sessions": 12036,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1094.1818181818182,
+        "std": 2409.086416805417,
+        "min": 58.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 716.0,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": -16304.257612309731,
+        "aic": 32614.515224619463,
+        "bic": 32636.702196932714,
+        "random_effect_var": 1.208980479168037,
+        "residual_var": 0.8744110552597222,
+        "icc": 0.5802944185909372,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 1.2235670847682671,
+            "se": 0.33220864894978025,
+            "z": 3.6831283250341653,
+            "p": 0.00023038910621842902
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8736091583882107,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.07972190034762328,
+            "se": 1350402.0053241635,
+            "z": 5.903567977039997e-08,
+            "p": 0.9999999528963426
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 1.7148151366894115,
+            "se": 1597552.9893544954,
+            "z": 1.073401100380587e-06,
+            "p": 0.9999991435498344
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -2.531829180041111,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.10652045287009138,
+            "se": 1351732.541351184,
+            "z": -7.880290635277164e-08,
+            "p": 0.9999999371243776
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": -16302.745393427664,
+        "aic": 32619.490786855327,
+        "bic": 32671.260388919578,
+        "random_effect_var": 0.9237941798532293,
+        "residual_var": 0.8744053142426701,
+        "icc": 0.5137328660620581,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.2689672247666065,
+            "se": 0.9662395969245832,
+            "z": 0.27836493725023764,
+            "p": 0.7807322322433464
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.559613722407515,
+            "se": 1.3629082915660409,
+            "z": 0.4106026251880047,
+            "p": 0.6813639384420755
+          },
+          "C(domain)[T.religious]": {
+            "coef": 0.6859750949976378,
+            "se": 1.3643607074304194,
+            "z": 0.5027813328702312,
+            "p": 0.6151180193673935
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 1.3340176085328337,
+            "se": 1.0326150736763382,
+            "z": 1.2918827572247573,
+            "p": 0.1963977499144166
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": -0.08590135205643348,
+            "se": 1.3652793174163413,
+            "z": -0.06291851854827293,
+            "p": 0.9498313883914895
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=32619.490786855327. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8738995869648025,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.07972190034762328,
+            "se": 1350626.455089699,
+            "z": 5.902586910481382e-08,
+            "p": 0.9999999529041703
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 1.7148151366894115,
+            "se": 1597818.517984119,
+            "z": 1.0732227204707208e-06,
+            "p": 0.999999143692161
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -2.531829180041111,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.10652045287009138,
+            "se": 1351957.2122645695,
+            "z": -7.878981073052332e-08,
+            "p": 0.9999999371348265
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim2 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.5805,
+        "conditional": 0.5805,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      },
+      "lrt_protocol_vs_null": {
+        "chi2": Infinity,
+        "df": 3,
+        "p": 0.0
+      },
+      "lrt_domain_vs_null": {
+        "chi2": 3.02,
+        "df": 4,
+        "p": 0.5537441607071691
+      }
+    },
+    "dim3": {
+      "dim": "dim3",
+      "dim_name": "recovery",
+      "analysis": "naturals_only",
+      "n_sessions": 10278,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 934.3636363636364,
+        "std": 2344.7747556098975,
+        "min": 21.0,
+        "25%": 79.5,
+        "50%": 178.0,
+        "75%": 399.5,
+        "max": 7970.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8896637606210951,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 1.1946997420441332,
+            "se": 98433.99306940804,
+            "z": 1.2137064694731254e-05,
+            "p": 0.9999903160234669
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8896637606211114,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -2.4994923857884714,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -1.8341934574145853,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -5.215717970199876,
+            "se": 2983106.995271303,
+            "z": -1.7484180012542675e-06,
+            "p": 0.999998604964271
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.3482169931326098,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8896637606210885,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -2.621161208253095,
+            "se": 4653909581073.667,
+            "z": -5.632170463544733e-13,
+            "p": 0.9999999999995506
+          },
+          "C(domain)[T.legal]": {
+            "coef": -0.22636121960134836,
+            "se": 4653909581073.667,
+            "z": -4.863893800642477e-14,
+            "p": 0.9999999999999611
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.8388387917468787,
+            "se": 4653909581073.184,
+            "z": -1.802438954031943e-13,
+            "p": 0.9999999999998562
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": -1.5559611969008373,
+            "se": 4653909581073.636,
+            "z": -3.3433421294400914e-13,
+            "p": 0.9999999999997332
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 1.6333333333347155,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8900101354549136,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -2.4994923857884714,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -1.8341934574145853,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -5.215717970199876,
+            "se": 2983687.6487066196,
+            "z": -1.748077742809575e-06,
+            "p": 0.9999986052357579
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.3482169931326098,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim3 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.0,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim4": {
+      "dim": "dim4",
+      "dim_name": "compress_mean",
+      "analysis": "naturals_only",
+      "n_sessions": 12036,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1094.1818181818182,
+        "std": 2409.086416805417,
+        "min": 58.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 716.0,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.002368752192151732,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.013337523327050646,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.002368752192151787,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.03267670915411358,
+            "se": 70317.64213096889,
+            "z": 4.6470143428945116e-07,
+            "p": 0.9999996292219002
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.2964267091541126,
+            "se": 83187.19829190492,
+            "z": -3.5633693073055254e-06,
+            "p": 0.9999971568426452
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.17284273725117627,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.0392872220993965,
+            "se": 70386.92531909983,
+            "z": -5.581607936600084e-07,
+            "p": 0.9999995546521203
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": 19275.732988785752,
+        "aic": -38537.465977571504,
+        "bic": -38485.69637550726,
+        "random_effect_var": 0.0003637733632723293,
+        "residual_var": 0.002370898049937158,
+        "icc": 0.13302269571224085,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.4010938763471986,
+            "se": 0.019758863003832304,
+            "z": 20.299441130261645,
+            "p": 1.3005554158387374e-91
+          },
+          "C(domain)[T.legal]": {
+            "coef": -0.018847362966211412,
+            "se": 0.02746767370767922,
+            "z": -0.6861652416142616,
+            "p": 0.4926089135551033
+          },
+          "C(domain)[T.religious]": {
+            "coef": 0.044524945989502344,
+            "se": 0.02766249199307524,
+            "z": 1.6095782693998895,
+            "p": 0.10748995536682654
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 0.044652224537506426,
+            "se": 0.021076956912953776,
+            "z": 2.118532799678659,
+            "p": 0.03412997013420955
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 0.03775875434485758,
+            "se": 0.027785109890081712,
+            "z": 1.358956451647366,
+            "p": 0.174160388719514
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=-38537.465977571504. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.0023695396762582204,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.03267670915411358,
+            "se": 70329.32959753495,
+            "z": 4.6462420928947553e-07,
+            "p": 0.9999996292835168
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.2964267091541126,
+            "se": 83201.02480214335,
+            "z": -3.562777139572881e-06,
+            "p": 0.9999971573151267
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.17284273725117627,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.0392872220993965,
+            "se": 70398.62430119846,
+            "z": -5.580680373995274e-07,
+            "p": 0.9999995547261291
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim4 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.0,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim5": {
+      "dim": "dim5",
+      "dim_name": "compress_sd",
+      "analysis": "naturals_only",
+      "n_sessions": 12030,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1093.6363636363637,
+        "std": 2409.2339559589172,
+        "min": 55.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 714.5,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.1937761372228985e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0005989158015943679,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.193776137222902e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0002824449594438106,
+            "se": 9356.363955116269,
+            "z": 3.01874703462517e-08,
+            "p": 0.9999999759138835
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.0016988132247552305,
+            "se": 9057.898311877136,
+            "z": 1.8755048536233488e-07,
+            "p": 0.9999998503563634
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.001958690170171775,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.00019696074211200502,
+            "se": 9365.58267611573,
+            "z": -2.1030271038479827e-08,
+            "p": 0.9999999832202714
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.1937761372228985e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0006024948272044295,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.legal]": {
+            "coef": -0.0005162938389172099,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.00023129625833147237,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 0.0013500849244531242,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 4.2586936090239653e-05,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.19517104031195e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0002824449594438106,
+            "se": 9357.919848359395,
+            "z": 3.01824512306897e-08,
+            "p": 0.9999999759178881
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.0016988132247552305,
+            "se": 9059.404572519386,
+            "z": 1.8751930230695027e-07,
+            "p": 0.9999998503812438
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.001958690170171775,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.00019696074211200502,
+            "se": 9367.140102363113,
+            "z": -2.1026774443388155e-08,
+            "p": 0.9999999832230613
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim5 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.0,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim6": {
+      "dim": "dim6",
+      "dim_name": "novelty_cv",
+      "analysis": "naturals_only",
+      "n_sessions": 11655,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1059.5454545454545,
+        "std": 2406.3887617605083,
+        "min": 52.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 689.5,
+        "max": 8248.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.39413421557542144,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.04115493848927743,
+            "se": 82623.6592978636,
+            "z": -4.981011351834617e-07,
+            "p": 0.9999996025727945
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.3941342155754215,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.05185621685359365,
+            "se": 1446358.7696392592,
+            "z": -3.585294184410917e-08,
+            "p": 0.9999999713934913
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -1.3822712636718961,
+            "se": 1374808.1562304806,
+            "z": -1.005428471898129e-06,
+            "p": 0.9999991977841453
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.004823945090038251,
+            "se": 543481.3739892946,
+            "z": -8.876008122650532e-09,
+            "p": 0.9999999929179701
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.3090532711380547,
+            "se": 1445865.9973555894,
+            "z": -2.1374959484716869e-07,
+            "p": 0.9999998294524984
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.3941342155754218,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.41714007026590144,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.05619461128247158,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.religious]": {
+            "coef": 0.34758729745731004,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": -0.8209219790056679,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 0.0701127819548946,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": -11142.151134178013,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0.10193973783165407,
+        "residual_var": 0.39450449398262055,
+        "icc": 0.20533975681238426,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.6645635663807982,
+            "se": 0.2279636204077854,
+            "z": 2.9152176351297414,
+            "p": 0.0035544058219478805
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.9383579930062623,
+            "se": 0.26993163216592964,
+            "z": 3.4762802176124525,
+            "p": 0.0005084207582842572
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.38992909459086206,
+            "se": 0.3943403786670199,
+            "z": -0.9888135115884679,
+            "p": 0.322754392258617
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": 0.9317104174925227,
+            "se": 0.2945737127477285,
+            "z": 3.162910935947754,
+            "p": 0.0015620011085512176
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim6 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.2053,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim7": {
+      "dim": "dim7",
+      "dim_name": "novelty_gini",
+      "analysis": "naturals_only",
+      "n_sessions": 11831,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1075.5454545454545,
+        "std": 2407.613854572048,
+        "min": 55.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 700.5,
+        "max": 8255.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": 9855.676256693034,
+        "aic": -19705.352513386068,
+        "bic": -19683.217077933306,
+        "random_effect_var": 0.032531472707938935,
+        "residual_var": 0.010995041829975528,
+        "icc": 0.7473943883009947,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.5299247200316435,
+            "se": 0.05443573626972385,
+            "z": 9.734868238135281,
+            "p": 2.1409497417848195e-22
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.010984900420371063,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.25942241801278954,
+            "se": 220068.94625572482,
+            "z": 1.178823375249569e-06,
+            "p": 0.999999059435029
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.22186796872841796,
+            "se": 216543.50150318214,
+            "z": -1.0245884415291843e-06,
+            "p": 0.9999991824967013
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.27060918844080106,
+            "se": 269244.1274609292,
+            "z": -1.005069974943353e-06,
+            "p": 0.9999991980701844
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.18851242977996208,
+            "se": 220160.617507821,
+            "z": -8.562495505049414e-07,
+            "p": 0.9999993168117035
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": 9856.989201877099,
+        "aic": -19699.978403754198,
+        "bic": -19648.32905436442,
+        "random_effect_var": 0.025513979403057316,
+        "residual_var": 0.010995079915862955,
+        "icc": 0.6988396819590222,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.5410499927866727,
+            "se": 0.16011720590501627,
+            "z": 3.379087148870378,
+            "p": 0.0007272694977901815
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.1700256765606262,
+            "se": 0.22616991617075455,
+            "z": 0.7517607975424089,
+            "p": 0.4521949211287841
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.1887486275827283,
+            "se": 0.22628000118539982,
+            "z": -0.8341374694800332,
+            "p": 0.4042035227955193
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": -0.026996349575685814,
+            "se": 0.17114766435935602,
+            "z": -0.15773717787349997,
+            "p": 0.8746639035013568
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 0.08508415380890928,
+            "se": 0.22634966048956048,
+            "z": 0.37589698003029903,
+            "p": 0.7069934857389109
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=-19699.978403754198. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.010988615614560755,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.25942241801278954,
+            "se": 220106.157778844,
+            "z": 1.1786240813555489e-06,
+            "p": 0.9999990595940424
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.22186796872841796,
+            "se": 216580.1169078063,
+            "z": -1.0244152228565958e-06,
+            "p": 0.9999991826349098
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.27060918844080106,
+            "se": 269289.6540299691,
+            "z": -1.004900056096047e-06,
+            "p": 0.9999991982057601
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.18851242977996208,
+            "se": 220197.84453165924,
+            "z": -8.561047914928997e-07,
+            "p": 0.9999993169272045
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim7 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.7475,
+        "conditional": 0.7475,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      },
+      "lrt_protocol_vs_null": {
+        "chi2": Infinity,
+        "df": 3,
+        "p": 0.0
+      },
+      "lrt_domain_vs_null": {
+        "chi2": 2.63,
+        "df": 4,
+        "p": 0.6222436764624955
+      }
+    },
+    "dim8": {
+      "dim": "dim8",
+      "dim_name": "tfidf_oneoff",
+      "analysis": "naturals_only",
+      "n_sessions": 11831,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1075.5454545454545,
+        "std": 2407.613854572048,
+        "min": 55.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 700.5,
+        "max": 8255.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": 16428.36990557478,
+        "aic": -32850.73981114956,
+        "bic": -32828.6043756968,
+        "random_effect_var": 0.005331518895060441,
+        "residual_var": 0.003621885611963279,
+        "icc": 0.5954739217777996,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.6372038566698649,
+            "se": 0.022059145258154132,
+            "z": 28.886153530102142,
+            "p": 1.7820966014073358e-183
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.003618507016255203,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.10083210964269895,
+            "se": 126306.41579358604,
+            "z": 7.983134428221128e-07,
+            "p": 0.9999993630380293
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.01067965164643292,
+            "se": 124283.0213149544,
+            "z": -8.593009353521313e-08,
+            "p": 0.999999931437705
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.3019507866855018,
+            "se": 154530.02930066155,
+            "z": -1.9539942369260206e-06,
+            "p": 0.9999984409381665
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.09605182139784496,
+            "se": 126359.02961066719,
+            "z": -7.601500398807771e-07,
+            "p": 0.9999993934880193
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.003618507016255156,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.031932708356505336,
+            "se": 491716548351.7164,
+            "z": 6.49412928313009e-14,
+            "p": 0.9999999999999482
+          },
+          "C(domain)[T.legal]": {
+            "coef": -0.02730830971635974,
+            "se": 491716548351.7164,
+            "z": -5.553669041218962e-14,
+            "p": 0.9999999999999557
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.014115177050601911,
+            "se": 491716548351.7282,
+            "z": -2.870592234065962e-14,
+            "p": 0.9999999999999771
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 0.0733561951234679,
+            "se": 491716548351.7158,
+            "z": 1.4918390558415284e-13,
+            "p": 0.999999999999881
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": -0.07161654135338391,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.003619730828554604,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.10083210964269895,
+            "se": 126327.77298276148,
+            "z": 7.981784785872728e-07,
+            "p": 0.9999993631457151
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.01067965164643292,
+            "se": 124304.03636776004,
+            "z": -8.591556604675819e-08,
+            "p": 0.9999999314492963
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.3019507866855018,
+            "se": 154556.1588289802,
+            "z": -1.9536638913213224e-06,
+            "p": 0.9999984412017441
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.09605182139784496,
+            "se": 126380.39569632868,
+            "z": -7.60021527616053e-07,
+            "p": 0.9999993935905572
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim8 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.5957,
+        "conditional": 0.5957,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      },
+      "lrt_protocol_vs_null": {
+        "chi2": Infinity,
+        "df": 3,
+        "p": 0.0
+      },
+      "lrt_domain_vs_null": {
+        "chi2": Infinity,
+        "df": 4,
+        "p": 0.0
+      }
+    }
+  },
+  "full_dataset": {
+    "dim1": {
+      "dim": "dim1",
+      "dim_name": "incentive",
+      "analysis": "full_dataset",
+      "n_sessions": 12725,
+      "n_corpora": 22,
+      "group_sizes": {
+        "count": 22.0,
+        "mean": 578.4090909090909,
+        "std": 1744.437381236792,
+        "min": 13.0,
+        "25%": 52.0,
+        "50%": 100.0,
+        "75%": 208.75,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.5197639651072468,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0043994890748234785,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.519763965107248,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.26504988483716585,
+            "se": 523536026545.2318,
+            "z": -5.062686642334946e-13,
+            "p": 0.9999999999995961
+          },
+          "C(protocol)[T.ai_stateless]": {
+            "coef": -0.6157344288883109,
+            "se": 523536026529.87036,
+            "z": -1.1761070827724215e-12,
+            "p": 0.9999999999990616
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.09231910075064409,
+            "se": 523536026548.25214,
+            "z": 1.7633762734403803e-13,
+            "p": 0.9999999999998593
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.2186301317507462,
+            "se": 523536026538.5633,
+            "z": 4.176028404315401e-13,
+            "p": 0.9999999999996668
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": 0.11794893206430118,
+            "se": 251498572139.38544,
+            "z": 4.689844998361724e-13,
+            "p": 0.9999999999996259
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.05633233949469493,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.519763965107246,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.07546996761866205,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.06398558637190317,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.20471563166577753,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 0.06526007767520421,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 0.015770382988723984,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 1.5204808912642291,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.26504988483716585,
+            "se": 4519681848284.061,
+            "z": -5.86434828234192e-14,
+            "p": 0.9999999999999533
+          },
+          "C(protocol)[T.ai_stateless]": {
+            "coef": -0.6157344288883109,
+            "se": 4519681848282.278,
+            "z": -1.3623402034864976e-13,
+            "p": 0.9999999999998913
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.09231910075064409,
+            "se": 4519681848284.412,
+            "z": 2.0426017549373907e-14,
+            "p": 0.9999999999999837
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.2186301317507462,
+            "se": 4519681848284.2,
+            "z": 4.8372903024965e-14,
+            "p": 0.9999999999999614
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": 0.11794893206430118,
+            "se": 2171184930455.8064,
+            "z": 5.4324682531551857e-14,
+            "p": 0.9999999999999567
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.05633233949469493,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim1 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.0,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim4": {
+      "dim": "dim4",
+      "dim_name": "compress_mean",
+      "analysis": "full_dataset",
+      "n_sessions": 12725,
+      "n_corpora": 22,
+      "group_sizes": {
+        "count": 22.0,
+        "mean": 578.4090909090909,
+        "std": 1744.437381236792,
+        "min": 13.0,
+        "25%": 52.0,
+        "50%": 100.0,
+        "75%": 208.75,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": 20674.326767009115,
+        "aic": -41342.65353401823,
+        "bic": -41320.29956249397,
+        "random_effect_var": 0.0010419758116225633,
+        "residual_var": 0.002255604409627,
+        "icc": 0.31598194485401293,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.45222688632931085,
+            "se": 0.007014854057937335,
+            "z": 64.46704130895131,
+            "p": 0.0
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.0022516127622057387,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.0909651895841933,
+            "se": 55626626300.94663,
+            "z": -1.6352814404393476e-12,
+            "p": 0.9999999999986953
+          },
+          "C(protocol)[T.ai_stateless]": {
+            "coef": -0.042858339827567704,
+            "se": 55626626300.73399,
+            "z": -7.704644821683567e-13,
+            "p": 0.9999999999993853
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.12323633674525825,
+            "se": 55626626300.98453,
+            "z": 2.2154199335845234e-12,
+            "p": 0.9999999999982323
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.17294684745284428,
+            "se": 55626626299.74829,
+            "z": -3.109065908849246e-12,
+            "p": 0.9999999999975193
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.0110961557782418,
+            "se": 26722166915.863277,
+            "z": -4.15241616189992e-13,
+            "p": 0.9999999999996687
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.01874235541366416,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.002251612762205727,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.07714995330170886,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.07051929081116137,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.009290118254644767,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": -0.13837912585822726,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": -0.007965225563907679,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.002252674927200882,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.0909651895841933,
+            "se": 249187498639.21088,
+            "z": -3.6504716360549995e-13,
+            "p": 0.9999999999997088
+          },
+          "C(protocol)[T.ai_stateless]": {
+            "coef": -0.042858339827567704,
+            "se": 249187498639.163,
+            "z": -1.7199233533632803e-13,
+            "p": 0.9999999999998628
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.12323633674525825,
+            "se": 249187498639.2203,
+            "z": 4.945526457716998e-13,
+            "p": 0.9999999999996054
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.17294684745284428,
+            "se": 249187498639.21466,
+            "z": -6.94043033447857e-13,
+            "p": 0.9999999999994462
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.0110961557782418,
+            "se": 119705802325.20102,
+            "z": -9.26952208055648e-14,
+            "p": 0.9999999999999261
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.01874235541366416,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim4 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.3169,
+        "conditional": 0.3169,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      },
+      "lrt_protocol_vs_null": {
+        "chi2": Infinity,
+        "df": 5,
+        "p": 0.0
+      },
+      "lrt_domain_vs_null": {
+        "chi2": Infinity,
+        "df": 4,
+        "p": 0.0
+      }
+    },
+    "dim6": {
+      "dim": "dim6",
+      "dim_name": "novelty_cv",
+      "analysis": "full_dataset",
+      "n_sessions": 11661,
+      "n_corpora": 14,
+      "group_sizes": {
+        "count": 14.0,
+        "mean": 832.9285714285714,
+        "std": 2158.0493850585644,
+        "min": 2.0,
+        "25%": 61.25,
+        "50%": 158.0,
+        "75%": 420.25,
+        "max": 8248.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.3939338032590328,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.041154893164155805,
+            "se": 82602.65007834535,
+            "z": -4.982272738843368e-07,
+            "p": 0.9999996024721504
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.393933803259031,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.385003238945446,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.3331764858517797,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -1.0491270845889942,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": 0.32829777335838267,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": 0.007989895022507553,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.39393380325903166,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.41714309528889265,
+            "se": 4551775669490.096,
+            "z": -9.164403643284607e-14,
+            "p": 0.9999999999999268
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.05619763630546279,
+            "se": 4551775669490.096,
+            "z": 1.2346310623818204e-14,
+            "p": 0.9999999999999901
+          },
+          "C(domain)[T.religious]": {
+            "coef": 0.34759032248029414,
+            "se": 4551775669490.235,
+            "z": 7.636367600673556e-14,
+            "p": 0.999999999999939
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": -0.8209310540746415,
+            "se": 4551775669490.077,
+            "z": -1.8035402306340114e-13,
+            "p": 0.9999999999998561
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 0.0701127819548946,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": -11145.758533653934,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0.0931508592013107,
+        "residual_var": 0.39435978607483546,
+        "icc": 0.19107451314944357,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.13038559849606088,
+            "se": 0.31108988638801716,
+            "z": 0.4191251602870597,
+            "p": 0.6751246636244164
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.5341814525163714,
+            "se": 0.3799335639917861,
+            "z": 1.4059864753826277,
+            "p": 0.15972814087320286
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 1.472868410862759,
+            "se": 0.3404607480814163,
+            "z": 4.326103432371427,
+            "p": 1.517701781449868e-05
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": 0.14424887329383967,
+            "se": 0.4376349791074764,
+            "z": 0.32961001789213557,
+            "p": 0.7416946520816181
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": 1.4664277048698608,
+            "se": 0.35868191704262586,
+            "z": 4.08837924409663,
+            "p": 4.343975731771257e-05
+          }
+        },
+        "optimizer": "powell",
+        "formula": "dim6 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.1911,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim7": {
+      "dim": "dim7",
+      "dim_name": "novelty_gini",
+      "analysis": "full_dataset",
+      "n_sessions": 11840,
+      "n_corpora": 14,
+      "group_sizes": {
+        "count": 14.0,
+        "mean": 845.7142857142857,
+        "std": 2160.441423148784,
+        "min": 3.0,
+        "25%": 63.5,
+        "50%": 160.5,
+        "75%": 425.75,
+        "max": 8255.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": 9858.090956179047,
+        "aic": -19710.181912358094,
+        "bic": -19688.04419563278,
+        "random_effect_var": 0.05890017193931245,
+        "residual_var": 0.01099057087597312,
+        "icc": 0.8427464005494958,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.43395410840605747,
+            "se": 0.06532325749342308,
+            "z": 6.64317924515245,
+            "p": 3.069881244646997e-11
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.01097714645948546,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.07145750564178416,
+            "se": 38697311942.06871,
+            "z": 1.8465754352332963e-12,
+            "p": 0.9999999999985266
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.18800774154371924,
+            "se": 38697311942.68496,
+            "z": 4.858418636989042e-12,
+            "p": 0.9999999999961235
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.03390441758951421,
+            "se": 38697311942.21905,
+            "z": -8.761439978089083e-13,
+            "p": 0.9999999999993009
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.08262299688692185,
+            "se": 38697311942.379326,
+            "z": -2.135109462123578e-12,
+            "p": 0.9999999999982965
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": 0.00011177796423849426,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": 9859.534099913108,
+        "aic": -19705.068199826215,
+        "bic": -19653.41352746715,
+        "random_effect_var": 0.04822761089241609,
+        "residual_var": 0.010990451183468822,
+        "icc": 0.8144071116446681,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.5410499927867746,
+            "se": 0.21988883352267294,
+            "z": 2.460561476083261,
+            "p": 0.013871980409928524
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.17002567522860085,
+            "se": 0.3107732956814198,
+            "z": 0.5471051650554226,
+            "p": 0.5843064839918314
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.1887486275827659,
+            "se": 0.3108533872711933,
+            "z": -0.6071950164020528,
+            "p": 0.543721499168714
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": -0.15628091570196667,
+            "se": 0.23084413230432177,
+            "z": -0.6769975660284125,
+            "p": 0.4984074986642867
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 0.08508415380878268,
+            "se": 0.31090407680100723,
+            "z": 0.2736668965046747,
+            "p": 0.7843406196245868
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=-19705.068199826215. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.010981784037203873,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.07145750564178416,
+            "se": 430161512994.36786,
+            "z": 1.6611784988472402e-13,
+            "p": 0.9999999999998674
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.18800774154371924,
+            "se": 430161512994.42413,
+            "z": 4.370631399238087e-13,
+            "p": 0.9999999999996513
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -0.03390441758951421,
+            "se": 430161512994.3661,
+            "z": -7.881787785593516e-14,
+            "p": 0.9999999999999372
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.08262299688692185,
+            "se": 430161512994.3959,
+            "z": -1.9207435902801992e-13,
+            "p": 0.9999999999998468
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": 0.00011177796423849426,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim7 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.8429,
+        "conditional": 0.8429,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      },
+      "lrt_protocol_vs_null": {
+        "chi2": Infinity,
+        "df": 4,
+        "p": 0.0
+      },
+      "lrt_domain_vs_null": {
+        "chi2": 2.89,
+        "df": 4,
+        "p": 0.5770316804902986
+      }
+    },
+    "dim8": {
+      "dim": "dim8",
+      "dim_name": "tfidf_oneoff",
+      "analysis": "full_dataset",
+      "n_sessions": 11840,
+      "n_corpora": 14,
+      "group_sizes": {
+        "count": 14.0,
+        "mean": 845.7142857142857,
+        "std": 2160.441423148784,
+        "min": 3.0,
+        "25%": 63.5,
+        "50%": 160.5,
+        "75%": 425.75,
+        "max": 8255.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": 16437.301830939046,
+        "aic": -32868.60366187809,
+        "bic": -32846.46594515278,
+        "random_effect_var": 0.00847818276078019,
+        "residual_var": 0.0036206145886945847,
+        "icc": 0.7007459101832332,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.6701408692686923,
+            "se": 0.02500207142937883,
+            "z": 26.803413915586187,
+            "p": 2.9483278647845346e-158
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.0036162266949516086,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.002280662797009193,
+            "se": 8991354415.439362,
+            "z": -2.536506394512699e-13,
+            "p": 0.9999999999997976
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.10360224870009327,
+            "se": 8991354416.25302,
+            "z": 1.1522429647842486e-11,
+            "p": 0.9999999999908065
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.09241756385488101,
+            "se": 8991354415.769737,
+            "z": 1.02784919358525e-11,
+            "p": 0.999999999991799
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.1985948235843138,
+            "se": 8991354415.887897,
+            "z": -2.2087309030260547e-11,
+            "p": 0.9999999999823769
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.0014416998698937066,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.003616226694951706,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.03191218964343904,
+            "se": 401484880514.7593,
+            "z": 7.948540827371429e-14,
+            "p": 0.9999999999999366
+          },
+          "C(domain)[T.legal]": {
+            "coef": -0.02728779100329343,
+            "se": 401484880514.7593,
+            "z": -6.79671696934308e-14,
+            "p": 0.9999999999999458
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.014094658337535558,
+            "se": 401484880514.7738,
+            "z": -3.5106324102326695e-14,
+            "p": 0.999999999999972
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 0.07329463898426895,
+            "se": 401484880514.7586,
+            "z": 1.8255890206947566e-13,
+            "p": 0.9999999999998543
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": -0.07161654135338391,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.0036177544628835695,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -0.002280662797009193,
+            "se": 6.768194267075167e+23,
+            "z": -3.3696769138318e-27,
+            "p": 1.0
+          },
+          "C(protocol)[T.authored_monologue]": {
+            "coef": 0.10360224870009327,
+            "se": 6.768194267075167e+23,
+            "z": 1.5307221485068917e-25,
+            "p": 1.0
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.09241756385488101,
+            "se": 6.768194267075167e+23,
+            "z": 1.3654685460856118e-25,
+            "p": 1.0
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.1985948235843138,
+            "se": 6.768194267075167e+23,
+            "z": -2.934236455806333e-25,
+            "p": 1.0
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.0014416998698937066,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim8 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.701,
+        "conditional": 0.701,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      },
+      "lrt_protocol_vs_null": {
+        "chi2": Infinity,
+        "df": 4,
+        "p": 0.0
+      },
+      "lrt_domain_vs_null": {
+        "chi2": Infinity,
+        "df": 4,
+        "p": 0.0
+      }
+    },
+    "_excluded": {
+      "dims": [
+        "dim2",
+        "dim3",
+        "dim5"
+      ],
+      "reason": "Single-shot AI sessions have 1 segment/1 chunk. Stress/recovery/compress_SD are structurally zero/NULL. Multi-turn analysis covers these dims separately."
+    }
+  },
+  "naturals_plus_multiturn": {
+    "dim2": {
+      "dim": "dim2",
+      "dim_name": "stress",
+      "analysis": "naturals_plus_multiturn",
+      "n_sessions": 12036,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1094.1818181818182,
+        "std": 2409.086416805417,
+        "min": 58.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 716.0,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": -16304.257612309731,
+        "aic": 32614.515224619463,
+        "bic": 32636.702196932714,
+        "random_effect_var": 1.208980479168037,
+        "residual_var": 0.8744110552597222,
+        "icc": 0.5802944185909372,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 1.2235670847682671,
+            "se": 0.33220864894978025,
+            "z": 3.6831283250341653,
+            "p": 0.00023038910621842902
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8736091583882107,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.07972190034762328,
+            "se": 1350402.0053241635,
+            "z": 5.903567977039997e-08,
+            "p": 0.9999999528963426
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 1.7148151366894115,
+            "se": 1597552.9893544954,
+            "z": 1.073401100380587e-06,
+            "p": 0.9999991435498344
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -2.531829180041111,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.10652045287009138,
+            "se": 1351732.541351184,
+            "z": -7.880290635277164e-08,
+            "p": 0.9999999371243776
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": -16302.745393427664,
+        "aic": 32619.490786855327,
+        "bic": 32671.260388919578,
+        "random_effect_var": 0.9237941798532293,
+        "residual_var": 0.8744053142426701,
+        "icc": 0.5137328660620581,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.2689672247666065,
+            "se": 0.9662395969245832,
+            "z": 0.27836493725023764,
+            "p": 0.7807322322433464
+          },
+          "C(domain)[T.legal]": {
+            "coef": 0.559613722407515,
+            "se": 1.3629082915660409,
+            "z": 0.4106026251880047,
+            "p": 0.6813639384420755
+          },
+          "C(domain)[T.religious]": {
+            "coef": 0.6859750949976378,
+            "se": 1.3643607074304194,
+            "z": 0.5027813328702312,
+            "p": 0.6151180193673935
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 1.3340176085328337,
+            "se": 1.0326150736763382,
+            "z": 1.2918827572247573,
+            "p": 0.1963977499144166
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": -0.08590135205643348,
+            "se": 1.3652793174163413,
+            "z": -0.06291851854827293,
+            "p": 0.9498313883914895
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=32619.490786855327. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8738995869648025,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.07972190034762328,
+            "se": 1350626.455089699,
+            "z": 5.902586910481382e-08,
+            "p": 0.9999999529041703
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 1.7148151366894115,
+            "se": 1597818.517984119,
+            "z": 1.0732227204707208e-06,
+            "p": 0.999999143692161
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -2.531829180041111,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.10652045287009138,
+            "se": 1351957.2122645695,
+            "z": -7.878981073052332e-08,
+            "p": 0.9999999371348265
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim2 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.5805,
+        "conditional": 0.5805,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      },
+      "lrt_protocol_vs_null": {
+        "chi2": Infinity,
+        "df": 3,
+        "p": 0.0
+      },
+      "lrt_domain_vs_null": {
+        "chi2": 3.02,
+        "df": 4,
+        "p": 0.5537441607071691
+      }
+    },
+    "dim3": {
+      "dim": "dim3",
+      "dim_name": "recovery",
+      "analysis": "naturals_plus_multiturn",
+      "n_sessions": 10278,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 934.3636363636364,
+        "std": 2344.7747556098975,
+        "min": 21.0,
+        "25%": 79.5,
+        "50%": 178.0,
+        "75%": 399.5,
+        "max": 7970.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8896637606210951,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 1.1946997420441332,
+            "se": 98433.99306940804,
+            "z": 1.2137064694731254e-05,
+            "p": 0.9999903160234669
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8896637606211114,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -2.4994923857884714,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -1.8341934574145853,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -5.215717970199876,
+            "se": 2983106.995271303,
+            "z": -1.7484180012542675e-06,
+            "p": 0.999998604964271
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.3482169931326098,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8896637606210885,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -2.621161208253095,
+            "se": 4653909581073.667,
+            "z": -5.632170463544733e-13,
+            "p": 0.9999999999995506
+          },
+          "C(domain)[T.legal]": {
+            "coef": -0.22636121960134836,
+            "se": 4653909581073.667,
+            "z": -4.863893800642477e-14,
+            "p": 0.9999999999999611
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.8388387917468787,
+            "se": 4653909581073.184,
+            "z": -1.802438954031943e-13,
+            "p": 0.9999999999998562
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": -1.5559611969008373,
+            "se": 4653909581073.636,
+            "z": -3.3433421294400914e-13,
+            "p": 0.9999999999997332
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 1.6333333333347155,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 0.8900101354549136,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": -2.4994923857884714,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": -1.8341934574145853,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -5.215717970199876,
+            "se": 2983687.6487066196,
+            "z": -1.748077742809575e-06,
+            "p": 0.9999986052357579
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.3482169931326098,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim3 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.0,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    },
+    "dim5": {
+      "dim": "dim5",
+      "dim_name": "compress_sd",
+      "analysis": "naturals_plus_multiturn",
+      "n_sessions": 12030,
+      "n_corpora": 11,
+      "group_sizes": {
+        "count": 11.0,
+        "mean": 1093.6363636363637,
+        "std": 2409.2339559589172,
+        "min": 55.0,
+        "25%": 119.5,
+        "50%": 215.0,
+        "75%": 714.5,
+        "max": 8259.0
+      },
+      "null_model": {
+        "status": "converged",
+        "label": "null_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.1937761372228985e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0005989158015943679,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "protocol_model_ml": {
+        "status": "converged",
+        "label": "protocol_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.193776137222902e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0002824449594438106,
+            "se": 9356.363955116269,
+            "z": 3.01874703462517e-08,
+            "p": 0.9999999759138835
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.0016988132247552305,
+            "se": 9057.898311877136,
+            "z": 1.8755048536233488e-07,
+            "p": 0.9999998503563634
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.001958690170171775,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.00019696074211200502,
+            "se": 9365.58267611573,
+            "z": -2.1030271038479827e-08,
+            "p": 0.9999999832202714
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "domain_model_ml": {
+        "status": "converged",
+        "label": "domain_ml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.1937761372228985e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0006024948272044295,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.legal]": {
+            "coef": -0.0005162938389172099,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.religious]": {
+            "coef": -0.00023129625833147237,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.spiritual]": {
+            "coef": 0.0013500849244531242,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(domain)[T.therapeutic]": {
+            "coef": 4.2586936090239653e-05,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          }
+        },
+        "optimizer": "lbfgs"
+      },
+      "comparison": {
+        "status": "aic_unavailable",
+        "note": "Protocol AIC=None, Domain AIC=None. Likely degenerate random effect (variance at boundary)."
+      },
+      "best_model_reml": {
+        "status": "converged",
+        "label": "protocol_reml",
+        "llf": Infinity,
+        "aic": null,
+        "bic": null,
+        "random_effect_var": 0,
+        "residual_var": 4.19517104031195e-05,
+        "icc": 0.0,
+        "fixed_effects": {
+          "Intercept": {
+            "coef": 0.0002824449594438106,
+            "se": 9357.919848359395,
+            "z": 3.01824512306897e-08,
+            "p": 0.9999999759178881
+          },
+          "C(protocol)[T.channeling_dialogue]": {
+            "coef": 0.0016988132247552305,
+            "se": 9059.404572519386,
+            "z": 1.8751930230695027e-07,
+            "p": 0.9999998503812438
+          },
+          "C(protocol)[T.channeling_monologue]": {
+            "coef": -0.001958690170171775,
+            "se": NaN,
+            "z": NaN,
+            "p": NaN
+          },
+          "C(protocol)[T.institutional_dialogue]": {
+            "coef": -0.00019696074211200502,
+            "se": 9367.140102363113,
+            "z": -2.1026774443388155e-08,
+            "p": 0.9999999832230613
+          }
+        },
+        "optimizer": "lbfgs",
+        "formula": "dim5 ~ C(protocol)"
+      },
+      "r_squared": {
+        "marginal": 0.0,
+        "conditional": 0.0,
+        "note": "Nakagawa-Schielzeth (2013). Marginal=fixed only, conditional=fixed+random."
+      }
+    }
+  }
+}

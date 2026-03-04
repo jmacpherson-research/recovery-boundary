@@ -1,0 +1,293 @@
+{
+  "permanova": {
+    "description": "PERMANOVA on 7-dim z-scored vector (dims 1,2,4,5,6,7,8), 30 corpora, 9999 permutations",
+    "protocol_binary": {
+      "pseudo_F": 8.5222,
+      "R2": 0.2333,
+      "p_value": 0.0002,
+      "n_groups": 2,
+      "n_obs": 30,
+      "SS_between": 42.6884,
+      "SS_within": 140.2536,
+      "SS_total": 182.942
+    },
+    "domain": {
+      "pseudo_F": 2.2999,
+      "R2": 0.2097,
+      "p_value": 0.0235,
+      "n_groups": 4,
+      "n_obs": 30,
+      "SS_between": 38.3663,
+      "SS_within": 144.5756,
+      "SS_total": 182.942
+    },
+    "protocol_fine": {
+      "pseudo_F": 5.593,
+      "R2": 0.7157,
+      "p_value": 0.0001,
+      "n_groups": 10,
+      "n_obs": 30,
+      "SS_between": 130.9234,
+      "SS_within": 52.0186,
+      "SS_total": 182.942
+    },
+    "protocol_domain_R2_ratio": 1.11
+  },
+  "pca_no_calibration": {
+    "description": "PCA on 7-dim vector (dims 1,2,4,5,6,7,8), 30 corpora excluding calibration",
+    "variance_explained": {
+      "PC1": 0.5104,
+      "PC2": 0.2335,
+      "PC3": 0.1174,
+      "PC4": 0.0814,
+      "PC5": 0.0385
+    },
+    "spearman_vs_original": {
+      "rho": 0.976,
+      "p": 0.0
+    },
+    "ai_pc1_mean": 0.879,
+    "ai_pc1_sd": 1.1873,
+    "natural_pc1_mean": -1.5183,
+    "natural_pc1_sd": 1.5537,
+    "pc1_overlap": 3.04,
+    "corpus_scores": {
+      "acim": {
+        "pc1": -3.2869,
+        "pc2": 3.0223,
+        "is_ai": false
+      },
+      "annomi": {
+        "pc1": -1.8433,
+        "pc2": -1.4551,
+        "is_ai": false
+      },
+      "bashar": {
+        "pc1": -1.8329,
+        "pc2": 0.4667,
+        "is_ai": false
+      },
+      "carla_prose": {
+        "pc1": -1.8808,
+        "pc2": -1.2005,
+        "is_ai": false
+      },
+      "cwg": {
+        "pc1": -3.9734,
+        "pc2": 0.0392,
+        "is_ai": false
+      },
+      "edit_e1": {
+        "pc1": -1.7446,
+        "pc2": 0.1582,
+        "is_ai": true
+      },
+      "edit_e2": {
+        "pc1": -1.6521,
+        "pc2": -1.0707,
+        "is_ai": true
+      },
+      "edit_e3": {
+        "pc1": -1.3513,
+        "pc2": -1.2143,
+        "is_ai": true
+      },
+      "fomc": {
+        "pc1": 1.2955,
+        "pc2": -0.7312,
+        "is_ai": false
+      },
+      "law_of_one": {
+        "pc1": -0.8502,
+        "pc2": -0.9128,
+        "is_ai": false
+      },
+      "ll_research": {
+        "pc1": -0.7635,
+        "pc2": 0.2404,
+        "is_ai": false
+      },
+      "multiturn_claude": {
+        "pc1": 0.2752,
+        "pc2": -0.6941,
+        "is_ai": true
+      },
+      "multiturn_gpt4o": {
+        "pc1": 1.3576,
+        "pc2": -0.9866,
+        "is_ai": true
+      },
+      "scotus": {
+        "pc1": 0.5043,
+        "pc2": -0.7082,
+        "is_ai": false
+      },
+      "seth": {
+        "pc1": -0.711,
+        "pc2": 0.2423,
+        "is_ai": false
+      },
+      "synth_g0": {
+        "pc1": 0.9301,
+        "pc2": 0.7821,
+        "is_ai": true
+      },
+      "synth_g1": {
+        "pc1": 0.7998,
+        "pc2": 2.2007,
+        "is_ai": true
+      },
+      "synth_g2": {
+        "pc1": 0.7984,
+        "pc2": 2.1129,
+        "is_ai": true
+      },
+      "synth_g3": {
+        "pc1": 0.6043,
+        "pc2": 3.0644,
+        "is_ai": true
+      },
+      "synth_g4": {
+        "pc1": 1.0851,
+        "pc2": 1.238,
+        "is_ai": true
+      },
+      "synth_gemini_g0": {
+        "pc1": 1.6783,
+        "pc2": -0.7235,
+        "is_ai": true
+      },
+      "synth_gpt4o_g0": {
+        "pc1": 1.9394,
+        "pc2": -0.4825,
+        "is_ai": true
+      },
+      "synth_llama70b_g0": {
+        "pc1": 1.496,
+        "pc2": -0.517,
+        "is_ai": true
+      },
+      "vatican": {
+        "pc1": -3.3586,
+        "pc2": -1.1003,
+        "is_ai": false
+      },
+      "xdom_claude_fomc": {
+        "pc1": 1.8882,
+        "pc2": -0.1622,
+        "is_ai": true
+      },
+      "xdom_claude_scotus": {
+        "pc1": 1.1558,
+        "pc2": -0.2647,
+        "is_ai": true
+      },
+      "xdom_claude_therapy": {
+        "pc1": 2.213,
+        "pc2": -0.1599,
+        "is_ai": true
+      },
+      "xdom_gpt4o_fomc": {
+        "pc1": 2.0606,
+        "pc2": -0.2623,
+        "is_ai": true
+      },
+      "xdom_gpt4o_scotus": {
+        "pc1": 1.1442,
+        "pc2": -0.5852,
+        "is_ai": true
+      },
+      "xdom_gpt4o_therapy": {
+        "pc1": 2.0227,
+        "pc2": -0.3361,
+        "is_ai": true
+      }
+    }
+  },
+  "recovery_ablation": {
+    "all_naturals": {
+      "recovered": 29348,
+      "total": 33514,
+      "rate": 87.6
+    },
+    "non_channeling_naturals": {
+      "recovered": 27509,
+      "total": 30865,
+      "rate": 89.1
+    },
+    "channeling_naturals": {
+      "recovered": 1839,
+      "total": 2649,
+      "rate": 69.4
+    },
+    "standard_ai": {
+      "recovered": 0,
+      "total": 96,
+      "rate": 0.0
+    },
+    "adversarial_ai": {
+      "recovered": 15,
+      "total": 16,
+      "rate": 93.8
+    },
+    "per_corpus_non_channeling": {
+      "annomi": {
+        "recovered": 111,
+        "total": 116,
+        "rate": 95.7
+      },
+      "carla_prose": {
+        "recovered": 53,
+        "total": 76,
+        "rate": 69.7
+      },
+      "fomc": {
+        "recovered": 112,
+        "total": 118,
+        "rate": 94.9
+      },
+      "scotus": {
+        "recovered": 27142,
+        "total": 30223,
+        "rate": 89.8
+      },
+      "vatican": {
+        "recovered": 91,
+        "total": 332,
+        "rate": 27.4
+      }
+    },
+    "per_corpus_channeling": {
+      "acim": {
+        "recovered": 95,
+        "total": 165,
+        "rate": 57.6
+      },
+      "bashar": {
+        "recovered": 555,
+        "total": 796,
+        "rate": 69.7
+      },
+      "cwg": {
+        "recovered": 112,
+        "total": 129,
+        "rate": 86.8
+      },
+      "law_of_one": {
+        "recovered": 83,
+        "total": 91,
+        "rate": 91.2
+      },
+      "ll_research": {
+        "recovered": 431,
+        "total": 746,
+        "rate": 57.8
+      },
+      "seth": {
+        "recovered": 563,
+        "total": 722,
+        "rate": 78.0
+      }
+    }
+  }
+}

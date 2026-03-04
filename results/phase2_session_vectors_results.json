@@ -1,0 +1,1779 @@
+{
+  "batch": "Phase 2 Batch 4: Session-Level Vectors + ICC",
+  "timestamp": "2026-02-23 14:47:38",
+  "runtime_seconds": 83.2,
+  "n_sessions_total": 12727,
+  "n_corpora": 24,
+  "n_active_dims": 8,
+  "dim_names": [
+    "dim1_incentive",
+    "dim2_stress",
+    "dim3_recovery",
+    "dim4_compress_mean",
+    "dim5_compress_sd",
+    "dim6_novelty_cv",
+    "dim7_novelty_gini",
+    "dim8_tfidf_oneoff"
+  ],
+  "icc_results": {
+    "dim1_incentive": {
+      "icc": 0.1862,
+      "between_var": 0.348256,
+      "within_var": 1.522396,
+      "n_corpora": 22,
+      "n_sessions": 12725,
+      "interpretation": "LOW \u2014 session-level"
+    },
+    "dim2_stress": {
+      "icc": 0.3661,
+      "between_var": 0.553345,
+      "within_var": 0.958113,
+      "n_corpora": 22,
+      "n_sessions": 12725,
+      "interpretation": "MODERATE"
+    },
+    "dim3_recovery": {
+      "icc": 0.0568,
+      "between_var": 0.053605,
+      "within_var": 0.890617,
+      "n_corpora": 11,
+      "n_sessions": 10278,
+      "interpretation": "LOW \u2014 session-level"
+    },
+    "dim4_compress_mean": {
+      "icc": 0.4553,
+      "between_var": 0.001885,
+      "within_var": 0.002256,
+      "n_corpora": 22,
+      "n_sessions": 12725,
+      "interpretation": "MODERATE"
+    },
+    "dim5_compress_sd": {
+      "icc": 0.4376,
+      "between_var": 3.1e-05,
+      "within_var": 4e-05,
+      "n_corpora": 22,
+      "n_sessions": 12719,
+      "interpretation": "MODERATE"
+    },
+    "dim6_novelty_cv": {
+      "icc": 0.4478,
+      "between_var": 0.319799,
+      "within_var": 0.394407,
+      "n_corpora": 14,
+      "n_sessions": 11661,
+      "interpretation": "MODERATE"
+    },
+    "dim7_novelty_gini": {
+      "icc": 0.703,
+      "between_var": 0.026014,
+      "within_var": 0.01099,
+      "n_corpora": 14,
+      "n_sessions": 11840,
+      "interpretation": "HIGH \u2014 corpus-level"
+    },
+    "dim8_tfidf_oneoff": {
+      "icc": 0.7989,
+      "between_var": 0.01438,
+      "within_var": 0.003621,
+      "n_corpora": 14,
+      "n_sessions": 11840,
+      "interpretation": "HIGH \u2014 corpus-level"
+    }
+  },
+  "anova_session_level": {
+    "dim1_incentive": {
+      "protocol": {
+        "F": 158.5875,
+        "p": 0.0,
+        "eta_sq": 0.0907,
+        "df": [
+          8,
+          12716
+        ]
+      },
+      "domain": {
+        "F": 196.1889,
+        "p": 0.0,
+        "eta_sq": 0.0847,
+        "df": [
+          6,
+          12718
+        ]
+      },
+      "design_effect": 108.51,
+      "effective_n": 117.0
+    },
+    "dim2_stress": {
+      "protocol": {
+        "F": 463.2528,
+        "p": 0.0,
+        "eta_sq": 0.2257,
+        "df": [
+          8,
+          12716
+        ]
+      },
+      "domain": {
+        "F": 133.3825,
+        "p": 0.0,
+        "eta_sq": 0.0592,
+        "df": [
+          6,
+          12718
+        ]
+      },
+      "design_effect": 212.39,
+      "effective_n": 60.0
+    },
+    "dim3_recovery": {
+      "protocol": {
+        "F": 19.63,
+        "p": 0.0,
+        "eta_sq": 0.0113,
+        "df": [
+          6,
+          10271
+        ]
+      },
+      "domain": {
+        "F": 0.0777,
+        "p": 0.972073,
+        "eta_sq": 0.0,
+        "df": [
+          3,
+          10274
+        ]
+      },
+      "design_effect": 54.02,
+      "effective_n": 190.0
+    },
+    "dim4_compress_mean": {
+      "protocol": {
+        "F": 598.4826,
+        "p": 0.0,
+        "eta_sq": 0.2735,
+        "df": [
+          8,
+          12716
+        ]
+      },
+      "domain": {
+        "F": 712.081,
+        "p": 0.0,
+        "eta_sq": 0.2515,
+        "df": [
+          6,
+          12718
+        ]
+      },
+      "design_effect": 263.89,
+      "effective_n": 48.0
+    },
+    "dim5_compress_sd": {
+      "protocol": {
+        "F": 552.5688,
+        "p": 0.0,
+        "eta_sq": 0.2581,
+        "df": [
+          8,
+          12710
+        ]
+      },
+      "domain": {
+        "F": 642.515,
+        "p": 0.0,
+        "eta_sq": 0.2327,
+        "df": [
+          6,
+          12712
+        ]
+      },
+      "design_effect": 253.55,
+      "effective_n": 50.0
+    },
+    "dim6_novelty_cv": {
+      "protocol": {
+        "F": 582.5714,
+        "p": 0.0,
+        "eta_sq": 0.2592,
+        "df": [
+          7,
+          11653
+        ]
+      },
+      "domain": {
+        "F": 372.0425,
+        "p": 0.0,
+        "eta_sq": 0.1132,
+        "df": [
+          4,
+          11656
+        ]
+      },
+      "design_effect": 373.54,
+      "effective_n": 31.0
+    },
+    "dim7_novelty_gini": {
+      "protocol": {
+        "F": 1652.9711,
+        "p": 0.0,
+        "eta_sq": 0.4944,
+        "df": [
+          7,
+          11832
+        ]
+      },
+      "domain": {
+        "F": 571.7869,
+        "p": 0.0,
+        "eta_sq": 0.162,
+        "df": [
+          4,
+          11835
+        ]
+      },
+      "design_effect": 594.83,
+      "effective_n": 20.0
+    },
+    "dim8_tfidf_oneoff": {
+      "protocol": {
+        "F": 3179.8623,
+        "p": 0.0,
+        "eta_sq": 0.6529,
+        "df": [
+          7,
+          11832
+        ]
+      },
+      "domain": {
+        "F": 4434.9877,
+        "p": 0.0,
+        "eta_sq": 0.5998,
+        "df": [
+          4,
+          11835
+        ]
+      },
+      "design_effect": 675.84,
+      "effective_n": 18.0
+    }
+  },
+  "coverage": {
+    "dim1_incentive": {
+      "n_valid": 12727,
+      "n_total": 12727,
+      "pct": 100.0
+    },
+    "dim2_stress": {
+      "n_valid": 12727,
+      "n_total": 12727,
+      "pct": 100.0
+    },
+    "dim3_recovery": {
+      "n_valid": 10280,
+      "n_total": 12727,
+      "pct": 80.8
+    },
+    "dim4_compress_mean": {
+      "n_valid": 12727,
+      "n_total": 12727,
+      "pct": 100.0
+    },
+    "dim5_compress_sd": {
+      "n_valid": 12721,
+      "n_total": 12727,
+      "pct": 100.0
+    },
+    "dim6_novelty_cv": {
+      "n_valid": 11663,
+      "n_total": 12727,
+      "pct": 91.6
+    },
+    "dim7_novelty_gini": {
+      "n_valid": 11842,
+      "n_total": 12727,
+      "pct": 93.0
+    },
+    "dim8_tfidf_oneoff": {
+      "n_valid": 11842,
+      "n_total": 12727,
+      "pct": 93.0
+    }
+  },
+  "corpus_summary": {
+    "scotus": {
+      "n_sessions": 8259,
+      "dims": {
+        "dim1_incentive": {
+          "n": 8259,
+          "mean": 0.177712,
+          "sd": 0.232395,
+          "min": 0.0,
+          "max": 3.232062
+        },
+        "dim2_stress": {
+          "n": 8259,
+          "mean": 0.828581,
+          "sd": 0.516697,
+          "min": 0.0,
+          "max": 6.309148
+        },
+        "dim3_recovery": {
+          "n": 7970,
+          "mean": 1.689084,
+          "sd": 0.917445,
+          "min": 1.0,
+          "max": 8.0
+        },
+        "dim4_compress_mean": {
+          "n": 8259,
+          "mean": 0.382247,
+          "sd": 0.028075,
+          "min": 0.339144,
+          "max": 1.194051
+        },
+        "dim5_compress_sd": {
+          "n": 8259,
+          "mean": 0.013031,
+          "sd": 0.005178,
+          "min": 0.0,
+          "max": 0.050808
+        },
+        "dim6_novelty_cv": {
+          "n": 8248,
+          "mean": 2.085023,
+          "sd": 0.64114,
+          "min": 0.784202,
+          "max": 5.336017
+        },
+        "dim7_novelty_gini": {
+          "n": 8255,
+          "mean": 0.711076,
+          "sd": 0.080712,
+          "min": 0.408333,
+          "max": 0.930739
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 8255,
+          "mean": 0.516522,
+          "sd": 0.05325,
+          "min": 0.392272,
+          "max": 0.996139
+        }
+      }
+    },
+    "annomi": {
+      "n_sessions": 133,
+      "dims": {
+        "dim1_incentive": {
+          "n": 133,
+          "mean": 0.064859,
+          "sd": 0.328643,
+          "min": 0.0,
+          "max": 2.45459
+        },
+        "dim2_stress": {
+          "n": 133,
+          "mean": 0.183066,
+          "sd": 0.539035,
+          "min": 0.0,
+          "max": 3.676471
+        },
+        "dim3_recovery": {
+          "n": 21,
+          "mean": 1.714286,
+          "sd": 1.055597,
+          "min": 1.0,
+          "max": 5.0
+        },
+        "dim4_compress_mean": {
+          "n": 133,
+          "mean": 0.438853,
+          "sd": 0.049258,
+          "min": 0.358398,
+          "max": 0.592649
+        },
+        "dim5_compress_sd": {
+          "n": 133,
+          "mean": 0.001196,
+          "sd": 0.003435,
+          "min": 0.0,
+          "max": 0.019135
+        },
+        "dim6_novelty_cv": {
+          "n": 133,
+          "mean": 1.343592,
+          "sd": 0.325537,
+          "min": 0.546887,
+          "max": 2.289791
+        },
+        "dim7_novelty_gini": {
+          "n": 133,
+          "mean": 0.626134,
+          "sd": 0.100957,
+          "min": 0.277992,
+          "max": 0.809292
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 133,
+          "mean": 0.543033,
+          "sd": 0.074929,
+          "min": 0.150376,
+          "max": 0.739726
+        }
+      }
+    },
+    "ll_research": {
+      "n_sessions": 1293,
+      "dims": {
+        "dim1_incentive": {
+          "n": 1293,
+          "mean": 0.882353,
+          "sd": 1.049633,
+          "min": 0.0,
+          "max": 10.638298
+        },
+        "dim2_stress": {
+          "n": 1293,
+          "mean": 1.120097,
+          "sd": 0.859055,
+          "min": 0.0,
+          "max": 9.972801
+        },
+        "dim3_recovery": {
+          "n": 802,
+          "mean": 1.302993,
+          "sd": 0.505738,
+          "min": 1.0,
+          "max": 4.0
+        },
+        "dim4_compress_mean": {
+          "n": 1293,
+          "mean": 0.413857,
+          "sd": 0.043866,
+          "min": 0.34387,
+          "max": 0.96649
+        },
+        "dim5_compress_sd": {
+          "n": 1293,
+          "mean": 0.011112,
+          "sd": 0.009516,
+          "min": 0.0,
+          "max": 0.057018
+        },
+        "dim6_novelty_cv": {
+          "n": 1003,
+          "mean": 1.696284,
+          "sd": 0.710481,
+          "min": 0.100467,
+          "max": 4.054997
+        },
+        "dim7_novelty_gini": {
+          "n": 1132,
+          "mean": 0.599755,
+          "sd": 0.216511,
+          "min": 0.009902,
+          "max": 0.900016
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 1132,
+          "mean": 0.727483,
+          "sd": 0.068309,
+          "min": 0.565056,
+          "max": 0.969492
+        }
+      }
+    },
+    "carla_prose": {
+      "n_sessions": 190,
+      "dims": {
+        "dim1_incentive": {
+          "n": 190,
+          "mean": 0.159549,
+          "sd": 0.473821,
+          "min": 0.0,
+          "max": 3.284072
+        },
+        "dim2_stress": {
+          "n": 190,
+          "mean": 0.948396,
+          "sd": 1.331415,
+          "min": 0.0,
+          "max": 8.695652
+        },
+        "dim3_recovery": {
+          "n": 95,
+          "mean": 1.726316,
+          "sd": 1.206737,
+          "min": 1.0,
+          "max": 8.0
+        },
+        "dim4_compress_mean": {
+          "n": 190,
+          "mean": 0.481316,
+          "sd": 0.057019,
+          "min": 0.40069,
+          "max": 0.784474
+        },
+        "dim5_compress_sd": {
+          "n": 190,
+          "mean": 0.002075,
+          "sd": 0.006075,
+          "min": 0.0,
+          "max": 0.045685
+        },
+        "dim6_novelty_cv": {
+          "n": 183,
+          "mean": 0.639982,
+          "sd": 0.208704,
+          "min": 0.125448,
+          "max": 1.437733
+        },
+        "dim7_novelty_gini": {
+          "n": 188,
+          "mean": 0.325053,
+          "sd": 0.091613,
+          "min": 0.050096,
+          "max": 0.587714
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 188,
+          "mean": 0.741963,
+          "sd": 0.054489,
+          "min": 0.643537,
+          "max": 0.982759
+        }
+      }
+    },
+    "synth_g4": {
+      "n_sessions": 100,
+      "dims": {
+        "dim1_incentive": {
+          "n": 100,
+          "mean": 0.725736,
+          "sd": 1.53221,
+          "min": 0.0,
+          "max": 6.335128
+        },
+        "dim2_stress": {
+          "n": 100,
+          "mean": 1.032672,
+          "sd": 1.410461,
+          "min": 0.0,
+          "max": 4.830918
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 100,
+          "mean": 0.459828,
+          "sd": 0.010163,
+          "min": 0.418844,
+          "max": 0.48241
+        },
+        "dim5_compress_sd": {
+          "n": 100,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "seth": {
+      "n_sessions": 484,
+      "dims": {
+        "dim1_incentive": {
+          "n": 484,
+          "mean": 0.601143,
+          "sd": 0.971876,
+          "min": 0.0,
+          "max": 6.101281
+        },
+        "dim2_stress": {
+          "n": 484,
+          "mean": 1.471345,
+          "sd": 1.041846,
+          "min": 0.0,
+          "max": 7.633588
+        },
+        "dim3_recovery": {
+          "n": 424,
+          "mean": 2.038915,
+          "sd": 1.278212,
+          "min": 1.0,
+          "max": 7.5
+        },
+        "dim4_compress_mean": {
+          "n": 484,
+          "mean": 0.43463,
+          "sd": 0.045925,
+          "min": 0.374997,
+          "max": 0.892695
+        },
+        "dim5_compress_sd": {
+          "n": 484,
+          "mean": 0.011892,
+          "sd": 0.010958,
+          "min": 0.0,
+          "max": 0.053089
+        },
+        "dim6_novelty_cv": {
+          "n": 478,
+          "mean": 1.525054,
+          "sd": 0.382256,
+          "min": 0.606963,
+          "max": 4.060972
+        },
+        "dim7_novelty_gini": {
+          "n": 482,
+          "mean": 0.647598,
+          "sd": 0.073728,
+          "min": 0.264507,
+          "max": 0.84436
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 482,
+          "mean": 0.641972,
+          "sd": 0.062626,
+          "min": 0.480128,
+          "max": 0.984399
+        }
+      }
+    },
+    "bashar": {
+      "n_sessions": 948,
+      "dims": {
+        "dim1_incentive": {
+          "n": 948,
+          "mean": 1.275387,
+          "sd": 3.810124,
+          "min": 0.0,
+          "max": 102.040816
+        },
+        "dim2_stress": {
+          "n": 948,
+          "mean": 0.876525,
+          "sd": 1.839856,
+          "min": 0.0,
+          "max": 27.237354
+        },
+        "dim3_recovery": {
+          "n": 375,
+          "mean": 1.956,
+          "sd": 1.265042,
+          "min": 1.0,
+          "max": 8.5
+        },
+        "dim4_compress_mean": {
+          "n": 948,
+          "mean": 0.468208,
+          "sd": 0.122664,
+          "min": 0.36147,
+          "max": 2.712526
+        },
+        "dim5_compress_sd": {
+          "n": 945,
+          "mean": 0.003497,
+          "sd": 0.007745,
+          "min": 0.0,
+          "max": 0.043221
+        },
+        "dim6_novelty_cv": {
+          "n": 901,
+          "mean": 2.037374,
+          "sd": 0.772611,
+          "min": 0.627318,
+          "max": 7.543613
+        },
+        "dim7_novelty_gini": {
+          "n": 919,
+          "mean": 0.734672,
+          "sd": 0.100879,
+          "min": 0.314493,
+          "max": 0.947258
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 919,
+          "mean": 0.716868,
+          "sd": 0.094187,
+          "min": 0.341969,
+          "max": 1.0
+        }
+      }
+    },
+    "synth_llama70b_g0": {
+      "n_sessions": 50,
+      "dims": {
+        "dim1_incentive": {
+          "n": 50,
+          "mean": 0.106837,
+          "sd": 0.529034,
+          "min": 0.0,
+          "max": 2.763194
+        },
+        "dim2_stress": {
+          "n": 50,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 50,
+          "mean": 0.43734,
+          "sd": 0.026636,
+          "min": 0.316396,
+          "max": 0.487061
+        },
+        "dim5_compress_sd": {
+          "n": 50,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "synth_g3": {
+      "n_sessions": 100,
+      "dims": {
+        "dim1_incentive": {
+          "n": 100,
+          "mean": 2.01153,
+          "sd": 2.889406,
+          "min": 0.0,
+          "max": 12.106538
+        },
+        "dim2_stress": {
+          "n": 100,
+          "mean": 1.15667,
+          "sd": 1.593171,
+          "min": 0.0,
+          "max": 8.45666
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 100,
+          "mean": 0.447177,
+          "sd": 0.013725,
+          "min": 0.412333,
+          "max": 0.473247
+        },
+        "dim5_compress_sd": {
+          "n": 100,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "acim": {
+      "n_sessions": 261,
+      "dims": {
+        "dim1_incentive": {
+          "n": 261,
+          "mean": 1.760462,
+          "sd": 1.969615,
+          "min": 0.0,
+          "max": 14.191107
+        },
+        "dim2_stress": {
+          "n": 261,
+          "mean": 4.490179,
+          "sd": 3.414583,
+          "min": 0.0,
+          "max": 19.607843
+        },
+        "dim3_recovery": {
+          "n": 206,
+          "mean": 1.92233,
+          "sd": 1.162959,
+          "min": 1.0,
+          "max": 6.0
+        },
+        "dim4_compress_mean": {
+          "n": 261,
+          "mean": 0.455792,
+          "sd": 0.060581,
+          "min": 0.355294,
+          "max": 0.956055
+        },
+        "dim5_compress_sd": {
+          "n": 261,
+          "mean": 0.002007,
+          "sd": 0.00553,
+          "min": 0.0,
+          "max": 0.03407
+        },
+        "dim6_novelty_cv": {
+          "n": 247,
+          "mean": 0.274634,
+          "sd": 0.349954,
+          "min": 0.018428,
+          "max": 2.358641
+        },
+        "dim7_novelty_gini": {
+          "n": 257,
+          "mean": 0.11736,
+          "sd": 0.111586,
+          "min": 0.002347,
+          "max": 0.720532
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 257,
+          "mean": 0.657938,
+          "sd": 0.055476,
+          "min": 0.529103,
+          "max": 0.837607
+        }
+      }
+    },
+    "synth_g1": {
+      "n_sessions": 100,
+      "dims": {
+        "dim1_incentive": {
+          "n": 100,
+          "mean": 1.537031,
+          "sd": 2.042657,
+          "min": 0.0,
+          "max": 8.147746
+        },
+        "dim2_stress": {
+          "n": 100,
+          "mean": 0.936463,
+          "sd": 1.353272,
+          "min": 0.0,
+          "max": 6.024096
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 100,
+          "mean": 0.463238,
+          "sd": 0.011233,
+          "min": 0.437576,
+          "max": 0.490214
+        },
+        "dim5_compress_sd": {
+          "n": 100,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "fomc": {
+      "n_sessions": 89,
+      "dims": {
+        "dim1_incentive": {
+          "n": 89,
+          "mean": 0.024787,
+          "sd": 0.065062,
+          "min": 0.0,
+          "max": 0.314179
+        },
+        "dim2_stress": {
+          "n": 89,
+          "mean": 0.268967,
+          "sd": 0.201772,
+          "min": 0.0,
+          "max": 0.882223
+        },
+        "dim3_recovery": {
+          "n": 75,
+          "mean": 1.54,
+          "sd": 0.845337,
+          "min": 1.0,
+          "max": 5.0
+        },
+        "dim4_compress_mean": {
+          "n": 89,
+          "mean": 0.401094,
+          "sd": 0.010547,
+          "min": 0.378028,
+          "max": 0.43968
+        },
+        "dim5_compress_sd": {
+          "n": 89,
+          "mean": 0.014342,
+          "sd": 0.005351,
+          "min": 0.004157,
+          "max": 0.03059
+        },
+        "dim6_novelty_cv": {
+          "n": 89,
+          "mean": 1.342726,
+          "sd": 0.196237,
+          "min": 0.839398,
+          "max": 1.833723
+        },
+        "dim7_novelty_gini": {
+          "n": 89,
+          "mean": 0.54105,
+          "sd": 0.069135,
+          "min": 0.407956,
+          "max": 0.717995
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 89,
+          "mean": 0.541237,
+          "sd": 0.020509,
+          "min": 0.504527,
+          "max": 0.628834
+        }
+      }
+    },
+    "synth_g0": {
+      "n_sessions": 100,
+      "dims": {
+        "dim1_incentive": {
+          "n": 100,
+          "mean": 0.1057,
+          "sd": 0.520503,
+          "min": 0.0,
+          "max": 2.700513
+        },
+        "dim2_stress": {
+          "n": 100,
+          "mean": 2.063419,
+          "sd": 2.336287,
+          "min": 0.0,
+          "max": 12.939002
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 100,
+          "mean": 0.48543,
+          "sd": 0.009558,
+          "min": 0.457792,
+          "max": 0.505975
+        },
+        "dim5_compress_sd": {
+          "n": 100,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "law_of_one": {
+      "n_sessions": 106,
+      "dims": {
+        "dim1_incentive": {
+          "n": 106,
+          "mean": 0.179063,
+          "sd": 0.439812,
+          "min": 0.0,
+          "max": 2.85144
+        },
+        "dim2_stress": {
+          "n": 106,
+          "mean": 0.824344,
+          "sd": 0.719422,
+          "min": 0.0,
+          "max": 3.972195
+        },
+        "dim3_recovery": {
+          "n": 84,
+          "mean": 1.755952,
+          "sd": 1.142007,
+          "min": 1.0,
+          "max": 6.0
+        },
+        "dim4_compress_mean": {
+          "n": 106,
+          "mean": 0.41379,
+          "sd": 0.056813,
+          "min": 0.369599,
+          "max": 0.780207
+        },
+        "dim5_compress_sd": {
+          "n": 106,
+          "mean": 0.01192,
+          "sd": 0.010196,
+          "min": 0.0,
+          "max": 0.040704
+        },
+        "dim6_novelty_cv": {
+          "n": 106,
+          "mean": 1.232728,
+          "sd": 0.341058,
+          "min": 0.788899,
+          "max": 3.148098
+        },
+        "dim7_novelty_gini": {
+          "n": 106,
+          "mean": 0.552738,
+          "sd": 0.062764,
+          "min": 0.419864,
+          "max": 0.739205
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 106,
+          "mean": 0.630061,
+          "sd": 0.038865,
+          "min": 0.549091,
+          "max": 0.81016
+        }
+      }
+    },
+    "vatican": {
+      "n_sessions": 215,
+      "dims": {
+        "dim1_incentive": {
+          "n": 215,
+          "mean": 0.623118,
+          "sd": 0.734698,
+          "min": 0.0,
+          "max": 4.422822
+        },
+        "dim2_stress": {
+          "n": 215,
+          "mean": 0.954942,
+          "sd": 0.645661,
+          "min": 0.0,
+          "max": 3.802281
+        },
+        "dim3_recovery": {
+          "n": 178,
+          "mean": 1.94382,
+          "sd": 1.266559,
+          "min": 1.0,
+          "max": 7.0
+        },
+        "dim4_compress_mean": {
+          "n": 215,
+          "mean": 0.445619,
+          "sd": 0.061639,
+          "min": 0.373443,
+          "max": 1.102373
+        },
+        "dim5_compress_sd": {
+          "n": 215,
+          "mean": 0.01014,
+          "sd": 0.009412,
+          "min": 0.0,
+          "max": 0.055997
+        },
+        "dim6_novelty_cv": {
+          "n": 215,
+          "mean": 0.68907,
+          "sd": 0.276731,
+          "min": 0.145727,
+          "max": 1.986569
+        },
+        "dim7_novelty_gini": {
+          "n": 215,
+          "mean": 0.352301,
+          "sd": 0.122346,
+          "min": 0.068704,
+          "max": 0.746208
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 215,
+          "mean": 0.656821,
+          "sd": 0.081473,
+          "min": 0.466091,
+          "max": 0.95814
+        }
+      }
+    },
+    "synth_gemini_g0": {
+      "n_sessions": 50,
+      "dims": {
+        "dim1_incentive": {
+          "n": 50,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim2_stress": {
+          "n": 50,
+          "mean": 0.148876,
+          "sd": 0.512157,
+          "min": 0.0,
+          "max": 2.109705
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 50,
+          "mean": 0.482473,
+          "sd": 0.009357,
+          "min": 0.463305,
+          "max": 0.506885
+        },
+        "dim5_compress_sd": {
+          "n": 50,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "cwg": {
+      "n_sessions": 58,
+      "dims": {
+        "dim1_incentive": {
+          "n": 58,
+          "mean": 0.871206,
+          "sd": 1.052789,
+          "min": 0.0,
+          "max": 6.714789
+        },
+        "dim2_stress": {
+          "n": 58,
+          "mean": 1.487109,
+          "sd": 1.144881,
+          "min": 0.0,
+          "max": 4.994125
+        },
+        "dim3_recovery": {
+          "n": 48,
+          "mean": 1.708333,
+          "sd": 1.133782,
+          "min": 1.0,
+          "max": 7.0
+        },
+        "dim4_compress_mean": {
+          "n": 58,
+          "mean": 0.452757,
+          "sd": 0.1449,
+          "min": 0.378172,
+          "max": 1.122807
+        },
+        "dim5_compress_sd": {
+          "n": 55,
+          "mean": 0.010108,
+          "sd": 0.00696,
+          "min": 0.0,
+          "max": 0.024175
+        },
+        "dim6_novelty_cv": {
+          "n": 52,
+          "mean": 1.504934,
+          "sd": 0.366834,
+          "min": 0.434543,
+          "max": 2.085899
+        },
+        "dim7_novelty_gini": {
+          "n": 55,
+          "mean": 0.62135,
+          "sd": 0.141292,
+          "min": 0.166667,
+          "max": 0.766694
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 55,
+          "mean": 0.634665,
+          "sd": 0.085831,
+          "min": 0.428571,
+          "max": 1.0
+        }
+      }
+    },
+    "synth_g2": {
+      "n_sessions": 100,
+      "dims": {
+        "dim1_incentive": {
+          "n": 100,
+          "mean": 1.277233,
+          "sd": 2.035384,
+          "min": 0.0,
+          "max": 8.728542
+        },
+        "dim2_stress": {
+          "n": 100,
+          "mean": 1.218814,
+          "sd": 1.677668,
+          "min": 0.0,
+          "max": 8.097166
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 100,
+          "mean": 0.433554,
+          "sd": 0.017021,
+          "min": 0.385144,
+          "max": 0.460771
+        },
+        "dim5_compress_sd": {
+          "n": 100,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "synth_gpt4o_g0": {
+      "n_sessions": 50,
+      "dims": {
+        "dim1_incentive": {
+          "n": 50,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim2_stress": {
+          "n": 50,
+          "mean": 0.180233,
+          "sd": 0.546279,
+          "min": 0.0,
+          "max": 1.845018
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 50,
+          "mean": 0.466183,
+          "sd": 0.009071,
+          "min": 0.440771,
+          "max": 0.485217
+        },
+        "dim5_compress_sd": {
+          "n": 50,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim7_novelty_gini": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        }
+      }
+    },
+    "edit_e3": {
+      "n_sessions": 13,
+      "dims": {
+        "dim1_incentive": {
+          "n": 13,
+          "mean": 0.208917,
+          "sd": 0.753259,
+          "min": 0.0,
+          "max": 2.715915
+        },
+        "dim2_stress": {
+          "n": 13,
+          "mean": 1.202725,
+          "sd": 1.726129,
+          "min": 0.0,
+          "max": 5.780347
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 13,
+          "mean": 0.461614,
+          "sd": 0.022261,
+          "min": 0.411371,
+          "max": 0.491221
+        },
+        "dim5_compress_sd": {
+          "n": 13,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 2,
+          "mean": 0.180019,
+          "sd": 0.103515,
+          "min": 0.106823,
+          "max": 0.253215
+        },
+        "dim7_novelty_gini": {
+          "n": 3,
+          "mean": 0.094981,
+          "sd": 0.042267,
+          "min": 0.04699,
+          "max": 0.126667
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 3,
+          "mean": 0.784067,
+          "sd": 0.044841,
+          "min": 0.73546,
+          "max": 0.823821
+        }
+      }
+    },
+    "edit_e1": {
+      "n_sessions": 13,
+      "dims": {
+        "dim1_incentive": {
+          "n": 13,
+          "mean": 1.158791,
+          "sd": 2.441389,
+          "min": 0.0,
+          "max": 6.770481
+        },
+        "dim2_stress": {
+          "n": 13,
+          "mean": 1.504921,
+          "sd": 2.14177,
+          "min": 0.0,
+          "max": 4.830918
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 13,
+          "mean": 0.522446,
+          "sd": 0.022481,
+          "min": 0.479141,
+          "max": 0.549639
+        },
+        "dim5_compress_sd": {
+          "n": 13,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 2,
+          "mean": 0.103499,
+          "sd": 0.010798,
+          "min": 0.095864,
+          "max": 0.111135
+        },
+        "dim7_novelty_gini": {
+          "n": 3,
+          "mean": 0.048191,
+          "sd": 0.005813,
+          "min": 0.041972,
+          "max": 0.053488
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 3,
+          "mean": 0.806995,
+          "sd": 0.023913,
+          "min": 0.779456,
+          "max": 0.822511
+        }
+      }
+    },
+    "edit_e2": {
+      "n_sessions": 13,
+      "dims": {
+        "dim1_incentive": {
+          "n": 13,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim2_stress": {
+          "n": 13,
+          "mean": 2.005965,
+          "sd": 2.728368,
+          "min": 0.0,
+          "max": 8.230453
+        },
+        "dim3_recovery": {
+          "n": 0,
+          "mean": null,
+          "sd": null,
+          "min": null,
+          "max": null
+        },
+        "dim4_compress_mean": {
+          "n": 13,
+          "mean": 0.52278,
+          "sd": 0.024632,
+          "min": 0.476926,
+          "max": 0.562061
+        },
+        "dim5_compress_sd": {
+          "n": 13,
+          "mean": 0.0,
+          "sd": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "dim6_novelty_cv": {
+          "n": 2,
+          "mean": 0.107639,
+          "sd": 0.130251,
+          "min": 0.015537,
+          "max": 0.19974
+        },
+        "dim7_novelty_gini": {
+          "n": 3,
+          "mean": 0.038615,
+          "sd": 0.041332,
+          "min": 0.006384,
+          "max": 0.085213
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 3,
+          "mean": 0.832498,
+          "sd": 0.014185,
+          "min": 0.818182,
+          "max": 0.846547
+        }
+      }
+    },
+    "adv_style": {
+      "n_sessions": 1,
+      "dims": {
+        "dim1_incentive": {
+          "n": 1,
+          "mean": 0.300487,
+          "sd": null,
+          "min": 0.300487,
+          "max": 0.300487
+        },
+        "dim2_stress": {
+          "n": 1,
+          "mean": 0.076488,
+          "sd": null,
+          "min": 0.076488,
+          "max": 0.076488
+        },
+        "dim3_recovery": {
+          "n": 1,
+          "mean": 1.5,
+          "sd": null,
+          "min": 1.5,
+          "max": 1.5
+        },
+        "dim4_compress_mean": {
+          "n": 1,
+          "mean": 0.419933,
+          "sd": null,
+          "min": 0.419933,
+          "max": 0.419933
+        },
+        "dim5_compress_sd": {
+          "n": 1,
+          "mean": 0.009484,
+          "sd": null,
+          "min": 0.009484,
+          "max": 0.009484
+        },
+        "dim6_novelty_cv": {
+          "n": 1,
+          "mean": 0.304934,
+          "sd": null,
+          "min": 0.304934,
+          "max": 0.304934
+        },
+        "dim7_novelty_gini": {
+          "n": 1,
+          "mean": 0.170375,
+          "sd": null,
+          "min": 0.170375,
+          "max": 0.170375
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 1,
+          "mean": 0.357992,
+          "sd": null,
+          "min": 0.357992,
+          "max": 0.357992
+        }
+      }
+    },
+    "adv_constraint": {
+      "n_sessions": 1,
+      "dims": {
+        "dim1_incentive": {
+          "n": 1,
+          "mean": 0.437591,
+          "sd": null,
+          "min": 0.437591,
+          "max": 0.437591
+        },
+        "dim2_stress": {
+          "n": 1,
+          "mean": 0.813646,
+          "sd": null,
+          "min": 0.813646,
+          "max": 0.813646
+        },
+        "dim3_recovery": {
+          "n": 1,
+          "mean": 2.0,
+          "sd": null,
+          "min": 2.0,
+          "max": 2.0
+        },
+        "dim4_compress_mean": {
+          "n": 1,
+          "mean": 0.428243,
+          "sd": null,
+          "min": 0.428243,
+          "max": 0.428243
+        },
+        "dim5_compress_sd": {
+          "n": 1,
+          "mean": 0.01017,
+          "sd": null,
+          "min": 0.01017,
+          "max": 0.01017
+        },
+        "dim6_novelty_cv": {
+          "n": 1,
+          "mean": 0.086701,
+          "sd": null,
+          "min": 0.086701,
+          "max": 0.086701
+        },
+        "dim7_novelty_gini": {
+          "n": 1,
+          "mean": 0.048057,
+          "sd": null,
+          "min": 0.048057,
+          "max": 0.048057
+        },
+        "dim8_tfidf_oneoff": {
+          "n": 1,
+          "mean": 0.377725,
+          "sd": null,
+          "min": 0.377725,
+          "max": 0.377725
+        }
+      }
+    }
+  },
+  "notes": {
+    "dims_1_2": "Default to 0.0 for sessions with no events (zero rate is correct)",
+    "dim_3": "NaN for sessions with no repair events (recovery undefined)",
+    "dim_5": "Within-session chunk SD; NaN if session has <2 full chunks (1200 tokens each)",
+    "dims_6_7": "Within-session 5-gram novelty; NaN if session has <2-3 segments",
+    "dim_8": "Within-session oneoff fraction; NaN if session has <2 segments",
+    "session_vs_corpus": "Session-level dims 5-8 measure WITHIN-session variation. Corpus-level dims 5-8 measure ACROSS-session patterns. These are related but not identical measurements.",
+    "anova_caveat": "Session-level ANOVA treats sessions as independent, ignoring within-corpus clustering. Design-effect adjustment provided but a proper multilevel model would be more rigorous."
+  }
+}
