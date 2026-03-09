@@ -1,50 +1,40 @@
 % Paper 3: Structural Cartography of Generative Text
-% Target venue: EMNLP / Computational Linguistics / TACL
-% ACL Rolling Review format
-%
-% To compile: use Overleaf ACL template or download acl.sty from
-% https://github.com/acl-org/acl-style-files
+% Target venue: Computational Linguistics (MIT Press)
+% CL journal format (clv2025.cls)
 
-\documentclass[11pt]{article}
-\usepackage{acl}
-\usepackage{times}
-\usepackage{latexsym}
+\documentclass[final]{clv2025}
+
+\jvol{vv}
+\jnum{nn}
+\jyear{2026}
+
+\dochead{Long Paper}
+
+% \pageonefooter line removed: triggers hyperref/color@begingroup bug in clv2025.cls.
+% Journal production staff will add this footer during typesetting.
+
 \usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage{subcaption}
 \usepackage{placeins}  % provides \FloatBarrier
+\usepackage{adjustbox}
+\usepackage{pdflscape}
 
-% Aggressive float placement to prevent figures/tables drifting to end
-\renewcommand{\topfraction}{0.9}
-\renewcommand{\bottomfraction}{0.9}
-\renewcommand{\textfraction}{0.1}
-\renewcommand{\floatpagefraction}{0.7}
-\setcounter{topnumber}{4}
-\setcounter{bottomnumber}{4}
-\setcounter{totalnumber}{8}
-
-% Force float pages to top-align instead of vertical centering
-% \@fptop for single-column floats, \@dblfptop for table*/figure* in twocolumn
-\makeatletter
-\setlength{\@fptop}{0pt}
-\setlength{\@fpbot}{0pt plus 1fil}
-\setlength{\@dblfptop}{0pt}
-\setlength{\@dblfpbot}{0pt plus 1fil}
-\makeatother
+\runningtitle{Static Mimicry, Dynamic Failure}
+\runningauthor{MacPherson}
 
 % Load all data macros from single source of truth
 \input{paper3_macros}
 
 \title{Static Mimicry, Dynamic Failure: A Compression-Based Structural Vector\\ Reveals a Recovery Boundary in AI-Generated Text}
 
-\author{
-  James MacPherson \\
-  Independent Researcher \\
-  \texttt{jamesmacpherson130@gmail.com}
+\author{James MacPherson$^{1}$}
+
+\affilblock{
+    \affil{Independent Researcher\\\quad \email{jamesmacpherson130@gmail.com}}
 }
 
 \begin{document}
@@ -197,7 +187,7 @@ Two conditions: (1) Explicit style-mimicry prompt (1 session, 250 segments, 52K 
 
 Claude Sonnet 4.5: draft then self-revise. 50 sessions, 100 segments, 59K words. Tests whether programmatic two-step generation produces recovery. Note: the two-pass pipeline produces extreme compression SD (d5 = 0.754), far above all other corpora, because each session contains a draft segment followed by a structurally different revision segment, creating genuine within-session compressibility alternation. This is expected and does not indicate a data error.
 
-Total: \nAI\ AI-generated corpora, \nAISessions\ sessions, \nAISegments\ segments, \nAIWords\ total words.
+Total: \nAI\ AI-generated corpora (including 6 supplementary cross-domain multi-turn), \nAISessions\ sessions, \nAISegments\ segments, \nAIWords\ total words.
 
 \subsection{Corpus Diversity and Justification}
 
@@ -255,12 +245,12 @@ Dimensions 6 and 7 are computed via fixed-budget subsampling (25K words default,
 
 Figure~\ref{fig:trace} illustrates the core mechanism schematically: in natural text (a), a compressibility excursion is followed by a return to baseline within the recovery window; in standard AI (b), the excursion persists to session end with no recovery.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.95\textwidth]{fig_trace.pdf}
 \caption{Schematic illustration of the recovery mechanism using realistic parameters. (a)~Natural text: a transient compressibility excursion (red shading) is followed by recovery to baseline (blue shading) within the recovery window. (b)~Standard AI: an excursion onset (chunk~11) elevates compressibility above the threshold, but no return to baseline occurs---the excursion persists to session end. Recovery events, as defined in \S\ref{sec:recovery-def}, count the fraction of excursions that show pattern~(a) vs.~(b). Dashed line: excursion threshold ($\mu + 0.5\sigma$); solid line: session baseline ($\mu$).}
 \label{fig:trace}
-\end{figure*}
+\end{figure}
 
 \subsection{Distance and Dimensionality Reduction}
 
@@ -350,7 +340,7 @@ A grid search over \nSensitivityCombos\ parameter combinations (excursion thresh
 
 \subsubsection{Robustness: Right-Censoring}
 
-Single-shot AI excursions are not right-censored by session end. An excursion is counted as unrecovered only if the session ends in elevated compression. Among multi-turn excursions, \censorClaudePct\% of Claude excursions (\censorClaudeN/\censorClaudeOf) and \censorGPTPct\% of GPT-4o excursions (\censorGPTN/\censorGPTOf) had $\geq$\censorMinTurns\ remaining turns of runway, confirming that unrecovered excursions reflect persistent structural absence rather than truncation.
+Single-shot AI excursions are not right-censored by session end. An excursion is counted as unrecovered only if the session ends in elevated compression. Among multi-turn excursions, \censorClaudePct\% of Claude excursions (\censorClaudeN/\censorClaudeOf) and \censorGPTPct\% of GPT-4o excursions (\censorGPTN/\censorGPTOf) had $\geq$\censorMinTurns\ remaining turns of runway, consistent with the interpretation that unrecovered excursions reflect persistent structural absence rather than truncation.
 
 \subsubsection{Robustness: Role-Mixture}
 
@@ -397,7 +387,7 @@ These examples illustrate that recovery events, while operationalized computatio
 
 \FloatBarrier
 
-\begin{table*}[htbp]
+\begin{table}[htbp]
 \centering
 \footnotesize
 \caption{Recovery rates by corpus type and generation condition. Recovery rate is the excursion-level fraction (excursions followed by compressibility reduction within recovery window). $N_e$ = number of excursions. ``---'' = recovery structurally undefined (session too short for reliable excursion detection, typically $\leq$2 chunks); this is distinct from 0.0\%, which indicates measurable excursions that never recovered. $^\ddagger$6 supplementary cross-domain multi-turn corpora (not included in the 52-corpus structural space); recovery range across corpora shown in lieu of pooled rate.}
@@ -459,16 +449,16 @@ Adversarial (constraint) & Explicit self-correction & \excAdvConstraint & \recAd
 Adversarial (style) & Style mimicry & \excAdvStyle & \recAdvStyle\% \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 \FloatBarrier
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.95\textwidth]{fig_recovery.pdf}
 \caption{Recovery rates across representative corpora (15 natural, AI conditions). Natural corpora (left) show recovery rates from 27.4\% (Vatican) to 95.7\% (AnnoMI). Where recovery is measurable, single-pass standard AI shows 0\% (0/98 excursions recovered). Multi-turn AI shows recovery driven by turn alternation: \recClaudeMT\% (Claude, 90 sessions) and \recGPTMT\% (GPT-4o, 90 sessions). Adversarial AI and reasoning multi-turn models also breach the boundary. The dashed horizontal line at 0\% marks the recovery boundary for single-pass generation. Error bars: 95\% bootstrap CIs (1,000 iterations).}
 \label{fig:recovery}
-\end{figure*}
+\end{figure}
 
 \FloatBarrier
 
@@ -480,16 +470,16 @@ Key observation: multiturn\_claude is \distMTClaudeToLoO\ zL2 (z-scored Euclidea
 
 Reasoning models (reasoning\_deepseek\_r1\_mt, reasoning\_o3mini\_mt) lie partway into the natural cluster, separated from standard AI by their recovery rates. This positioning is consistent with corrective-loop dynamics: internal verification produces both the recovery signal and the partial elevation in stress (d2) and novelty dimensions (d6, d7).
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.95\textwidth]{fig_pca.pdf}
 \caption{Principal component analysis of 52 natural, calibration, and AI corpora in the 8-dimensional structural space. PC1 (horizontal, explaining \pcVarOne\% of variance) separates high-novelty naturals and reasoning models (rightward) from low-novelty AI and calibration (leftward). PC2 (vertical, \pcVarTwo\%) captures secondary structure: dialogue corpora (high stress, frequent turn alternation) scatter upward; continuous prose and calibration cluster around the axis. Note: recovery (d3) is one of the 8 input dimensions, so PCA here is a descriptive visualization of the full vector space, not independent confirmation of the recovery boundary; the recovery boundary is established separately (\S5.1). Reasoning MT (green circles) separate from standard AI (red X) primarily via d3. Error bars on select clusters represent session-level ICC ranges (session variance within corpus SD). PCA sign convention is arbitrary (eigenvector sign-flip); we orient so that naturals load positively on PC1. Calibration corpora (gray, bottom-left) establish compression baselines.}
 \label{fig:pca}
-\end{figure*}
+\end{figure}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{fig_coherence.pdf}
+\includegraphics[width=0.65\textwidth]{fig_coherence.pdf}
 \caption{Recovery rate vs.\ topic-coherence index (mean cosine similarity between consecutive segment embeddings, all-MiniLM-L6-v2; 90 sessions for spiritual Q\&A corpora, 30 sessions for cross-domain MT). Neither AI ($r = \cohAIr$, $p = \cohAIp$, ns) nor natural ($r = \cohNatr$, $p = \cohNatp$, ns) recovery is predicted by topic coherence. Multi-turn AI recovers at \recClaudeMT--\recGPTMT\% regardless of coherence level; cross-domain AI recovers at \recMTXdomMin--\recMTXdomMax\%. Single-shot AI (not shown) remains at 0\%. The boundary is single-pass vs.\ multi-turn generation structure, not topic coherence.}
 \label{fig:coherence}
 \end{figure}
@@ -672,6 +662,7 @@ Generation prompts, corpus construction scripts, compression and feature extract
 % REFERENCES
 % ============================================================
 
+\bibliographystyle{compling}
 \bibliography{paper3_refs}
 
 \FloatBarrier
@@ -682,7 +673,7 @@ Generation prompts, corpus construction scripts, compression and feature extract
 
 \appendix
 
-\section{Operational Definition: Recovery and Excursions}
+\appendixsection{Operational Definition: Recovery and Excursions}
 
 \subsection{Definitions}
 
@@ -720,7 +711,7 @@ To control for alternating speaker roles (questioner vs.\ answerer) as a confoun
 
 \FloatBarrier
 
-\section{Appendix B: Robustness Battery Results}
+\appendixsection{Robustness Battery Results}
 
 \subsection{Compressor Invariance}
 
@@ -744,7 +735,7 @@ Select subsets of 58 sessions per corpus, 200 iterations. Corpus rankings on dim
 
 \FloatBarrier
 
-\section{Appendix C: PERMANOVA and Multivariate Inference}
+\appendixsection{PERMANOVA and Multivariate Inference}
 
 \subsection{PERMANOVA: Methodology}
 
@@ -775,7 +766,7 @@ Anderson's PERMDISP test on all three protocol models. $F = \permDispF$, $p = \p
 
 \clearpage
 
-\section{Appendix D: Extended Corpus Summary}
+\appendixsection{Extended Corpus Summary}
 
 \begin{table}[h!]
 \centering
@@ -866,13 +857,13 @@ synth\_twopass\_claude & 50 & 100 & 59 & 0.0\% & 0.599 & 0.754 \\
 
 \clearpage
 
-\section{Appendix E: Session-Level ANOVA}
+\appendixsection{Session-Level ANOVA}
 
 Table~\ref{tbl:session-anova} reports session-level one-way ANOVA results comparing production protocol (9 levels) and content domain (7 levels) as predictors of each compact vector dimension across \anovaSessions\ sessions from \anovaCorpora\ corpora. Because sessions cluster within corpora, design effects are large and effective $N$ values are much smaller than the raw session count; effect sizes ($\eta^2$) rather than $p$-values are the appropriate basis for comparison.
 
 \begin{table}[h!]
 \centering
-\small
+\footnotesize
 \caption{Session-level ANOVA: protocol vs.\ domain. ``Ratio'' is protocol $\eta^2$ / domain $\eta^2$. Dim 3 has domain $\eta^2 = 0.000$ ($p = 0.97$), so the ratio is undefined. Effective $N$ accounts for design effects from session clustering within corpora. All protocol $p < 0.001$; all domain $p < 0.001$ except dim 3 ($p = 0.97$).}
 \label{tbl:session-anova}
 \begin{tabular}{l rrrr rrrr r}
@@ -895,17 +886,15 @@ Table~\ref{tbl:session-anova} reports session-level one-way ANOVA results compar
 
 Recovery (d3) shows domain $\eta^2 = 0.000$ ($p = 0.97$)---content has no detectable predictive power for recovery. Dynamic dimensions (stress, novelty) show 2--4$\times$ protocol advantage. Static dimensions (compression, vocabulary) show near-parity ($\sim$1.1$\times$), consistent with AI's ability to match distributional statistics. Mixed effects regression with random intercept on corpus yields protocol random intercept SD $\approx 1.48$ and domain SD $\approx 0.05$, confirming the dominance.
 
-\clearpage
+\appendixsection{52-Corpus Structural Vector Table}
+\label{app:compact-vector}
 
-\section{Appendix F: 52-Corpus Structural Vector Table}
-
-Complete 8-dimensional feature vectors and PCA coordinates for all \nCorpora\ corpora.
-
-\begin{table*}[h!]
+\begin{landscape}
+\begin{table}[p]
 \centering
-\small
-\caption{Structural feature vectors (8 dimensions, raw corpus-level values) and PCA coordinates (PC1, PC2, dimensionless) for all 52 corpora. PCA is computed on z-scored values (mean 0, SD 1 across corpora); table reports raw values for interpretability. Single-shot AI marked with --- for d3 (recovery undefined: $\leq$2 chunks per session); this is distinct from 0.0\%, which indicates measured zero recovery. Missing d6/d7 for corpora with insufficient text for stable novelty estimation marked with ---. PCA sign convention is arbitrary (eigenvector sign-flip); we orient so that naturals load positively on PC1.}
+\caption{Structural feature vectors (8 dimensions, raw corpus-level values) and PCA coordinates for all 52 corpora (Part~1: Natural and Calibration). PCA computed on z-scored values; table reports raw values. Single-shot AI: --- for d3 (recovery undefined at $\leq$2 chunks/session); 0.0\% = measured zero. Missing d6/d7: ---. Naturals load positively on PC1.}
 \label{tbl:compact-vector}
+\footnotesize
 \begin{tabular}{lrrrrrrrrrr}
 \toprule
 \textbf{Corpus} & \textbf{d1} & \textbf{d2} & \textbf{d3} & \textbf{d4} & \textbf{d5} & \textbf{d6} & \textbf{d7} & \textbf{d8} & \textbf{PC1} & \textbf{PC2} \\
@@ -931,6 +920,18 @@ academic\_arxiv & 0.046 & 0.500 & 42.9\% & 0.445 & 0.016 & 0.121 & 0.067 & 0.662
 ecc\_hamming74 & 0.000 & 0.000 & --- & 0.000 & 0.000 & --- & --- & --- & $-$1.59 & $-$3.40 \\
 sat\_3sat & 0.000 & 0.000 & --- & 0.268 & 0.000 & --- & --- & --- & $-$1.09 & $-$1.66 \\
 gencode\_splice & 0.000 & 0.000 & --- & 0.300 & 0.000 & --- & --- & --- & $-$1.03 & $-$1.46 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\caption{Structural feature vectors and PCA coordinates (Part~2: AI-generated corpora). See Part~1 caption for column definitions.}
+\label{tbl:compact-vector-2}
+\scriptsize
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+\textbf{Corpus} & \textbf{d1} & \textbf{d2} & \textbf{d3} & \textbf{d4} & \textbf{d5} & \textbf{d6} & \textbf{d7} & \textbf{d8} & \textbf{PC1} & \textbf{PC2} \\
 \midrule
 \multicolumn{11}{l}{\textit{AI Single-Shot}} \\
 synth\_g0 & 0.106 & 2.063 & --- & 0.485 & 0.010 & 0.028 & 0.016 & 0.501 & $-$0.67 & +1.03 \\
@@ -979,18 +980,17 @@ adv\_constraint & 0.438 & 0.814 & 100.0\% & 0.428 & 0.000 & --- & --- & --- & +0
 synth\_twopass\_claude & 0.073 & 1.935 & 0.0\% & 0.599 & 0.754 & 0.058 & 0.032 & 0.869 & +2.29 & +5.20 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
+\end{landscape}
 
-\clearpage
-
-\section{Appendix G: Recovery Lag Distribution}
+\appendixsection{Recovery Lag Distribution}
 \label{app:lag}
 
 Figure~\ref{fig:lag} shows the distribution of recovery lags (in chunks) for recovered excursions. Among 31,085 recovered natural excursions, 57.9\% recover at lag~1, 16.7\% at lag~2, 15.9\% at lag~3, 5.3\% at lag~4, and 4.3\% at lag~5. The median recovery lag is 1 chunk. Reasoning MT models show an even stronger lag-1 concentration (83.3\%, N=72), consistent with chain-of-thought producing immediate recontextualization. Single-pass AI contributes zero recovered excursions (all 98 measurable single-pass AI excursions have lag=$-$1, meaning no return to baseline before session end). The $k=7$ recovery window parameter is conservative: 90.4\% of natural recovery occurs within 3 chunks.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\columnwidth]{fig_lag.pdf}
+\includegraphics[width=0.65\textwidth]{fig_lag.pdf}
 \caption{Recovery lag distribution for recovered excursions. Natural text (blue, N=31,085) shows a strong lag-1 peak (57.9\%), with 90.4\% recovering by lag~3. Reasoning MT (red, N=72) shows even stronger immediate recovery (83.3\% at lag~1). Single-pass AI contributes no recovered excursions and is not shown. The recovery window $k=7$ is conservative.}
 \label{fig:lag}
 \end{figure}

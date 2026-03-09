@@ -70,7 +70,8 @@ The 8 dimensions of the compact vector are:
 │   ├── drift_subsampling_results.json   # dim10 kill evidence
 │   └── final_prewriting_results.json    # PERMANOVA, per-corpus ablation
 └── paper/
-    ├── paper3_scrp.tex                 # Manuscript (ACL format)
+    ├── paper3_scrp_cl.tex              # Manuscript (CL journal format, submitted version)
+    ├── paper3_scrp.tex                 # Manuscript (ACL format, original)
     ├── paper3_macros.tex               # Data macros (120+ verified values)
     ├── paper3_refs.bib                 # Bibliography
     └── figures/
@@ -208,7 +209,7 @@ A 52-row × 8-column matrix where each row is a corpus and each column is a comp
 
 | Dimension | Type | Scale | Definition |
 |-----------|------|-------|-----------|
-| d1 | Incentive | [0, 1] | Excursion rate: proportion of sessions with ≥1 excursion |
+| d1 | Excursion rate | [0, 1] | Proportion of sessions with ≥1 excursion |
 | d2 | Stress | [0, ∞) | Stress rate: mean per-session segments below recovery threshold |
 | d3 | Recovery | [0, 1] | Recovery rate: proportion of excursions followed by return within session |
 | d4 | Compression | [0, 1] | Mean zlib compression ratio (1200-token chunks); lower = more random |
@@ -253,7 +254,7 @@ A 52-row × 8-column matrix where each row is a corpus and each column is a comp
    - GPT-4o: d3 = NULL, dim4/dim5 identical to Claude (both ~0.009)
    - Gemini 2.5 Flash: d3 = NULL, dim4/dim5 = 0.009
    - Llama 3.1 70B: d3 = NULL, dim4/dim5 = 0.027 (slightly higher variance)
-   - DeepSeek-R1 (single-shot): d3 = NULL; (multi-turn) d3 = 0% (100% of reasoning follows single-pass structure)
+   - DeepSeek-R1 (single-shot): d3 = NULL; (multi-turn) d3 = 63.0% (entity-only recovery)
    - o3-mini (single-shot): d3 = NULL; (multi-turn) d3 = 89.5% (reasoning chain uses internal refinement)
 
 ### Sensitivity Analysis
@@ -294,7 +295,7 @@ If you use this data or methodology, please cite:
 @article{macpherson2026recovery,
   title = {Static Mimicry, Dynamic Failure: Recovery Boundaries in {AI}-Generated Text},
   author = {MacPherson, James},
-  journal = {Submitted},
+  journal = {Computational Linguistics (submitted)},
   year = {2026},
   note = {Available at \url{https://github.com/jmacpherson-research/recovery-boundary}}
 }
